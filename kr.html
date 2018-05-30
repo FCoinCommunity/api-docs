@@ -1,0 +1,1340 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <title>FCoin API Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight {
+  color: #faf6e4;
+  background-color: #122b3b;
+}
+.highlight .gl {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #6c8b9f;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #b2fd6d;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .err {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+.highlight .gr {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+.highlight .k, .highlight .kd, .highlight .kv {
+  color: #f6dd62;
+  font-weight: bold;
+}
+.highlight .o, .highlight .ow {
+  color: #4df4ff;
+}
+.highlight .p, .highlight .pi {
+  color: #4df4ff;
+}
+.highlight .gd {
+  color: #cc0000;
+}
+.highlight .gi {
+  color: #b2fd6d;
+}
+.highlight .ge {
+  font-style: italic;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gt {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+.highlight .kc {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .gh {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nc {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nd {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .bp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .ne {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+.highlight .nl {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .nt {
+  color: #ffb000;
+  font-weight: bold;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .ld {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .ss {
+  color: #f696db;
+  font-weight: bold;
+}
+.highlight .s, .highlight .sb, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .sr, .highlight .s1 {
+  color: #fff0a6;
+  font-weight: bold;
+}
+.highlight .se {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .sc {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .si {
+  color: #4df4ff;
+  font-weight: bold;
+}
+.highlight .nb {
+  font-weight: bold;
+}
+.highlight .ni {
+  color: #999999;
+  font-weight: bold;
+}
+.highlight .w {
+  color: #BBBBBB;
+}
+.highlight .nf {
+  color: #a8e1fe;
+}
+.highlight .py {
+  color: #a8e1fe;
+}
+.highlight .na {
+  color: #a8e1fe;
+}
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="kr" data-languages="[&quot;python&quot;,&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" />
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#45fa4e00db" class="toc-h1 toc-link" data-title="">介绍</a>
+          </li>
+          <li>
+            <a href="#32c808cbe5" class="toc-h1 toc-link" data-title="">认证</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#12907e94be" class="toc-h2 toc-link" data-title="">访问限制</a>
+                  </li>
+                  <li>
+                    <a href="#api" class="toc-h2 toc-link" data-title="api">API 签名</a>
+                  </li>
+                  <li>
+                    <a href="#05e32f581f" class="toc-h2 toc-link" data-title="">完整示例</a>
+                  </li>
+                  <li>
+                    <a href="#480d10db69" class="toc-h2 toc-link" data-title="">参数名称</a>
+                  </li>
+                  <li>
+                    <a href="#26670dda42" class="toc-h2 toc-link" data-title="">说明</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#a716ef8f2b" class="toc-h1 toc-link" data-title="">公开接口</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#8aa898cda7" class="toc-h2 toc-link" data-title="">查询服务器时间</a>
+                  </li>
+                  <li>
+                    <a href="#0fd2e492e6" class="toc-h2 toc-link" data-title="">查询可用币种</a>
+                  </li>
+                  <li>
+                    <a href="#a266e284f4" class="toc-h2 toc-link" data-title="">查询可用交易对</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#8e4b902c12" class="toc-h1 toc-link" data-title="">行情</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#35c492adbd" class="toc-h2 toc-link" data-title="">行情概述</a>
+                  </li>
+                  <li>
+                    <a href="#4759ecd9b2" class="toc-h2 toc-link" data-title="">获取推送服务器时间</a>
+                  </li>
+                  <li>
+                    <a href="#ticker" class="toc-h2 toc-link" data-title="ticker">获取 ticker 数据</a>
+                  </li>
+                  <li>
+                    <a href="#50f4407ea4" class="toc-h2 toc-link" data-title="">获取最新的深度明细</a>
+                  </li>
+                  <li>
+                    <a href="#6477a1394e" class="toc-h2 toc-link" data-title="">获取最新的成交明细</a>
+                  </li>
+                  <li>
+                    <a href="#candle" class="toc-h2 toc-link" data-title="candle">获取 Candle 信息</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#6055443976" class="toc-h1 toc-link" data-title="">账户与资产</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#486f6037ed" class="toc-h2 toc-link" data-title="">查询账户资产</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#81b3798beb" class="toc-h1 toc-link" data-title="">订单</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#804ca63a95" class="toc-h2 toc-link" data-title="">订单模型说明</a>
+                  </li>
+                  <li>
+                    <a href="#4a3e521c3b" class="toc-h2 toc-link" data-title="">创建新的订单</a>
+                  </li>
+                  <li>
+                    <a href="#9094989d10" class="toc-h2 toc-link" data-title="">查询订单列表</a>
+                  </li>
+                  <li>
+                    <a href="#5faf03be01" class="toc-h2 toc-link" data-title="">获取指定订单</a>
+                  </li>
+                  <li>
+                    <a href="#299126e3bf" class="toc-h2 toc-link" data-title="">申请撤销订单</a>
+                  </li>
+                  <li>
+                    <a href="#152112dfd6" class="toc-h2 toc-link" data-title="">查询指定订单的成交记录</a>
+                  </li>
+                  <li>
+                    <a href="#2b1ef4b5eb" class="toc-h2 toc-link" data-title="">订单错误代码</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#cf68bca02a" class="toc-h1 toc-link" data-title="">错误代码</a>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://www.fcoin.com/developers'>注册为开发者</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='45fa4e00db'>介绍</h1>
+<p>通过了解以下信息，您可以方便的使用 FCoin 提供的 API 来接入 FCoin 交易平台。</p>
+<h1 id='32c808cbe5'>认证</h1>
+<blockquote>
+<p>执行下面的代码进行用户验证：</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+</code></pre>
+<p>FCoin 使用 API key 和 API secret 进行验证，请访问 <a href="https://exchange.fcoin.com/setting">设置中心</a>，并注册成为开发者，获取 API key 和 API secret。</p>
+
+<p>FCoin 的 API 请求，除公开的 API 外都需要携带 API key 以及签名</p>
+<h2 id='12907e94be'>访问限制</h2>
+<p>目前访问频率为每个用户 100次 / 10秒，未来会按照业务区分访问频率限制。</p>
+<h2 id='api'>API 签名</h2>
+<p>签名前准备的数据如下：</p>
+
+<p><code>HTTP_METHOD</code> + <code>HTTP_REQUEST_URI</code> + <code>TIMESTAMP</code> + <code>POST_BODY</code></p>
+
+<p>连接完成后，进行 <code>Base64</code> 编码，对编码后的数据进行 <code>HMAC-SHA1</code> 签名，并对签名进行二次 <code>Base64</code> 编码，各部分解释如下：</p>
+
+<aside class="warning">
+请注意需要进行两次 `Base64` 编码！
+</aside>
+<h3 id='http_method'>HTTP_METHOD</h3>
+<p><code>GET</code>, <code>POST</code>, <code>DELETE</code>, <code>PUT</code> 需要大写</p>
+<h3 id='http_request_uri'>HTTP_REQUEST_URI</h3>
+<p><code>https://api.fcoin.com/v2/</code> 为 v2 API 的请求前缀</p>
+
+<p>后面再加上真正要访问的资源路径，如 <code>orders?param1=value1</code>，最终即 <code>https://api.fcoin.com/v2/orders?param1=value1</code></p>
+
+<p>对于请求的 URI 中的参数，需要按照按照字母表排序！</p>
+
+<p>即如果请求的 URI 为 <code>https://api.fcoin.com/v2/orders?c=value1&amp;b=value2&amp;a=value3</code>，则进行签名时，应先将请求参数按照字母表排序，最终进行签名的 URI 为 <code>https://api.fcoin.com/v2/orders?a=value3&amp;b=value2&amp;c=value1</code>，
+请注意，原请求 URI 中的三个参数顺序为 <code>c, b, a</code>，排序后为 <code>a, b, c</code>。</p>
+<h3 id='timestamp'>TIMESTAMP</h3>
+<p>访问 API 时的 UNIX EPOCH 时间戳，需要和服务器之间的时间差少于 30 秒</p>
+<h3 id='post_body'>POST_BODY</h3>
+<p>如果是 <code>POST</code> 请求，<code>POST</code> 请求数据也需要被签名，签名规则如下：</p>
+
+<p>所有请求的 key 按照字母顺序排序，然后进行 url 参数化，并使用 <code>&amp;</code> 连接。</p>
+
+<aside class="warning">
+请注意 POST_BODY 的键值需要按照字母表排序！
+</aside>
+
+<blockquote>
+<p>如果请求数据为：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"passowrd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>则先将 key 按照字母排序，然后进行 url 参数化，即：</p>
+</blockquote>
+<pre class="highlight plaintext"><code>password=password
+username=username
+</code></pre>
+<blockquote>
+<p>因为 <code>p</code> 在字母表中的排序在 <code>u</code> 之前，所以 <code>password</code> 要放在 <code>username</code> 之前，然后使用 <code>&amp;</code> 进行连接，即：</p>
+</blockquote>
+<pre class="highlight plaintext"><code>password=password&amp;username=username
+</code></pre><h2 id='05e32f581f'>完整示例</h2>
+<blockquote>
+<p>对于如下的请求：</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST https://api.fcoin.com/v2/orders
+
+{
+  "type": "limit",
+  "side": "buy",
+  "amount": "100.0",
+  "price": "100.0",
+  "symbol": "btcusdt"
+}
+
+timestamp: 1523069544359
+</code></pre>
+<blockquote>
+<p>签名前的准备数据如下：</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POSThttps://api.fcoin.com/v2/orders1523069544359amount=100.0&amp;price=100.0&amp;side=buy&amp;symbol=btcusdt&amp;type=limit
+</code></pre>
+<blockquote>
+<p>进行 Base64 编码，得到：</p>
+</blockquote>
+<pre class="highlight plaintext"><code>UE9TVGh0dHBzOi8vYXBpLmZjb2luLmNvbS92Mi9vcmRlcnMxNTIzMDY5NTQ0MzU5YW1vdW50PTEwMC4wJnByaWNlPTEwMC4wJnNpZGU9YnV5JnN5bWJvbD1idGN1c2R0JnR5cGU9bGltaXQ=
+</code></pre>
+<blockquote>
+<p>拷贝在申请 API Key 时获得的秘钥（API SECRET），下面的签名结果采用 <code>3600d0a74aa3410fb3b1996cca2419c8</code> 作为示例，</p>
+
+<p>对得到的结果使用秘钥进行 <code>HMAC-SHA1</code> 签名，并对二进制结果进行 <code>Base64</code> 编码，得到：</p>
+</blockquote>
+<pre class="highlight plaintext"><code>DeP6oftldIrys06uq3B7Lkh3a0U=
+</code></pre>
+<blockquote>
+<p>即生成了用于向 API 服务器进行验证的最终签名</p>
+</blockquote>
+<h2 id='480d10db69'>参数名称</h2>
+<ul>
+<li><code>FC-ACCESS-KEY</code></li>
+<li><code>FC-ACCESS-SIGNATURE</code></li>
+<li><code>FC-ACCESS-TIMESTAMP</code></li>
+</ul>
+<h2 id='26670dda42'>说明</h2>
+<p>可以使用<a href="#">开发者工具</a>（暂未开放）进行在线联调测试。</p>
+<h1 id='a716ef8f2b'>公开接口</h1><h2 id='8aa898cda7'>查询服务器时间</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">server_time</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">server_time</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">serverTime</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">serverTime</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523430502977</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于获取服务器时间。</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/public/server-time</code></p>
+<h2 id='0fd2e492e6'>查询可用币种</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">currencies</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">currencies</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">currencies</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">currencies</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"eth"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于获取可用币种。</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/public/currencies</code></p>
+<h2 id='a266e284f4'>查询可用交易对</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">symbols</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">symbols</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">symbols</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">symbols</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"base_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price_decimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount_decimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethusdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"base_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price_decimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount_decimal"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于获取可用交易对。</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/public/symbols</code></p>
+<h1 id='8e4b902c12'>行情</h1><h2 id='35c492adbd'>行情概述</h2>
+<p>行情是一个全公开的 API, 当前同时提供了 HTTP 和 WebSocket 的 API.
+为确保可以更及时的获得行情, 推荐使用 WebSocket 进行接入.
+为尽可能行情的实时性能, 当前公开部分只能获取最近一段时间的行情, 如果有需要获取全量或者历史行情, 请咨询 <code>support@fcoin.com</code></p>
+
+<p>所有 HTTP 请求的 URL base 为: <code>https://api.fcoin.com/v2/market</code></p>
+
+<p>所有 WebSocket 请求的 URL 为: <code>wss://api.fcoin.com/v2/ws</code></p>
+
+<p>下文会统一术语:</p>
+
+<ul>
+<li><code>topic</code> 表示订阅的主题</li>
+<li><code>symbol</code> 表示对应交易币种. 所有币种区分的 topic 都在 topic 末尾.</li>
+<li><code>ticker</code> 行情 tick 信息, 包含最新成交价, 最新成交量, 买一卖一, 近 24 小时成交量.</li>
+<li><code>depth</code> 表示行情深度, 买卖盘, 盘口.</li>
+<li><code>level</code> 表示行情深度类型. 如 <code>L20</code>, <code>L100</code>.</li>
+<li><code>trade</code> 表示最新成交, 最新交易.</li>
+<li><code>candle</code> 表示蜡烛图, 蜡烛棒, K 线.</li>
+<li><code>resolution</code> 表示蜡烛图的种类. 如 <code>M1</code>, <code>M15</code>.</li>
+<li><code>base volume</code> 表示基准货币成交量, 如 btcusdt 中 btc 的量.</li>
+<li><code>quote volume</code> 表示计价货币成交量, 如 btcusdt 中 usdt 的量</li>
+<li><code>ts</code> 表示推送服务器的时间. 是毫秒为单位的数字型字段, unix epoch in millisecond.</li>
+</ul>
+<h3 id='websocket'>WebSocket 首次建立链接</h3>
+<p>服务器会发送一个欢迎信息</p>
+
+<ul>
+<li><code>ts</code>: 推送服务器当前的时间.</li>
+</ul>
+
+<blockquote>
+<p>服务器返回</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"hello"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693784042</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='4759ecd9b2'>获取推送服务器时间</h2>
+<ul>
+<li><code>gap</code>: 推送服务器处理此语句的时间和客户端传输的时间差.</li>
+<li><code>ts</code>: 推送服务器当前的时间.</li>
+</ul>
+<h3 id='websocket-2'>WebSocket 请求</h3><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">now_ms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+<span class="n">api</span><span class="o">.</span><span class="n">market</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="n">now_ms</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>服务器返回</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693784042</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"gap"</span><span class="p">:</span><span class="mi">112</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='ticker'>获取 ticker 数据</h2>
+<p>为了使得 ticker 信息组足够小和快, 我们强制使用了列表格式.</p>
+
+<blockquote>
+<p>ticker 列表对应字段含义说明:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"最新成交价"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"最近一笔成交的成交量"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"最大买一价"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"最大买一量"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"最小卖一价"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"最小卖一量"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24小时前成交价"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24小时内最高价"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24小时内最低价"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24小时内基准货币成交量, 如 btcusdt 中 btc 的量"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24小时内计价货币成交量, 如 btcusdt 中 usdt 的量"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='http'>HTTP 请求</h3>
+<p><code>GET https://api.fcoin.com/v2/market/ticker/$symbol</code></p>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">market</span><span class="o">.</span><span class="n">get_ticker</span><span class="p">(</span><span class="s">"ethbtc"</span><span class="p">)</span>
+
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ticker.btcusdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">680035</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">7140.890000000000000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1.000000000000000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">7131.330000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">233.524600000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">7140.890000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">225.495049866</span><span class="p">,</span><span class="w">
+      </span><span class="mf">7140.890000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">7140.890000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">7140.890000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">7140.890000000000000000</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='websocket-3'>WebSocket 订阅</h3>
+<p>topic: <code>ticker.$symbol</code></p>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
+<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"ticker.ethbtc"</span><span class="p">,</span> <span class="s">"ticker.btcusdt"</span><span class="p">]</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="k">print</span><span class="p">)</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>订阅成功的响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ticker.ethbtc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ticker.btcusdt"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>常规订阅的通知消息格式如下:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ticker.btcusdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">680035</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ticker"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mf">7140.890000000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">1.000000000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">7131.330000000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">233.524600000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">7140.890000000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">225.495049866</span><span class="p">,</span><span class="w">
+    </span><span class="mf">7140.890000000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">7140.890000000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">7140.890000000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">7140.890000000000000000</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='50f4407ea4'>获取最新的深度明细</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/market/depth/$level/$symbol</code></p>
+
+<p><code>$level</code> 包含的种类:</p>
+
+<table><thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>L20</code></td>
+<td>20 档行情深度.</td>
+</tr>
+<tr>
+<td><code>L100</code></td>
+<td>100 档行情深度.</td>
+</tr>
+<tr>
+<td><code>full</code></td>
+<td>全量的行情深度, 不做时间保证和推送保证.</td>
+</tr>
+</tbody></table>
+
+<p>其中 <code>L20</code> 的推送时间会略早于 <code>L100</code>, 推送频次会略多于 <code>L100</code>, 看具体的压力和情况. 此处请按需使用.</p>
+<h3 id='websocket-4'>WebSocket 订阅</h3>
+<p>订阅 topic: <code>depth.$level.$symbol</code></p>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
+<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"depth.L20.ethbtc"</span><span class="p">,</span> <span class="s">"depth.L100.btcusdt"</span><span class="p">]</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="k">print</span><span class="p">)</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">fcoin_ws</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">init_ws</span><span class="p">()</span>
+<span class="nx">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"depth.L20.ethbtc"</span><span class="p">,</span> <span class="s2">"depth.L100.btcusdt"</span><span class="p">]</span>
+<span class="nx">fcoin_ws</span><span class="p">.</span><span class="nx">handle</span><span class="p">(</span><span class="nx">print</span><span class="p">)</span>
+<span class="nx">fcoin_ws</span><span class="p">.</span><span class="nx">sub</span><span class="p">(</span><span class="nx">topics</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>订阅成功的响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"depth.L20.ethbtc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"depth.L100.btcusdt"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>常规的推送结果</p>
+</blockquote>
+
+<p>bids 和 asks 对应的数组一定是偶数条目, 买(卖)1价, 买(卖)1量, 依次往后排列.</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"depth.L20.ethbtc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523619211000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.000100000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">0.000010000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='6477a1394e'>获取最新的成交明细</h2>
+<p>通过对比其中的成交 id 大小才能决定是否是更新的成交.{trade id}
+需要注意, 常规由于 trade 到 transaction 过程的存在, 公开行情的成交 id 并不实际对应清算系统中的成交 id.
+即使成交是一条记录, 也无法保证最新成交在重新获取时候 id 永远保持一致.</p>
+
+<p>PS: 历史行情中, 是可以保证成交 id 保持恒定. {transaction id} 此处只作为行情更新通知, 不应依赖归档使用.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/market/trades/$symbol</code></p>
+<h3 id='http-query'>查询参数(HTTP Query)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>before</td>
+<td></td>
+<td>查询某个 id 之前的 Trade</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>默认为 20 条</td>
+</tr>
+</tbody></table>
+<h3 id='websocket-5'>WebSocket 获取最近的成交</h3>
+<p>topic: <code>trade.$symbol</code>
+limit: 最近的成交条数
+args: [topic, limit]</p>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
+<span class="n">topic</span> <span class="o">=</span> <span class="s">"trade.ethbtc"</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">topic</span><span class="p">,</span> <span class="n">limit</span><span class="p">]</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">req</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">rep_handler</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>请求成功的响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693400329</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523419946174</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">76000</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.000000000</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523419114272</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">74000</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.000000000</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523415182356</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">71000</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">3.000000000</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='websocket-6'>WebSocket 订阅</h3><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
+<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"trade.ethbtc"</span><span class="p">,</span> <span class="s">"trade.btcusdt"</span><span class="p">]</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="k">print</span><span class="p">)</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>订阅成功的响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"trade.ethbtc"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>常规的推送结果</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"trade.ethbtc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">76000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523419946174</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.000000000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='candle'>获取 Candle 信息</h2><h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/market/candles/$resolution/$symbol</code></p>
+<h3 id='http-query-2'>查询参数(HTTP Query)</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>before</td>
+<td></td>
+<td>查询某个 id 之前的 Candle</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>默认为 20 条</td>
+</tr>
+</tbody></table>
+
+<p>$resolution 包含的种类</p>
+
+<table><thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>M1</code></td>
+<td>1 分钟</td>
+</tr>
+<tr>
+<td><code>M3</code></td>
+<td>3 分钟</td>
+</tr>
+<tr>
+<td><code>M5</code></td>
+<td>5 分钟</td>
+</tr>
+<tr>
+<td><code>M15</code></td>
+<td>15 分钟</td>
+</tr>
+<tr>
+<td><code>M30</code></td>
+<td>30 分钟</td>
+</tr>
+<tr>
+<td><code>H1</code></td>
+<td>1 小时</td>
+</tr>
+<tr>
+<td><code>H4</code></td>
+<td>4 小时</td>
+</tr>
+<tr>
+<td><code>H6</code></td>
+<td>6 小时</td>
+</tr>
+<tr>
+<td><code>D1</code></td>
+<td>1 日</td>
+</tr>
+<tr>
+<td><code>W1</code></td>
+<td>1 周</td>
+</tr>
+<tr>
+<td><code>MN</code></td>
+<td>1 月</td>
+</tr>
+</tbody></table>
+<h3 id='weboskcet-candle'>Weboskcet 订阅 Candle 数据</h3>
+<p>topic: <code>candle.$resolution.$symbol</code></p>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
+<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"candle.M1.ethbtc"</span><span class="p">,</span> <span class="s">"depth.L20.ethbtc"</span><span class="p">,</span> <span class="s">"trade.ethbtc"</span><span class="p">]</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="k">print</span><span class="p">)</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>订阅成功的响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"candle.M1.ethbtc"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>常规订阅的通知消息格式如下:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"candle.M1.ethbtc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1523691480</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"seq"</span><span class="p">:</span><span class="mi">11400000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">2.000000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">2.000000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">2.000000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">2.000000000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"base_vol"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"quote_vol"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='6055443976'>账户与资产</h1><h2 id='486f6037ed'>查询账户资产</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">accounts_balance</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">orders</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">accountsBalance</span><span class="p">;</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于查询用户的资产列表。</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/accounts/balance</code></p>
+<h1 id='81b3798beb'>订单</h1><h2 id='804ca63a95'>订单模型说明</h2>
+<p>订单模型由以下属性构成：</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>含义解释</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>String</code></td>
+<td>订单 ID</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td><code>String</code></td>
+<td>交易对</td>
+</tr>
+<tr>
+<td><code>side</code></td>
+<td><code>String</code></td>
+<td>交易方向（<code>buy</code>, <code>sell</code>）</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>String</code></td>
+<td>订单类型（<code>limit</code>，<code>market</code>）</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td><code>String</code></td>
+<td>下单价格</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td><code>String</code></td>
+<td>下单数量</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td><code>String</code></td>
+<td>订单状态</td>
+</tr>
+<tr>
+<td><code>executed_value</code></td>
+<td><code>String</code></td>
+<td>已成交</td>
+</tr>
+<tr>
+<td><code>filled_amount</code></td>
+<td><code>String</code></td>
+<td>成交量</td>
+</tr>
+<tr>
+<td><code>fill_fees</code></td>
+<td><code>String</code></td>
+<td>手续费</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>Long</code></td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>String</code></td>
+<td>来源</td>
+</tr>
+</tbody></table>
+
+<p>订单状态说明：</p>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th>含义解释</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>submitted</code></td>
+<td>已提交</td>
+</tr>
+<tr>
+<td><code>partial_filled</code></td>
+<td>部分成交</td>
+</tr>
+<tr>
+<td><code>partial_canceled</code></td>
+<td>部分成交已撤销</td>
+</tr>
+<tr>
+<td><code>filled</code></td>
+<td>完全成交</td>
+</tr>
+<tr>
+<td><code>canceled</code></td>
+<td>已撤销</td>
+</tr>
+<tr>
+<td><code>pending_cancel</code></td>
+<td>撤销已提交</td>
+</tr>
+</tbody></table>
+<h2 id='4a3e521c3b'>创建新的订单</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">order_create_param</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">order_create_param</span><span class="p">(</span><span class="s">'btcusdt'</span><span class="p">,</span> <span class="s">'buy'</span><span class="p">,</span> <span class="s">'limit'</span><span class="p">,</span> <span class="s">'8000.0'</span><span class="p">,</span> <span class="s">'1.0'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">order_create_param</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">orderCreateParam</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">orderCreateParam</span><span class="p">(</span><span class="s1">'btcusdt'</span><span class="p">,</span> <span class="s1">'buy'</span><span class="p">,</span> <span class="s1">'limit'</span><span class="p">,</span> <span class="s1">'8000.0'</span><span class="p">,</span> <span class="s1">'1.0'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">orders</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">orderCreateParam</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9d17a03b852e48c0b3920c7412867623"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于创建新的订单。</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/orders</code></p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>无</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>side</td>
+<td>无</td>
+<td>交易方向</td>
+</tr>
+<tr>
+<td>type</td>
+<td>无</td>
+<td>订单类型</td>
+</tr>
+<tr>
+<td>price</td>
+<td>无</td>
+<td>价格</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>无</td>
+<td>下单量</td>
+</tr>
+</tbody></table>
+<h2 id='9094989d10'>查询订单列表</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">orders</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"executed_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fill_fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于查询订单列表。</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/orders</code></p>
+<h3 id='2986c04d7d'>查询参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td></td>
+<td>交易对</td>
+</tr>
+<tr>
+<td>states</td>
+<td></td>
+<td>订单状态</td>
+</tr>
+<tr>
+<td>before</td>
+<td></td>
+<td>查询某个页码之前的订单</td>
+</tr>
+<tr>
+<td>after</td>
+<td></td>
+<td>查询某个页码之后的订单</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>每页的订单数量，默认为 20 条</td>
+</tr>
+</tbody></table>
+<h2 id='5faf03be01'>获取指定订单</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'9d17a03b852e48c0b3920c7412867623'</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'9d17a03b852e48c0b3920c7412867623'</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9d17a03b852e48c0b3920c7412867623"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"executed_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fill_fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filled_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于返回指定的订单详情。</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/orders/{order_id}</code></p>
+<h3 id='url'>URL 参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>订单 ID</td>
+</tr>
+</tbody></table>
+<h2 id='299126e3bf'>申请撤销订单</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">submit_cancel</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">submitCancel</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于撤销指定订单，订单撤销过程是异步的，即此 API 的调用成功代表着订单已经进入撤销申请的过程，需要等待撮合的进一步处理，才能进行订单的撤销确认。</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/orders/{order_id}/submit-cancel</code></p>
+<h3 id='url-2'>URL 参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>订单 ID</td>
+</tr>
+</tbody></table>
+<h2 id='152112dfd6'>查询指定订单的成交记录</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'9d17a03b852e48c0b3920c7412867623'</span><span class="p">)</span><span class="o">.</span><span class="n">match_results</span><span class="p">()</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'9d17a03b852e48c0b3920c7412867623'</span><span class="p">).</span><span class="nx">matchResults</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>响应结果如下：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fill_fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filled_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>此 API 用于获取指定订单的成交记录</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/orders/{order_id}/match-results</code></p>
+<h3 id='url-3'>URL 参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>订单 ID</td>
+</tr>
+</tbody></table>
+<h2 id='2b1ef4b5eb'>订单错误代码</h2>
+<table><thead>
+<tr>
+<th>错误代码</th>
+<th>含义解释</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2000</td>
+<td>账户错误</td>
+</tr>
+</tbody></table>
+<h1 id='cf68bca02a'>错误代码</h1>
+<table><thead>
+<tr>
+<th>错误代码</th>
+<th>含义解释</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- 错误的请求</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- API key 或者签名，时间戳有误</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden -- 禁止访问</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- 未找到请求的资源</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed -- 使用的 HTTP 方法不适用于请求的资源</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable -- 请求的内容格式不是 JSON</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests -- 请求受限，请降低请求频率</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- 服务内部错误，请稍后再进行尝试</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable -- 服务不可用，请稍后再进行尝试</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
