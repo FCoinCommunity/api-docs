@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='https://www.fcoin.com/developers'>注册为开发者</a>
+  - <a href='https://exchange.fcoin.com/setting'>申请 API 秘钥</a>
 
 includes:
   - zh/introduction
