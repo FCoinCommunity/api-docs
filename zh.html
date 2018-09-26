@@ -241,6 +241,12 @@
                     <a href="#35c492adbd" class="toc-h2 toc-link" data-title="">行情概述</a>
                   </li>
                   <li>
+                    <a href="#websocket" class="toc-h2 toc-link" data-title="websocket">WebSocket 首次建立连接</a>
+                  </li>
+                  <li>
+                    <a href="#websocket-heartbeat" class="toc-h2 toc-link" data-title="websocket-heartbeat">WebSocket 连接保持 - heartbeat</a>
+                  </li>
+                  <li>
                     <a href="#4759ecd9b2" class="toc-h2 toc-link" data-title="">获取推送服务器时间</a>
                   </li>
                   <li>
@@ -516,12 +522,8 @@ timestamp: 1523069544359
 <li><code>quote volume</code> 表示计价货币成交量, 如 btcusdt 中 usdt 的量</li>
 <li><code>ts</code> 表示推送服务器的时间. 是毫秒为单位的数字型字段, unix epoch in millisecond.</li>
 </ul>
-<h3 id='websocket'>WebSocket 首次建立链接</h3>
+<h2 id='websocket'>WebSocket 首次建立连接</h2>
 <p>服务器会发送一个欢迎信息</p>
-
-<ul>
-<li><code>ts</code>: 推送服务器当前的时间.</li>
-</ul>
 
 <blockquote>
 <p>服务器返回</p>
@@ -530,11 +532,12 @@ timestamp: 1523069544359
   </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"hello"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693784042</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='4759ecd9b2'>获取推送服务器时间</h2>
+</span></code></pre>
 <ul>
-<li><code>gap</code>: 推送服务器处理此语句的时间和客户端传输的时间差.</li>
 <li><code>ts</code>: 推送服务器当前的时间.</li>
 </ul>
+<h2 id='websocket-heartbeat'>WebSocket 连接保持 - heartbeat</h2>
+<p>WebSocket 客户端和 WebSocket 服务器建立连接之后，推荐 WebSocket Client 每隔 <em>30s</em>（这个频率可能会变化） 向服务器发起一次 ping 请求，如果服务器长时间没有接收到客户端的 ping 请求将会主动断开连接（300s）。</p>
 <h3 id='websocket-2'>WebSocket 请求</h3><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">fcoin</span>
 
@@ -550,7 +553,19 @@ timestamp: 1523069544359
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693784042</span><span class="p">,</span><span class="w">
   </span><span class="s2">"gap"</span><span class="p">:</span><span class="mi">112</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='ticker'>获取 ticker 数据</h2>
+</span></code></pre>
+<ul>
+<li><code>gap</code>: 推送服务器处理此语句的时间和客户端传输的时间差.</li>
+<li><code>ts</code>: 推送服务器当前的时间.</li>
+</ul>
+<h2 id='4759ecd9b2'>获取推送服务器时间</h2>
+<p>可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服务器时间和数据传输时间差</p>
+
+<ul>
+<li>gap: 推送服务器处理此语句的时间和客户端传输的时间差.</li>
+<li>ts: 推送服务器当前的时间.</li>
+</ul>
+<h2 id='ticker'>获取 ticker 数据</h2>
 <p>为了使得 ticker 信息组足够小和快, 我们强制使用了列表格式.</p>
 
 <blockquote>
