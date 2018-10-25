@@ -36,7 +36,7 @@
 import fcoin
 
 api = fcoin.authorize('key', 'secret', timestamp)
-order_create_param = fcoin.order_create_param('btcusdt', 'buy', 'limit', '8000.0', '1.0')
+order_create_param = fcoin.order_create_param('btcusdt', 'buy', 'limit', '8000.0', '1.0', 'main')
 api.orders.create(order_create_param)
 ```
 
@@ -44,7 +44,7 @@ api.orders.create(order_create_param)
 const fcoin = require('fcoin');
 
 let api = fcoin.authorize('key', 'secret', timestamp);
-let orderCreateParam = fcoin.orderCreateParam('btcusdt', 'buy', 'limit', '8000.0', '1.0');
+let orderCreateParam = fcoin.orderCreateParam('btcusdt', 'buy', 'limit', '8000.0', '1.0', 'main');
 let orders = api.orders.create(orderCreateParam);
 ```
 
@@ -72,6 +72,7 @@ side | 无 | 交易方向
 type | 无  | 订单类型
 price | 无 | 价格
 amount | 无 | 下单量
+exchange | 无 | 交易区
 
 
 
