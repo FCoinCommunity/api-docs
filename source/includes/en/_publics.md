@@ -1,6 +1,6 @@
-# 公开接口
+# Public interface
 
-## 查询服务器时间
+## Query server time
 
 ```python
 import fcoin
@@ -16,7 +16,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let serverTime = api.serverTime();
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -25,7 +25,7 @@ let serverTime = api.serverTime();
 }
 ```
 
-此 API 用于获取服务器时间。
+The API is used to obtain the server time。
 
 ### HTTP Request
 
@@ -35,7 +35,7 @@ let serverTime = api.serverTime();
 
 
 
-## 查询可用币种
+## Query available currencies
 
 ```python
 import fcoin
@@ -51,7 +51,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let currencies = api.currencies();
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -63,7 +63,7 @@ let currencies = api.currencies();
 }
 ```
 
-此 API 用于获取可用币种。
+This API is used to obtain the available currencies。
 
 ### HTTP Request
 
@@ -73,7 +73,7 @@ let currencies = api.currencies();
 
 
 
-## 查询可用交易对
+## Query available trading pairs
 
 ```python
 import fcoin
@@ -89,7 +89,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let symbols = api.symbols();
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -113,7 +113,7 @@ let symbols = api.symbols();
 }
 ```
 
-此 API 用于获取可用交易对。
+This API is used to get available trading pairs。
 
 ### HTTP Request
 
