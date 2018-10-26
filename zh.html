@@ -514,7 +514,7 @@ timestamp: 1523069544359
 <li><code>symbol</code> 表示对应交易币种. 所有币种区分的 topic 都在 topic 末尾.</li>
 <li><code>ticker</code> 行情 tick 信息, 包含最新成交价, 最新成交量, 买一卖一, 近 24 小时成交量.</li>
 <li><code>depth</code> 表示行情深度, 买卖盘, 盘口.</li>
-<li><code>level</code> 表示行情深度类型. 如 <code>L20</code>, <code>L100</code>.</li>
+<li><code>level</code> 表示行情深度类型. 如 <code>L20</code>, <code>L150</code>.</li>
 <li><code>trade</code> 表示最新成交, 最新交易.</li>
 <li><code>candle</code> 表示蜡烛图, 蜡烛棒, K 线.</li>
 <li><code>resolution</code> 表示蜡烛图的种类. 如 <code>M1</code>, <code>M15</code>.</li>
@@ -664,8 +664,8 @@ timestamp: 1523069544359
 <td>20 档行情深度.</td>
 </tr>
 <tr>
-<td><code>L100</code></td>
-<td>100 档行情深度.</td>
+<td><code>L150</code></td>
+<td>150 档行情深度.</td>
 </tr>
 <tr>
 <td><code>full</code></td>
@@ -673,7 +673,7 @@ timestamp: 1523069544359
 </tr>
 </tbody></table>
 
-<p>其中 <code>L20</code> 的推送时间会略早于 <code>L100</code>, 推送频次会略多于 <code>L100</code>, 看具体的压力和情况. 此处请按需使用.</p>
+<p>其中 <code>L20</code> 的推送时间会略早于 <code>L150</code>, 推送频次会略多于 <code>L150</code>, 看具体的压力和情况. 此处请按需使用.</p>
 <h3 id='websocket-4'>WebSocket 订阅</h3>
 <p>订阅 topic: <code>depth.$level.$symbol</code></p>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
@@ -1045,12 +1045,12 @@ args: [topic, limit]</p>
 <h2 id='4a3e521c3b'>创建新的订单</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
-<span class="n">order_create_param</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">order_create_param</span><span class="p">(</span><span class="s">'btcusdt'</span><span class="p">,</span> <span class="s">'buy'</span><span class="p">,</span> <span class="s">'limit'</span><span class="p">,</span> <span class="s">'8000.0'</span><span class="p">,</span> <span class="s">'1.0'</span><span class="p">)</span>
+<span class="n">order_create_param</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">order_create_param</span><span class="p">(</span><span class="s">'btcusdt'</span><span class="p">,</span> <span class="s">'buy'</span><span class="p">,</span> <span class="s">'limit'</span><span class="p">,</span> <span class="s">'8000.0'</span><span class="p">,</span> <span class="s">'1.0'</span><span class="p">,</span> <span class="s">'main'</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">orders</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">order_create_param</span><span class="p">)</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">orderCreateParam</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">orderCreateParam</span><span class="p">(</span><span class="s1">'btcusdt'</span><span class="p">,</span> <span class="s1">'buy'</span><span class="p">,</span> <span class="s1">'limit'</span><span class="p">,</span> <span class="s1">'8000.0'</span><span class="p">,</span> <span class="s1">'1.0'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">orderCreateParam</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">orderCreateParam</span><span class="p">(</span><span class="s1">'btcusdt'</span><span class="p">,</span> <span class="s1">'buy'</span><span class="p">,</span> <span class="s1">'limit'</span><span class="p">,</span> <span class="s1">'8000.0'</span><span class="p">,</span> <span class="s1">'1.0'</span><span class="p">,</span> <span class="s1">'main'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">orders</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">orderCreateParam</span><span class="p">);</span>
 </code></pre>
 <blockquote>
@@ -1096,6 +1096,11 @@ args: [topic, limit]</p>
 <td>amount</td>
 <td>无</td>
 <td>下单量</td>
+</tr>
+<tr>
+<td>exchange</td>
+<td>无</td>
+<td>交易区</td>
 </tr>
 </tbody></table>
 <h2 id='9094989d10'>查询订单列表</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
