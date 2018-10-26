@@ -1,5 +1,5 @@
-## 订单错误代码
+##  Order error code
 
-错误代码 | 含义解释
+Error code | Explanation
 ---------- | -------
-2000 | 账户错误
+2000 | Account error
