@@ -1,36 +1,36 @@
-# 订单
+# Orders
 
-## 订单模型说明
+## Description of the order model
 
-订单模型由以下属性构成：
+The order model consists of the following properties：
 
-属性 | 类型 | 含义解释
+Property | type | interpretation
 ---------- | ------- | -------
-`id` | `String` | 订单 ID
-`symbol` | `String` | 交易对
-`side` | `String` | 交易方向（`buy`, `sell`）
-`type` | `String` | 订单类型（`limit`，`market`）
-`price` | `String` | 下单价格
-`amount` | `String` | 下单数量
-`state` | `String` | 订单状态
-`executed_value` | `String` | 已成交
-`filled_amount` | `String` | 成交量
-`fill_fees` | `String` | 手续费
-`created_at` | `Long` | 创建时间
-`source` | `String` | 来源
+`id` | `String` | Order ID
+`symbol` | `String` | Trading pairs
+`side` | `String` | Trading direction（`buy`, `sell`）
+`type` | `String` | Order type（`limit`，`market`）
+`price` | `String` | Order Price
+`amount` | `String` | Order quantity
+`state` | `String` | State of order
+`executed_value` | `String` | Traded
+`filled_amount` | `String` | Trading volume
+`fill_fees` | `String` | service fee
+`created_at` | `Long` | Creation time
+`source` | `String` | Source
 
-订单状态说明：
+Description of state of order：
 
-属性  | 含义解释
+Property  | Description
 ----------- | -------
-`submitted` | 已提交
-`partial_filled` | 部分成交
-`partial_canceled` | 部分成交已撤销
-`filled` | 完全成交
-`canceled` | 已撤销
-`pending_cancel` | 撤销已提交
+`submitted` | Submission completed
+`partial_filled` | Partially traded
+`partial_canceled` | Partial_filled canceled
+`filled` | wholly traded
+`canceled` | cancellation completed
+`pending_cancel` | the canceling is submitted
 
-## 创建新的订单
+## Create a new order 
 
 ```python
 import fcoin
@@ -48,7 +48,7 @@ let orderCreateParam = fcoin.orderCreateParam('btcusdt', 'buy', 'limit', '8000.0
 let orders = api.orders.create(orderCreateParam);
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -57,28 +57,28 @@ let orders = api.orders.create(orderCreateParam);
 }
 ```
 
-此 API 用于创建新的订单。
+This API is used to create new orders。
 
 ### HTTP Request
 
 `POST https://api.fcoin.com/v2/orders`
 
-### 请求参数
+### Request parameters
 
-参数 | 默认值 | 描述
+Parameter | Default | Description
 --------- | ------- | -----------
-symbol | 无  | 交易对
-side | 无 | 交易方向
-type | 无  | 订单类型
-price | 无 | 价格
-amount | 无 | 下单量
+symbol | Null  | trading pairs
+side | Null | trading direction
+type | Null  | order type
+price | Null | price
+amount | Null | order volume
 
 
 
 
 
 
-## 查询订单列表
+## Query order list
 
 ```python
 import fcoin
@@ -94,7 +94,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let orders = api.orders.get();
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -118,27 +118,27 @@ let orders = api.orders.get();
 }
 ```
 
-此 API 用于查询订单列表。
+This API is used to query the order list.
 
 ### HTTP Request
 
 `GET https://api.fcoin.com/v2/orders`
 
-### 查询参数
+### Query parameters
 
-参数 | 默认值 | 描述
+Parameter | Default | Description
 --------- | ------- | -----------
-symbol |  | 交易对
-states |  | 订单状态
-before |  | 查询某个页码之前的订单
-after |  | 查询某个页码之后的订单
-limit |  | 每页的订单数量，默认为 20 条
+symbol |  | Trading pairs
+states |  | State of Orders
+before |  | query orders before a specified page
+after |  | query orders after a specified page
+limit |  | the number of orders in each page, the default is 20
 
 
 
 
 
-## 获取指定订单
+## Get the specified order
 
 ```python
 import fcoin
@@ -154,7 +154,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let max = api.orders.get('9d17a03b852e48c0b3920c7412867623');
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -176,24 +176,24 @@ let max = api.orders.get('9d17a03b852e48c0b3920c7412867623');
 }
 ```
 
-此 API 用于返回指定的订单详情。
+This API is used to return the specified order details。
 
 ### HTTP Request
 
 `GET https://api.fcoin.com/v2/orders/{order_id}`
 
-### URL 参数
+### URL Parameters
 
-参数 | 描述
+Parameter | Description
 --------- | -----------
-order_id | 订单 ID
+order_id | order ID
 
 
 
 
 
 
-## 申请撤销订单
+## Application for cancellation of order
 
 ```python
 import fcoin
@@ -209,7 +209,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let max = api.orders.submitCancel(2);
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -219,24 +219,24 @@ let max = api.orders.submitCancel(2);
 }
 ```
 
-此 API 用于撤销指定订单，订单撤销过程是异步的，即此 API 的调用成功代表着订单已经进入撤销申请的过程，需要等待撮合的进一步处理，才能进行订单的撤销确认。
+This API is used to cancel the specified order. The order canceling process is asynchronous. That is, the successful call of this API represents that the order has entered the revocation request. Further processing of matching is required before the confirmation of order canceling.
 
 ### HTTP Request
 
 `POST https://api.fcoin.com/v2/orders/{order_id}/submit-cancel`
 
-### URL 参数
+### URL Parameters
 
-参数 | 解释
+Parameters | Description
 --------- | -----------
-order_id | 订单 ID
+order_id | order ID
 
 
 
 
 
 
-## 查询指定订单的成交记录
+## Query trading records of a specified order
 
 ```python
 import fcoin
@@ -252,7 +252,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let max = api.orders.get('9d17a03b852e48c0b3920c7412867623').matchResults();
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -270,14 +270,14 @@ let max = api.orders.get('9d17a03b852e48c0b3920c7412867623').matchResults();
 }
 ```
 
-此 API 用于获取指定订单的成交记录
+This API is used to get the trading record of the specified order
 
 ### HTTP Request
 
 `GET https://api.fcoin.com/v2/orders/{order_id}/match-results`
 
-### URL 参数
+### URL Parameters
 
-参数 | 解释
+Parameters | Description
 --------- | -----------
-order_id | 订单 ID
+order_id | order ID
