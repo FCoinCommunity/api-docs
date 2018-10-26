@@ -1,3 +1,3 @@
-# 介绍
+# Introduction
 
-通过了解以下信息，您可以方便的使用 FCoin 提供的 API 来接入 FCoin 交易平台。
+By understanding the following information, you can easily use the API provided by FCoin to access the FCoin trading platform.
