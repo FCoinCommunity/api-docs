@@ -1,6 +1,6 @@
-# 认证
+# Certification
 
-> 执行下面的代码进行用户验证：
+> Execute the following code for user identification：
 
 ```python
 import fcoin
@@ -14,62 +14,61 @@ const fcoin = require('fcoin');
 let api = fcoin.authorize('key', 'secret', timestamp);
 ```
 
-FCoin 使用 API key 和 API secret 进行验证，请访问 [设置中心](https://exchange.fcoin.com/setting)，并注册成为开发者，获取 API key 和 API secret。
+FCoin uses API key and API secret for identification，Please visit the settings center and register as a developer to obtain API key and API secret。
 
-FCoin 的 API 请求，除公开的 API 外都需要携带 API key 以及签名
-
-
-
-
-## 访问限制
-
-目前访问频率为每个用户 100次 / 10秒，未来会按照业务区分访问频率限制。
+In  addition to the public API, API key and signature are also included in FCoin's API request
 
 
 
 
-## API 签名
+## Access restrictions
 
-签名前准备的数据如下：
+The current access frequency is 100 times / 10 seconds per user, and the access frequency limit will be differentiated according to the service in the future。
+
+
+
+
+## API signature
+
+The data prepared before signing is as follows：
 
 `HTTP_METHOD` + `HTTP_REQUEST_URI` + `TIMESTAMP` + `POST_BODY`
 
-连接完成后，进行 `Base64` 编码，对编码后的数据进行 `HMAC-SHA1` 签名，并对签名进行二次 `Base64` 编码，各部分解释如下：
+After the connection is established, Base64 encoding is performed. The encoded data is HMAC-SHA1 signed, and the signature is subjected to secondary Base64 encoding. The various parts are explained as follows：
 
 <aside class="warning">
-请注意需要进行两次 `Base64` 编码！
+Please note that twice `Base64` encoding is required!
 </aside>
 
 ### HTTP_METHOD
 
-`GET`, `POST`, `DELETE`, `PUT` 需要大写
+`GET`, `POST`, `DELETE`, `PUT` requires capitalization
 
 ### HTTP_REQUEST_URI
 
-`https://api.fcoin.com/v2/` 为 v2 API 的请求前缀
+`https://api.fcoin.com/v2/` is the prefix for v2 API request
 
-后面再加上真正要访问的资源路径，如 `orders?param1=value1`，最终即 `https://api.fcoin.com/v2/orders?param1=value1`
+Add the resource path you really want to access, such as `orders?param1=value1`, and finally `https://api.fcoin.com/v2/orders?param1=value1`
 
-对于请求的 URI 中的参数，需要按照按照字母表排序！
+The parameters in the requested URI need to be sorted by alphabetically.
 
-即如果请求的 URI 为 `https://api.fcoin.com/v2/orders?c=value1&b=value2&a=value3`，则进行签名时，应先将请求参数按照字母表排序，最终进行签名的 URI 为 `https://api.fcoin.com/v2/orders?a=value3&b=value2&c=value1`，
-请注意，原请求 URI 中的三个参数顺序为 `c, b, a`，排序后为 `a, b, c`。
+That is, if the requested URI is `https://api.fcoin.com/v2/orders?c=value1&b=value2&a=value3`, then the request parameters should be sorted alphabetically before signing, and the final signed URI is `https://api.fcoin.com/v2/orders?a=value3&b=value2&c=value1`. Please note that the order of the three parameters in the original request URI is `c, b, a`, and then `a, b, c` after ordering.
 
 ### TIMESTAMP
 
-访问 API 时的 UNIX EPOCH 时间戳，需要和服务器之间的时间差少于 30 秒
+When accessing the API, the time difference between the UNIX EPOCH timestamp and the server should be no more than 30 seconds.
 
 ### POST_BODY
 
-如果是 `POST` 请求，`POST` 请求数据也需要被签名，签名规则如下：
+If it is a POST request, the POST request data also needs to be signed：
 
-所有请求的 key 按照字母顺序排序，然后进行 url 参数化，并使用 `&` 连接。
+All the requested keys are sorted in alphabetical order, followed by url parameterization, and connected with `&`.
 
 <aside class="warning">
-请注意 POST_BODY 的键值需要按照字母表排序！
+Please note that the key values of POST_BODY need to be sorted alphabetically!
 </aside>
 
-> 如果请求数据为：
+> If the requested data is：
 
 ```json
 {
@@ -78,22 +77,22 @@ FCoin 的 API 请求，除公开的 API 外都需要携带 API key 以及签名
 }
 ```
 
-> 则先将 key 按照字母排序，然后进行 url 参数化，即：
+> then sort the key alphabetically and parameterize the url, ie：
 
 ```
 password=password
 username=username
 ```
 
-> 因为 `p` 在字母表中的排序在 `u` 之前，所以 `password` 要放在 `username` 之前，然后使用 `&` 进行连接，即：
+> Because `p` is sorted before `u` in the alphabet, `password` is placed before `username` and then connected with `&`, ie:
 
 ```
 password=password&username=username
 ```
 
-## 完整示例
+## Full example
 
-> 对于如下的请求：
+> For the following requests：
 
 ```
 POST https://api.fcoin.com/v2/orders
@@ -109,34 +108,34 @@ POST https://api.fcoin.com/v2/orders
 timestamp: 1523069544359
 ```
 
-> 签名前的准备数据如下：
+> The preparated data before signing is as follows：
 
 ```
 POSThttps://api.fcoin.com/v2/orders1523069544359amount=100.0&price=100.0&side=buy&symbol=btcusdt&type=limit
 ```
 
-> 进行 Base64 编码，得到：
+> Perform Base64 encoding to obtain：
 
 ```
 UE9TVGh0dHBzOi8vYXBpLmZjb2luLmNvbS92Mi9vcmRlcnMxNTIzMDY5NTQ0MzU5YW1vdW50PTEwMC4wJnByaWNlPTEwMC4wJnNpZGU9YnV5JnN5bWJvbD1idGN1c2R0JnR5cGU9bGltaXQ=
 ```
 
-> 拷贝在申请 API Key 时获得的秘钥（API SECRET），下面的签名结果采用 `3600d0a74aa3410fb3b1996cca2419c8` 作为示例，
+> Copy the key obtained when applying for the API Key (API SECRET). The following signature result is taken `3600d0a74aa3410fb3b1996cca2419c8` as an example，
 
-> 对得到的结果使用秘钥进行 `HMAC-SHA1` 签名，并对二进制结果进行 `Base64` 编码，得到：
+> The obtained result is `HMAC-SHA1` signed with the secret key, and the binary result is `Base64` encoded, to obtain：
 
 ```
 DeP6oftldIrys06uq3B7Lkh3a0U=
 ```
 
-> 即生成了用于向 API 服务器进行验证的最终签名
+> That is, the final signature is generated for verification to the API server
 
-## 参数名称
+## Parameter name
 
 * `FC-ACCESS-KEY`
 * `FC-ACCESS-SIGNATURE`
 * `FC-ACCESS-TIMESTAMP`
 
-## 说明
+## Description
 
-可以使用[开发者工具]()（暂未开放）进行在线联调测试。
+You can use the developer tools (not yet open) for online joint debugging testing
