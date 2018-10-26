@@ -1,6 +1,6 @@
-# 账户与资产
+# Accounts and assets
 
-## 查询账户资产
+## Query account assets
 
 ```python
 import fcoin
@@ -16,7 +16,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let orders = api.accountsBalance;
 ```
 
-> 响应结果如下：
+> The response results are as follows：
 
 ```json
 {
@@ -32,7 +32,7 @@ let orders = api.accountsBalance;
 }
 ```
 
-此 API 用于查询用户的资产列表。
+This API is used to query a user's list of assets。
 
 ### HTTP Request
 
