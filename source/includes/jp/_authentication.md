@@ -48,28 +48,27 @@ FCoinのAPI利用について，公開API以外に、API キー及び署名が�
 
 `https://api.fcoin.com/v2/` v2 APIのリクエストの接頭辞
 
-后面再加上真正要访问的资源路径，如 `orders?param1=value1`，最终即 `https://api.fcoin.com/v2/orders?param1=value1`
+その後に、アクセスしたいリソースパスを記入してください。例： `orders?param1=value1`の場合は，最終形は `https://api.fcoin.com/v2/orders?param1=value1`となります
 
-对于请求的 URI 中的参数，需要按照按照字母表排序！
+リクエストされたURIのパラメータについては、アルファベット順に並べ替える必要があります！
 
-即如果请求的 URI 为 `https://api.fcoin.com/v2/orders?c=value1&b=value2&a=value3`，则进行签名时，应先将请求参数按照字母表排序，最终进行签名的 URI 为 `https://api.fcoin.com/v2/orders?a=value3&b=value2&c=value1`，
-请注意，原请求 URI 中的三个参数顺序为 `c, b, a`，排序后为 `a, b, c`。
+すなわち、リクエストされたURIは`https://api.fcoin.com/v2/orders?c=value1&b=value2&a=value3`の場合，デジタル署名する際に、リクエスト・パラメータをアルファベット順にソートさせ、デジタル署名の最終URIは `https://api.fcoin.com/v2/orders?a=value3&b=value2&c=value1`となります。 元のリクエスト中には、URI中の三つのパラメータの順番は `c`, `b`, `a`だが，ソート後、順番は `a`, `b`, `c`になっております。ご注意ください。
 
 ### TIMESTAMP
 
-访问 API 时的 UNIX EPOCH 时间戳，需要和服务器之间的时间差少于 30 秒
+APIを利用してアクセスする時のUNIX EPOCHタイムスタンプは、サーバーとの時間差は30秒以内でなければなりません。
 
 ### POST_BODY
 
-如果是 `POST` 请求，`POST` 请求数据也需要被签名，签名规则如下：
+POST リクエストの場合は，POST リクエストデータへのデジタル署名も必要です。デジタル署名のルールはご説明します：
 
-所有请求的 key 按照字母顺序排序，然后进行 url 参数化，并使用 `&` 连接。
+リクエストされたすべてのキーはアルファベット順に並べ替えられた後、urlパラメータ化されます。 &を使用して、繋ぎます。
 
 <aside class="warning">
-请注意 POST_BODY 的键值需要按照字母表排序！
+POST_BODYのキーの値は、アルファベット順にソートする必要があります。ご注意ください！
 </aside>
 
-> 如果请求数据为：
+> 下記リクエストデータの場合は：
 
 ```json
 {
@@ -78,22 +77,22 @@ FCoinのAPI利用について，公開API以外に、API キー及び署名が�
 }
 ```
 
-> 则先将 key 按照字母排序，然后进行 url 参数化，即：
+> 先に、キーをアルファベット順にソートし、urlパラメータ化します。すなわち：
 
 ```
 password=password
 username=username
 ```
 
-> 因为 `p` 在字母表中的排序在 `u` 之前，所以 `password` 要放在 `username` 之前，然后使用 `&` 进行连接，即：
+> アルファベットの順番には、`p`はuの前にあるため、`password`は`username`の前に置かれるべき、その次、＆を使用して接続します。すなわち：
 
 ```
 password=password&username=username
 ```
 
-## 完整示例
+## デモンストレーション
 
-> 对于如下的请求：
+> 下記のリクエストの場合は：
 
 ```
 POST https://api.fcoin.com/v2/orders
@@ -109,34 +108,34 @@ POST https://api.fcoin.com/v2/orders
 timestamp: 1523069544359
 ```
 
-> 签名前的准备数据如下：
+> デジタル署名を行うため、あらかじめ下記データをご用意してください：
 
 ```
 POSThttps://api.fcoin.com/v2/orders1523069544359amount=100.0&price=100.0&side=buy&symbol=btcusdt&type=limit
 ```
 
-> 进行 Base64 编码，得到：
+> Base64エンコーディングし、下記データになります：
 
 ```
 UE9TVGh0dHBzOi8vYXBpLmZjb2luLmNvbS92Mi9vcmRlcnMxNTIzMDY5NTQ0MzU5YW1vdW50PTEwMC4wJnByaWNlPTEwMC4wJnNpZGU9YnV5JnN5bWJvbD1idGN1c2R0JnR5cGU9bGltaXQ=
 ```
 
-> 拷贝在申请 API Key 时获得的秘钥（API SECRET），下面的签名结果采用 `3600d0a74aa3410fb3b1996cca2419c8` 作为示例，
+> API キーを申請した際に取得したキー（API シークレット）をコピーし，以下のデジタル署名結果は、例として `3600d0a74aa3410fb3b1996cca2419c8` を使用しています，
 
-> 对得到的结果使用秘钥进行 `HMAC-SHA1` 签名，并对二进制结果进行 `Base64` 编码，得到：
+> 結果に対して、秘密鍵を使用して、 `HMAC-SHA1` デジタル署名し、バイナリ結果に対して`Base64` エンコーディング後、下記になります：
 
 ```
 DeP6oftldIrys06uq3B7Lkh3a0U=
 ```
 
-> 即生成了用于向 API 服务器进行验证的最终签名
+> すなわち、APIサーバーへ検証するための最終的なデジタル署名が生成されます
 
-## 参数名称
+## パラメータ名
 
 * `FC-ACCESS-KEY`
 * `FC-ACCESS-SIGNATURE`
 * `FC-ACCESS-TIMESTAMP`
 
-## 说明
+## 説明
 
-可以使用[开发者工具]()（暂未开放）进行在线联调测试。
+デベロッパーツール（準備中）を使用して、オンライン検証を行えます。
