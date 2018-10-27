@@ -1,36 +1,36 @@
-# 订单
+# 注文
 
-## 订单模型说明
+## 注文モデル説明
 
-订单模型由以下属性构成：
+注文モデルは、以下の属性によって構成されます：
 
-属性 | 类型 | 含义解释
+属性 | タイプ	 | 内容説明
 ---------- | ------- | -------
-`id` | `String` | 订单 ID
-`symbol` | `String` | 交易对
-`side` | `String` | 交易方向（`buy`, `sell`）
-`type` | `String` | 订单类型（`limit`，`market`）
-`price` | `String` | 下单价格
-`amount` | `String` | 下单数量
-`state` | `String` | 订单状态
-`executed_value` | `String` | 已成交
-`filled_amount` | `String` | 成交量
-`fill_fees` | `String` | 手续费
-`created_at` | `Long` | 创建时间
-`source` | `String` | 来源
+`id` | `String` | 注文 ID
+`symbol` | `String` | 通貨ペア
+`side` | `String` | 取引方向（`buy`, `sell`）
+`type` | `String` | 注文タイプ（`limit`，`market`）
+`price` | `String` | 注文価格
+`amount` | `String` | 注文ボリューム
+`state` | `String` | 注文ステータス
+`executed_value` | `String` | 約定
+`filled_amount` | `String` | 出来高
+`fill_fees` | `String` | 手数料
+`created_at` | `Long` | 注文日時
+`source` | `String` | ソース
 
-订单状态说明：
+注文ステータス説明：
 
-属性  | 含义解释
+属性  | 内容説明
 ----------- | -------
-`submitted` | 已提交
-`partial_filled` | 部分成交
-`partial_canceled` | 部分成交已撤销
-`filled` | 完全成交
-`canceled` | 已撤销
-`pending_cancel` | 撤销已提交
+`submitted` | 注文中
+`partial_filled` | 一部約定
+`partial_canceled` | 一部キャンセル
+`filled` | 約定
+`canceled` | キャンセル
+`pending_cancel` | キャンセルリクエスト中
 
-## 创建新的订单
+## 新規注文
 
 ```python
 import fcoin
@@ -48,7 +48,7 @@ let orderCreateParam = fcoin.orderCreateParam('btcusdt', 'buy', 'limit', '8000.0
 let orders = api.orders.create(orderCreateParam);
 ```
 
-> 响应结果如下：
+> レスポンス結果は下記のとおりです：
 
 ```json
 {
@@ -57,28 +57,28 @@ let orders = api.orders.create(orderCreateParam);
 }
 ```
 
-此 API 用于创建新的订单。
+このAPIは新規注文を発注します。
 
 ### HTTP Request
 
 `POST https://api.fcoin.com/v2/orders`
 
-### 请求参数
+### リクエスト・パラメータ
 
-参数 | 默认值 | 描述
+パラメータ | デフォルト値 | 説明
 --------- | ------- | -----------
-symbol | 无  | 交易对
-side | 无 | 交易方向
-type | 无  | 订单类型
-price | 无 | 价格
-amount | 无 | 下单量
+symbol | 無  | 通貨ペア
+side | 無 | 取引方向
+type | 無  | 注文タイプ
+price | 無 | 価格
+amount | 無 | 発注量
 
 
 
 
 
 
-## 查询订单列表
+## 注文リストの照会
 
 ```python
 import fcoin
@@ -94,7 +94,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let orders = api.orders.get();
 ```
 
-> 响应结果如下：
+> レスポンス結果は下記のとおりです：
 
 ```json
 {
@@ -118,27 +118,27 @@ let orders = api.orders.get();
 }
 ```
 
-此 API 用于查询订单列表。
+このAPIは注文リストの照会に使用されます。
 
 ### HTTP Request
 
 `GET https://api.fcoin.com/v2/orders`
 
-### 查询参数
+### 照会パラメータ
 
-参数 | 默认值 | 描述
+パラメータ | デフォルト値 | 説明
 --------- | ------- | -----------
-symbol |  | 交易对
-states |  | 订单状态
-before |  | 查询某个页码之前的订单
-after |  | 查询某个页码之后的订单
-limit |  | 每页的订单数量，默认为 20 条
+symbol |  | 通貨ペア
+states |  | 注文ステータス
+before |  | あるページの前の
+after |  | あるページの後の注文の照会
+limit |  | ページごとの注文量、デフォルトは20条
 
 
 
 
 
-## 获取指定订单
+## 特定注文の取得
 
 ```python
 import fcoin
@@ -154,7 +154,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let max = api.orders.get('9d17a03b852e48c0b3920c7412867623');
 ```
 
-> 响应结果如下：
+> レスポンス結果は下記のとおりです：
 
 ```json
 {
@@ -176,24 +176,24 @@ let max = api.orders.get('9d17a03b852e48c0b3920c7412867623');
 }
 ```
 
-此 API 用于返回指定的订单详情。
+このAPIは指定された注文の詳細を取得します。
 
 ### HTTP Request
 
 `GET https://api.fcoin.com/v2/orders/{order_id}`
 
-### URL 参数
+### URL パラメータ
 
-参数 | 描述
+パラメータ | 説明
 --------- | -----------
-order_id | 订单 ID
+order_id | 注文 ID
 
 
 
 
 
 
-## 申请撤销订单
+## 注文キャンセルのリクエスト
 
 ```python
 import fcoin
@@ -209,7 +209,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let max = api.orders.submitCancel(2);
 ```
 
-> 响应结果如下：
+> レスポンス結果は下記のとおりです：
 
 ```json
 {
@@ -219,24 +219,24 @@ let max = api.orders.submitCancel(2);
 }
 ```
 
-此 API 用于撤销指定订单，订单撤销过程是异步的，即此 API 的调用成功代表着订单已经进入撤销申请的过程，需要等待撮合的进一步处理，才能进行订单的撤销确认。
+このAPIは指定された注文をキャンセルするために、使用されます。注文のキャンセル・プロセスは非同期です。つまり、このAPIの呼び出しが成功した場合は、注文はキャンセルリクエストのプロセスに入っていますが、注文の取り消しを確認するためにマッチング処理を待つ必要があります。
 
 ### HTTP Request
 
 `POST https://api.fcoin.com/v2/orders/{order_id}/submit-cancel`
 
-### URL 参数
+### URL パラメータ
 
-参数 | 解释
+パラメータ | 解釈
 --------- | -----------
-order_id | 订单 ID
+order_id | 注文 ID
 
 
 
 
 
 
-## 查询指定订单的成交记录
+## 指定されている注文の取引記録の照会
 
 ```python
 import fcoin
@@ -252,7 +252,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let max = api.orders.get('9d17a03b852e48c0b3920c7412867623').matchResults();
 ```
 
-> 响应结果如下：
+> レスポンス結果は下記のとおりです：
 
 ```json
 {
@@ -270,14 +270,14 @@ let max = api.orders.get('9d17a03b852e48c0b3920c7412867623').matchResults();
 }
 ```
 
-此 API 用于获取指定订单的成交记录
+このAPIは指定されている注文の取引記録の取得に使用されます
 
 ### HTTP Request
 
 `GET https://api.fcoin.com/v2/orders/{order_id}/match-results`
 
-### URL 参数
+### URL パラメータ
 
-参数 | 解释
+パラメータ | 解釈
 --------- | -----------
-order_id | 订单 ID
+order_id | 注文 ID
