@@ -1,6 +1,6 @@
-# 公开接口
+# 公開API
 
-## 查询服务器时间
+## サーバー時刻の照会
 
 ```python
 import fcoin
@@ -16,7 +16,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let serverTime = api.serverTime();
 ```
 
-> 响应结果如下：
+> 応答結果は下記のとおりです：
 
 ```json
 {
@@ -25,7 +25,7 @@ let serverTime = api.serverTime();
 }
 ```
 
-此 API 用于获取服务器时间。
+このAPIを使用して、サーバー時刻を取得できます。
 
 ### HTTP Request
 
@@ -35,7 +35,7 @@ let serverTime = api.serverTime();
 
 
 
-## 查询可用币种
+## 取扱い仮想通貨の照会
 
 ```python
 import fcoin
@@ -51,7 +51,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let currencies = api.currencies();
 ```
 
-> 响应结果如下：
+> 応答結果は下記のとおりです：
 
 ```json
 {
@@ -63,7 +63,7 @@ let currencies = api.currencies();
 }
 ```
 
-此 API 用于获取可用币种。
+このAPIを使用して、取扱い仮想通貨を取得できます。
 
 ### HTTP Request
 
@@ -73,7 +73,7 @@ let currencies = api.currencies();
 
 
 
-## 查询可用交易对
+## 取引通貨ペアの照会
 
 ```python
 import fcoin
@@ -89,7 +89,7 @@ let api = fcoin.authorize('key', 'secret', timestamp);
 let symbols = api.symbols();
 ```
 
-> 响应结果如下：
+> 応答結果は下記のとおりです：
 
 ```json
 {
@@ -113,7 +113,7 @@ let symbols = api.symbols();
 }
 ```
 
-此 API 用于获取可用交易对。
+このAPIを使用して、取引通貨ペアを取得できます。
 
 ### HTTP Request
 
