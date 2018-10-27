@@ -1,13 +1,13 @@
-# 错误代码
+# エラーコード
 
-错误代码 | 含义解释
+エラーコード | 内容解釈
 ---------- | -------
-400 | Bad Request -- 错误的请求
-401 | Unauthorized -- API key 或者签名，时间戳有误
-403 | Forbidden -- 禁止访问
-404 | Not Found -- 未找到请求的资源
-405 | Method Not Allowed -- 使用的 HTTP 方法不适用于请求的资源
-406 | Not Acceptable -- 请求的内容格式不是 JSON
-429 | Too Many Requests -- 请求受限，请降低请求频率
-500 | Internal Server Error -- 服务内部错误，请稍后再进行尝试
-503 | Service Unavailable -- 服务不可用，请稍后再进行尝试
+400 | Bad Request --  誤リクエスト
+401 | Unauthorized -- API key 或いは署名、タイムスタンプに誤りがあります
+403 | Forbidden -- アクセス不可
+404 | Not Found -- リクエストされたリソースが見つかりませんでした
+405 | Method Not Allowed -- 使用されるHTTPメソッドは、要求されたリソースには適用されません
+406 | Not Acceptable -- リクエストされたコンテンツのフォーマットはJSONではありません
+429 | Too Many Requests -- 負荷がオーバーロード、リクエスト頻度を下げてください
+500 | Internal Server Error -- サービスの内部エラーが発生、後でもう一度お試しください
+503 | Service Unavailable -- サービスが利用できません、後でやり直してください
