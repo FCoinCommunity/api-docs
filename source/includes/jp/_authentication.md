@@ -1,6 +1,6 @@
-# 认证
+# 認証
 
-> 执行下面的代码进行用户验证：
+> 下記コードを使用して、ユーザー認証を行います：
 
 ```python
 import fcoin
@@ -14,39 +14,39 @@ const fcoin = require('fcoin');
 let api = fcoin.authorize('key', 'secret', timestamp);
 ```
 
-FCoin 使用 API key 和 API secret 进行验证，请访问 [设置中心](https://exchange.fcoin.com/setting)，并注册成为开发者，获取 API key 和 API secret。
+FCoinはAPI キーとAPIシークレットを使用して、認証を行います。 設定センターにて，開発者にご登録してください。ご登録いただいた後、API キーとAPI シークレット情報をご利用いただけます。
 
-FCoin 的 API 请求，除公开的 API 外都需要携带 API key 以及签名
-
-
-
-
-## 访问限制
-
-目前访问频率为每个用户 100次 / 10秒，未来会按照业务区分访问频率限制。
+FCoinのAPI利用について，公開API以外に、API キー及び署名が必要となります。
 
 
 
 
-## API 签名
+## アクセス制限
 
-签名前准备的数据如下：
+現在、アクセスの頻度はユーザーごとに100回 / 10秒，将来はサービスごと、アクセスの頻度を制限する予定です。
+
+
+
+
+## API 署名
+
+署名を行うため、あらかじめ下記データをご用意してください：
 
 `HTTP_METHOD` + `HTTP_REQUEST_URI` + `TIMESTAMP` + `POST_BODY`
 
-连接完成后，进行 `Base64` 编码，对编码后的数据进行 `HMAC-SHA1` 签名，并对签名进行二次 `Base64` 编码，各部分解释如下：
+接続が確立後， Base64エンコーディングが必要です。エンコーディング後のデータに対して、 HMAC-SHA1 署名を行います。また、デジタル署名に対して、Base64エンコーディングを2回実施します。各ステップの詳細内容について、ご説明します：
 
 <aside class="warning">
-请注意需要进行两次 `Base64` 编码！
+注意事項： `Base64`エンコーディングは2回実施する必要があります！
 </aside>
 
 ### HTTP_METHOD
 
-`GET`, `POST`, `DELETE`, `PUT` 需要大写
+`GET`, `POST`, `DELETE`, `PUT` は必ず大文字にしてください
 
 ### HTTP_REQUEST_URI
 
-`https://api.fcoin.com/v2/` 为 v2 API 的请求前缀
+`https://api.fcoin.com/v2/` v2 APIのリクエストの接頭辞
 
 后面再加上真正要访问的资源路径，如 `orders?param1=value1`，最终即 `https://api.fcoin.com/v2/orders?param1=value1`
 
