@@ -1,6 +1,6 @@
-# 账户与资产
+# アカウントと資金
 
-## 查询账户资产
+## アカウント資金照会
 
 ```python
 import fcoin
@@ -32,7 +32,7 @@ let orders = api.accountsBalance;
 }
 ```
 
-此 API 用于查询用户的资产列表。
+このAPIは、ユーザーの資産リストを照会するために使用されます。
 
 ### HTTP Request
 
