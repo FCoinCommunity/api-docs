@@ -2,11 +2,11 @@
 
 ## マーケット情報概述
 
-マーケット情報は公開APIを通じて取得できます。現在、HTTPとWebSocketの2つのAPIを提供しています。 タイムリーにマーケット情報を取得するため、WebSocketを使用してアクセスすることをお勧めします。 マーケット情報のリアルタイムパフォーマンスを可能な限り高めるために、現在の公開している部分は最新のマーケットデータのみを取得することができます。もし全部の情報、または履歴情報を取得する必要がある場合は、`support@fcoin.com`までご連絡ください
+マーケット情報は公開APIを通じて取得できます。現在、HTTPとWebSocketの2つのAPIを提供しています。 タイムリーにマーケット情報を取得するため、WebSocketを使用してアクセスすることをお勧めします。 マーケット情報のリアルタイムパフォーマンスを可能な限り高めるために、現在の公開している部分は最新のマーケットデータのみを取得することができます。もし全部の情報、または履歴情報を取得する必要がある場合は、`support@fcoinjp.com`までご連絡ください
 
-すべてのHTTP リクエストのURLベースは：`https://api.fcoin.com/v2/market`です
+すべてのHTTP リクエストのURLベースは：`https://api.fcoinjp.com/v2/market`です
 
-すべてのWebSocket リクエストのURLは: `wss://api.fcoin.com/v2/ws`です
+すべてのWebSocket リクエストのURLは: `wss://api.fcoinjp.com/v2/ws`です
 
 用語は以下のように統一されます:
 
@@ -99,7 +99,7 @@ ticker情報ブロックを十分に小さく、迅速に取得するために�
 
 ### HTTP リクエスト
 
-`GET https://api.fcoin.com/v2/market/ticker/$symbol`
+`GET https://api.fcoinjp.com/v2/market/ticker/$symbol`
 
 ```python
 import fcoin
@@ -182,7 +182,7 @@ fcoin_ws.sub(topics)
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/market/depth/$level/$symbol`
+`GET https://api.fcoinjp.com/v2/market/depth/$level/$symbol`
 
 `$level` 下記種類を含みます:
 
@@ -249,7 +249,7 @@ PS: 過去のマーケット情報では、取引IDが１つであることが�
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/market/trades/$symbol`
+`GET https://api.fcoinjp.com/v2/market/trades/$symbol`
 
 ### パラメータの照会(HTTP Query)
 
@@ -343,7 +343,7 @@ fcoin_ws.sub(topics)
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/market/candles/$resolution/$symbol`
+`GET https://api.fcoinjp.com/v2/market/candles/$resolution/$symbol`
 
 ### パラメータの照会(HTTP Query)
 
