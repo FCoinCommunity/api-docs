@@ -188,7 +188,7 @@ fcoin_ws.sub(topics)
 
 types of `$level` included:
 
-类型 | 说明
+Type | Description
 -------- | --------
 `L20` | 20 -level market depth.
 `L150` | 150 -level market depth.
@@ -254,7 +254,7 @@ PS: in the historical market, the trading id remains constant. {transaction id} 
 
 `GET https://api.fcoin.com/v2/market/trades/$symbol`
 
-### 查询参数(HTTP Query)
+### Query parameters(HTTP Query)
 
 Parameter | Default | Description
 --------- | ------- | -----------
