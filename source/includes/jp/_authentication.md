@@ -117,7 +117,7 @@ POSThttps://api.fcoinjp.com/v2/orders1523069544359amount=100.0&price=100.0&side=
 > Base64エンコーディングし、下記データになります：
 
 ```
-UE9TVGh0dHBzOi8vYXBpLmZjb2luLmNvbS92Mi9vcmRlcnMxNTIzMDY5NTQ0MzU5YW1vdW50PTEwMC4wJnByaWNlPTEwMC4wJnNpZGU9YnV5JnN5bWJvbD1idGN1c2R0JnR5cGU9bGltaXQ=
+UE9TVGh0dHBzOi8vYXBpLmZjb2luanAuY29tL3YyL29yZGVyczE1MjMwNjk1NDQzNTlhbW91bnQ9MTAwLjAmcHJpY2U9MTAwLjAmc2lkZT1idXkmc3ltYm9sPWJ0Y3VzZHQmdHlwZT1saW1pdA==
 ```
 
 > API キーを申請した際に取得したキー（API シークレット）をコピーし，以下のデジタル署名結果は、例として `3600d0a74aa3410fb3b1996cca2419c8` を使用しています，
@@ -125,7 +125,7 @@ UE9TVGh0dHBzOi8vYXBpLmZjb2luLmNvbS92Mi9vcmRlcnMxNTIzMDY5NTQ0MzU5YW1vdW50PTEwMC4w
 > 結果に対して、秘密鍵を使用して、 `HMAC-SHA1` デジタル署名し、バイナリ結果に対して`Base64` エンコーディング後、下記になります：
 
 ```
-DeP6oftldIrys06uq3B7Lkh3a0U=
+GlHEbHNg2rldDuZ2eCHX8EX8XP0=
 ```
 
 > すなわち、APIサーバーへ検証するための最終的なデジタル署名が生成されます
