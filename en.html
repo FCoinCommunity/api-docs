@@ -302,7 +302,7 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://exchange.fcoin.com/setting'>申请 API 秘钥</a></li>
+            <li><a href='https://exchange.fcoin.com/setting'>Apply API Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -321,11 +321,11 @@
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
 </code></pre>
-<p>FCoin uses API key and API secret for identification，Please visit the settings center and register as a developer to obtain API key and API secret。</p>
+<p>FCoin uses API key and API secret for identification，Please visit the settings center and register as a developer to obtain API key and API secret.</p>
 
 <p>In  addition to the public API, API key and signature are also included in FCoin&#39;s API request</p>
 <h2 id='access-restrictions'>Access restrictions</h2>
-<p>The current access frequency is 100 times / 10 seconds per user, and the access frequency limit will be differentiated according to the service in the future。</p>
+<p>The current access frequency is 100 times / 10 seconds per user, and the access frequency limit will be differentiated according to the service in the future.</p>
 <h2 id='api-signature'>API signature</h2>
 <p>The data prepared before signing is as follows：</p>
 
@@ -654,8 +654,8 @@ For the real-time performance of the market as much as possible, the current pub
 
 <table><thead>
 <tr>
-<th>类型</th>
-<th>说明</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -715,7 +715,7 @@ Even if the transaction is a record, there is no guarantee that the id will alwa
 <p>PS: in the historical market, the trading id remains constant. {transaction id} is only used as a market update notification and should not be used depending on the archive.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/market/trades/$symbol</code></p>
-<h3 id='http-query'>查询参数(HTTP Query)</h3>
+<h3 id='query-parameters-http-query'>Query parameters(HTTP Query)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -803,7 +803,7 @@ args: [topic, limit]</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='get-candle-information'>Get Candle information</h2><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/market/candles/$resolution/$symbol</code></p>
-<h3 id='query-parameters-http-query'>Query parameters(HTTP Query)</h3>
+<h3 id='query-parameters-http-query-2'>Query parameters(HTTP Query)</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -932,7 +932,7 @@ args: [topic, limit]</p>
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API is used to query a user&#39;s list of assets。</p>
+<p>This API is used to query a user&#39;s list of assets.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/accounts/balance</code></p>
 <h1 id='orders'>Orders</h1><h2 id='description-of-the-order-model'>Description of the order model</h2>
@@ -1299,8 +1299,8 @@ args: [topic, limit]</p>
 <h1 id='order-error-code'>Order error code</h1>
 <table><thead>
 <tr>
-<th>错误代码</th>
-<th>含义解释</th>
+<th>Error Code</th>
+<th>Interpretation</th>
 </tr>
 </thead><tbody>
 <tr>
