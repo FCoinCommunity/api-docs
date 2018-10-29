@@ -61,7 +61,7 @@ let orders = api.orders.create(orderCreateParam);
 
 ### HTTP Request
 
-`POST https://api.fcoin.com/v2/orders`
+`POST https://api.fcoinjp.com/v2/orders`
 
 ### リクエスト・パラメータ
 
@@ -122,7 +122,7 @@ let orders = api.orders.get();
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/orders`
+`GET https://api.fcoinjp.com/v2/orders`
 
 ### 照会パラメータ
 
@@ -180,7 +180,7 @@ let max = api.orders.get('9d17a03b852e48c0b3920c7412867623');
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/orders/{order_id}`
+`GET https://api.fcoinjp.com/v2/orders/{order_id}`
 
 ### URL パラメータ
 
@@ -223,7 +223,7 @@ let max = api.orders.submitCancel(2);
 
 ### HTTP Request
 
-`POST https://api.fcoin.com/v2/orders/{order_id}/submit-cancel`
+`POST https://api.fcoinjp.com/v2/orders/{order_id}/submit-cancel`
 
 ### URL パラメータ
 
@@ -274,7 +274,7 @@ let max = api.orders.get('9d17a03b852e48c0b3920c7412867623').matchResults();
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/orders/{order_id}/match-results`
+`GET https://api.fcoinjp.com/v2/orders/{order_id}/match-results`
 
 ### URL パラメータ
 
