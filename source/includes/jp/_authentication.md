@@ -46,13 +46,13 @@ FCoinのAPI利用について，公開API以外に、API キー及び署名が�
 
 ### HTTP_REQUEST_URI
 
-`https://api.fcoinjp.com/v2/` v2 APIのリクエストの接頭辞
+`https://api.fcoin.com/v2/` v2 APIのリクエストの接頭辞
 
-その後に、アクセスしたいリソースパスを記入してください。例： `orders?param1=value1`の場合は，最終形は `https://api.fcoinjp.com/v2/orders?param1=value1`となります
+その後に、アクセスしたいリソースパスを記入してください。例： `orders?param1=value1`の場合は，最終形は `https://api.fcoin.com/v2/orders?param1=value1`となります
 
 リクエストされたURIのパラメータについては、アルファベット順に並べ替える必要があります！
 
-すなわち、リクエストされたURIは`https://api.fcoinjp.com/v2/orders?c=value1&b=value2&a=value3`の場合，デジタル署名する際に、リクエスト・パラメータをアルファベット順にソートさせ、デジタル署名の最終URIは `https://api.fcoinjp.com/v2/orders?a=value3&b=value2&c=value1`となります。 元のリクエスト中には、URI中の三つのパラメータの順番は `c`, `b`, `a`だが，ソート後、順番は `a`, `b`, `c`になっております。ご注意ください。
+すなわち、リクエストされたURIは`https://api.fcoin.com/v2/orders?c=value1&b=value2&a=value3`の場合，デジタル署名する際に、リクエスト・パラメータをアルファベット順にソートさせ、デジタル署名の最終URIは `https://api.fcoin.com/v2/orders?a=value3&b=value2&c=value1`となります。 元のリクエスト中には、URI中の三つのパラメータの順番は `c`, `b`, `a`だが，ソート後、順番は `a`, `b`, `c`になっております。ご注意ください。
 
 ### TIMESTAMP
 
@@ -95,7 +95,7 @@ password=password&username=username
 > 下記のリクエストの場合は：
 
 ```
-POST https://api.fcoinjp.com/v2/orders
+POST https://api.fcoin.com/v2/orders
 
 {
   "type": "limit",
@@ -111,7 +111,7 @@ timestamp: 1523069544359
 > デジタル署名を行うため、あらかじめ下記データをご用意してください：
 
 ```
-POSThttps://api.fcoinjp.com/v2/orders1523069544359amount=100.0&price=100.0&side=buy&symbol=btcusdt&type=limit
+POSThttps://api.fcoin.com/v2/orders1523069544359amount=100.0&price=100.0&side=buy&symbol=btcusdt&type=limit
 ```
 
 > Base64エンコーディングし、下記データになります：
