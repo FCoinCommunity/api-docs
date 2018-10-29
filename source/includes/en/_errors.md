@@ -1,6 +1,6 @@
 # Order error code
 
-错误代码 | 含义解释
+Error Code | Interpretation
 ---------- | -------
 400 | Bad Request -- 错误的请求
 401 | Unauthorized -- API key 或者签名，时间戳有误
