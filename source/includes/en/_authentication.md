@@ -14,7 +14,7 @@ const fcoin = require('fcoin');
 let api = fcoin.authorize('key', 'secret', timestamp);
 ```
 
-FCoin uses API key and API secret for identification，Please visit the settings center and register as a developer to obtain API key and API secret。
+FCoin uses API key and API secret for identification，Please visit the settings center and register as a developer to obtain API key and API secret.
 
 In  addition to the public API, API key and signature are also included in FCoin's API request
 
@@ -23,7 +23,7 @@ In  addition to the public API, API key and signature are also included in FCoin
 
 ## Access restrictions
 
-The current access frequency is 100 times / 10 seconds per user, and the access frequency limit will be differentiated according to the service in the future。
+The current access frequency is 100 times / 10 seconds per user, and the access frequency limit will be differentiated according to the service in the future.
 
 
 
