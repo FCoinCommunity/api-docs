@@ -32,7 +32,7 @@ let orders = api.accountsBalance;
 }
 ```
 
-This API is used to query a user's list of assets。
+This API is used to query a user's list of assets.
 
 ### HTTP Request
 
