@@ -29,7 +29,7 @@ let serverTime = api.serverTime();
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/public/server-time`
+`GET https://api.fcoinjp.com/v2/public/server-time`
 
 
 
@@ -67,7 +67,7 @@ let currencies = api.currencies();
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/public/currencies`
+`GET https://api.fcoinjp.com/v2/public/currencies`
 
 
 
@@ -117,4 +117,4 @@ let symbols = api.symbols();
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/public/symbols`
+`GET https://api.fcoinjp.com/v2/public/symbols`
