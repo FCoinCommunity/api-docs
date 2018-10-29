@@ -36,4 +36,4 @@ let orders = api.accountsBalance;
 
 ### HTTP Request
 
-`GET https://api.fcoin.com/v2/accounts/balance`
+`GET https://api.fcoinjp.com/v2/accounts/balance`
