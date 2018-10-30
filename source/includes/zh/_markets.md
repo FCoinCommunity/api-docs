@@ -26,9 +26,9 @@
 
 ## WebSocket 首次建立连接
 
-服务器会发送一个欢迎信息
+连接成功服务器会发送一个欢迎信息
 
-> 服务器返回
+> 连接成功后服务器返回信息:
 
 ```json
 {
@@ -37,15 +37,12 @@
 }
 ```
 
-- `ts`: 推送服务器当前的时间.
+> * `ts`: 推送服务器当前的时间.
 
 ## WebSocket 连接保持 - heartbeat
 
-WebSocket 客户端和 WebSocket 服务器建立连接之后，推荐 WebSocket Client 每隔 *30s*（这个频率可能会变化） 向服务器发起一次 ping 请求，如果服务器长时间没有接收到客户端的 ping 请求将会主动断开连接（300s）。
-
-### WebSocket 请求
-
 ```python
+# WebSocket 向服务端发送 ping 维持心跳
 import time
 import fcoin
 
@@ -55,26 +52,76 @@ api.market.ping(now_ms)
 ```
 
 
-> 服务器返回
+WebSocket 客户端和 WebSocket 服务器建立连接之后，推荐 WebSocket Client 每隔 *30s*（这个频率可能会变化） 向服务器发起一次 ping 请求，如果服务器长时间没有接收到客户端的 ping 请求将会主动断开连接（300s）。
+
+### WebSocket 请求
+
+发送 **ping 指令**: `{"cmd":"ping","args":[$client_ts],"id":"$client_id"}`
+
+* `client_id`: 客户端为当前请求指定的自定义 id，服务器端会原样返回
+* `client_ts`: 客户端当前的时间
+
+> ping 指令请求示例：
+
+```json
+{"cmd":"ping","args":[1540557696867],"id":"sample.client.id"}
+```
+
+> ping 指令成功服务器返回：
 
 ```json
 {
+  "id":"sample.client.id",
   "type":"ping",
   "ts":1523693784042,
   "gap":112
 }
 ```
 
-- `gap`: 推送服务器处理此语句的时间和客户端传输的时间差.
-- `ts`: 推送服务器当前的时间.
+> * `gap`: 推送服务器处理此语句的时间和客户端传输的时间差.
+> * `ts`:  推送服务器当前的时间.
 
-## 获取推送服务器时间
+<aside class="notice">
+tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服务器时间和数据传输时间差
+</aside>
 
-可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服务器时间和数据传输时间差
+## WebSocket 订阅
 
-- gap: 推送服务器处理此语句的时间和客户端传输的时间差.
-- ts: 推送服务器当前的时间.
+发送 **sub 指令**: `{"cmd":"sub","args":["$topic", ...],"id":"$client_id"}`
 
+* `client_id`: 客户端为当前请求指定的自定义 id，服务器端会原样返回
+* `topic`: 待订阅的 topic，多个请用英文逗号`,`分隔
+
+> sub 指令请求示例（单 topic）：
+
+```json
+{"cmd":"sub","args":["ticker.ethbtc"]}
+```
+
+> sub 指令请求示例（多 topic）：
+
+```json
+{"cmd":"sub","args":["ticker.ethbtc", "ticker.btcusdt"]}
+```
+
+> 订阅成功的响应结果如下：
+
+```json
+{
+  "type": "topics",
+  "topics": ["ticker.ethbtc", "ticker.btcusdt"]
+}
+```
+
+> 订阅失败的响应结果如下：
+
+```json
+{
+  "id":"invalid_topics_sample",
+  "status":41002,
+  "msg":"invalid sub topic, xxx.M1.xxx"
+}
+```
 
 ## 获取 ticker 数据
 
@@ -104,12 +151,14 @@ api.market.ping(now_ms)
 `GET https://api.fcoin.com/v2/market/ticker/$symbol`
 
 ```python
+# 获取 ticker 数据
 import fcoin
 
 api = fcoin.authorize('key', 'secret', timestamp)
 api.market.get_ticker("ethbtc")
-
 ```
+
+> HTTP 请求响应结果如下：
 
 ```json
 {
@@ -136,9 +185,10 @@ api.market.get_ticker("ethbtc")
 
 ### WebSocket 订阅
 
-topic: `ticker.$symbol`
+发送 **sub 指令**，topic: `ticker.$symbol`  (请参考 `WebSocket 订阅`)
 
 ```python
+# 订阅 ticker 数据
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
@@ -147,16 +197,7 @@ fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
-> 订阅成功的响应结果如下：
-
-```json
-{
-  "type": "topics",
-  "topics": ["ticker.ethbtc", "ticker.btcusdt"]
-}
-```
-
-> 常规订阅的通知消息格式如下:
+> WebSocket 订阅的通知消息结果如下:
 
 ```json
 {
@@ -182,55 +223,60 @@ fcoin_ws.sub(topics)
 
 ## 获取最新的深度明细
 
-### HTTP Request
+### HTTP 请求
 
 `GET https://api.fcoin.com/v2/market/depth/$level/$symbol`
 
-`$level` 包含的种类:
+`$level` 包含的种类(大小写敏感)：
 
 类型 | 说明
 -------- | --------
 `L20` | 20 档行情深度.
-`L100` | 100 档行情深度.
+`L150` | 150 档行情深度. 
 `full` | 全量的行情深度, 不做时间保证和推送保证.
 
-其中 `L20` 的推送时间会略早于 `L100`, 推送频次会略多于 `L100`, 看具体的压力和情况. 此处请按需使用.
+其中 `L20` 的推送时间会略早于 `L150`, 推送频次会略多于 `L150`, 看具体的压力和情况. 此处请按需使用.
+
+> HTTP 请求响应结果如下：
+
+```json
+{
+  "status":0,
+  "data":{
+    "type": "depth.L20.ethbtc",
+    "ts": 1523619211000,
+    "seq": 120,
+    "bids": [0.000100000, 1.000000000, 0.000010000, 1.000000000],
+    "asks": [1.000000000, 1.000000000]
+  }
+}
+```
 
 ### WebSocket 订阅
 
-订阅 topic: `depth.$level.$symbol`
-
 ```python
+# WebSocket 订阅深度明细
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
-topics = ["depth.L20.ethbtc", "depth.L100.btcusdt"]
+topics = ["depth.L20.ethbtc", "depth.L150.btcusdt"]
 fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
 ```javascript
+// WebSocket 订阅深度明细
 const fcoin = require('fcoin');
 
 let fcoin_ws = fcoin.init_ws()
-topics = ["depth.L20.ethbtc", "depth.L100.btcusdt"]
+topics = ["depth.L20.ethbtc", "depth.L150.btcusdt"]
 fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
+发送 **sub 指令**，topic: `depth.$level.$symbol`   (请参考 `WebSocket 订阅`)
 
-> 订阅成功的响应结果如下：
-
-```json
-{
-  "type": "topics",
-  "topics": ["depth.L20.ethbtc", "depth.L100.btcusdt"]
-}
-```
-
-> 常规的推送结果
-
-bids 和 asks 对应的数组一定是偶数条目, 买(卖)1价, 买(卖)1量, 依次往后排列.
+> WebSocket 订阅的通知消息结果如下:
 
 ```json
 {
@@ -242,6 +288,10 @@ bids 和 asks 对应的数组一定是偶数条目, 买(卖)1价, 买(卖)1量, 
 }
 ```
 
+> bids 和 asks 对应的数组一定是偶数条目, 买(卖)1价, 买(卖)1量, 依次往后排列.
+
+
+
 ## 获取最新的成交明细
 
 通过对比其中的成交 id 大小才能决定是否是更新的成交.{trade id}
@@ -251,24 +301,8 @@ bids 和 asks 对应的数组一定是偶数条目, 买(卖)1价, 买(卖)1量, 
 PS: 历史行情中, 是可以保证成交 id 保持恒定. {transaction id} 此处只作为行情更新通知, 不应依赖归档使用.
 
 
-### HTTP Request
-
-`GET https://api.fcoin.com/v2/market/trades/$symbol`
-
-### 查询参数(HTTP Query)
-
-参数 | 默认值 | 描述
---------- | ------- | -----------
-before |  | 查询某个 id 之前的 Trade
-limit |  | 默认为 20 条
-
-### WebSocket 获取最近的成交
-
-topic: `trade.$symbol`
-limit: 最近的成交条数
-args: [topic, limit]
-
 ```python
+# WebSocket 请求获取最近的成交明细
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
@@ -278,40 +312,8 @@ args = [topic, limit]
 fcoin_ws.req(args, rep_handler)
 ```
 
-> 请求成功的响应结果如下：
-
-```json
-{"id":null,
- "ts":1523693400329,
- "data":[
-   {
-     "amount":1.000000000,
-     "ts":1523419946174,
-     "id":76000,
-     "side":"sell",
-     "price":4.000000000
-   },
-   {
-     "amount":1.000000000,
-     "ts":1523419114272,
-     "id":74000,
-     "side":"sell",
-     "price":4.000000000
-   },
-   {
-     "amount":1.000000000,
-     "ts":1523415182356,
-     "id":71000,
-     "side":"sell",
-     "price":3.000000000
-   }
- ]
-}
-```
-
-### WebSocket 订阅
-
 ```python
+# WebSocket 订阅最近的成交明细
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
@@ -320,17 +322,65 @@ fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
-> 订阅成功的响应结果如下：
+
+### HTTP 请求
+
+`GET https://api.fcoin.com/v2/market/trades/$symbol`
+
+#### 查询参数(HTTP 请求)
+
+参数 | 默认值 | 描述
+--------- | ------- | -----------
+before |  | 查询某个 id 之前的 Trade
+limit |  | 默认为 20 条
+
+### WebSocket 请求
+
+发送 **req 指令**: `{"cmd":"req", "args":["$topic", limit],"id":"$client_id"}`
+
+* `client_id`: 客户端为当前请求指定的自定义 id，服务器端会原样返回
+* `topic`: `trade.$symbol`
+* `limit`: 需要获取的最近的成交条数
+
+> WebSocket 请求成功的响应结果如下：
 
 ```json
 {
-  "type": "topics",
-  "topics": ["trade.ethbtc"]
+  "id":null,
+  "ts":1523693400329,
+  "data":[
+    {
+      "amount":1.000000000,
+      "ts":1523419946174,
+      "id":76000,
+      "side":"sell",
+      "price":4.000000000
+    },
+    {
+      "amount":1.000000000,
+      "ts":1523419114272,
+      "id":74000,
+      "side":"sell",
+      "price":4.000000000
+    },
+    {
+      "amount":1.000000000,
+      "ts":1523415182356,
+      "id":71000,
+      "side":"sell",
+      "price":3.000000000
+    }
+  ]
 }
 ```
 
+### WebSocket 订阅
 
-> 常规的推送结果
+发送 **sub 指令**，topic: `trade.$symbol`   (请参考 `WebSocket 订阅`)
+
+* `symbol`: 对应的交易对
+
+> WebSocket 订阅的通知消息结果如下:
 
 ```json
 {
@@ -345,18 +395,18 @@ fcoin_ws.sub(topics)
 
 ## 获取 Candle 信息
 
-### HTTP Request
+### HTTP 请求
 
 `GET https://api.fcoin.com/v2/market/candles/$resolution/$symbol`
 
-### 查询参数(HTTP Query)
+#### 查询参数(HTTP 请求)
 
 参数 | 默认值 | 描述
 --------- | ------- | -----------
 before |  | 查询某个 id 之前的 Candle
 limit |  | 默认为 20 条
 
-$resolution 包含的种类
+$resolution 包含的种类(大小写敏感)：
 
 类型     | 说明
 -------- | --------
@@ -372,30 +422,64 @@ $resolution 包含的种类
  `W1`    | 1 周
  `MN`    | 1 月
 
-### Weboskcet 订阅 Candle 数据
+### WebSocket 请求
 
-topic: `candle.$resolution.$symbol`
+发送 **req 指令**: `{"cmd":"req","args":["$topic",limit,before],"id":"$client_id"}`
+
+- `client_id`: 客户端为当前请求指定的自定义 id，服务器端会原样返回
+- `topic`: `candle.$resolution.$symbol`
+- `limit`: 需要获取的 candle 条数
+- `before`: 查询某个 id 之前的 Candle
+
+> WebSocket 请求成功的响应结果如下：
+
+```json
+{
+  "id":"candle.btcusdt.M1",
+  "data":[
+    {
+      "id":1540809840,
+      "seq":24793830600000,
+      "high":6491.74,
+      "low":6489.24,
+      "open":6491.24,
+      "close":6490.07,
+      "count":26,
+      "base_vol":8.2221,
+      "quote_vol":53371.531286
+    },
+    {
+      "id":1540809900,
+      "seq":24793879800000,
+      "high":6490.47,
+      "low":6487.62,
+      "open":6490.09,
+      "close":6487.62,
+      "count":23,
+      "base_vol":10.8527,
+      "quote_vol":70430.840624
+    }
+  ]
+}
+```
+
+### Weboskcet 订阅
+
+发送 **sub 指令**，topic: `candle.$resolution.$symbol`   (请参考 `WebSocket 订阅`)
+
+* `resolution`： 同 HTTP 请求 resolution 参数
 
 ```python
+# WebSocket 订阅 candle 数据
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
-topics = ["candle.M1.ethbtc", "depth.L20.ethbtc", "trade.ethbtc"]
+topics = ["candle.M1.ethbtc"]
 fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
-> 订阅成功的响应结果如下：
-
-
-```json
-{
-  "type": "topics",
-  "topics": ["candle.M1.ethbtc"]
-}
-```
-
-> 常规订阅的通知消息格式如下:
+> WebSocket 订阅的通知消息结果如下:
 
 ```json
 {
