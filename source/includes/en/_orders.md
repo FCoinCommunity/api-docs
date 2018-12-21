@@ -72,6 +72,8 @@ side | Null | trading direction
 type | Null  | order type
 price | Null | price
 amount | Null | order volume
+exchange | Null | exchange
+account_type | Null | Order type（margin:margin）
 
 
 

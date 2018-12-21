@@ -73,7 +73,7 @@ type | 无  | 订单类型
 price | 无 | 价格
 amount | 无 | 下单量
 exchange | 无 | 交易区
-account_type | 无 | 账户类型(杠杆：margin)
+account_type | 无 | 账户类型(币币交易不需要填写，杠杆交易：margin)
 
 
 
