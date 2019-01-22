@@ -14,7 +14,7 @@ const fcoin = require('fcoin');
 let api = fcoin.authorize('key', 'secret', timestamp);
 ```
 
-FCoin 使用 API key 和 API secret 进行验证，请访问 [设置中心](https://exchange.fcoin.com/setting)，并注册成为开发者，获取 API key 和 API secret。
+FCoin 使用 API key 和 API secret 进行验证，请访问 [设置中心](https://exchange.fcoin.com/settings/api)，并注册成为开发者，获取 API key 和 API secret。
 
 FCoin 的 API 请求，除公开的 API 外都需要携带 API key 以及签名
 

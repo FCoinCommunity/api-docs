@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='https://exchange.fcoin.com/setting'>申请 API 秘钥</a>
+  - <a href='https://exchange.fcoin.com/setting/api'>申请 API 秘钥</a>
 
 includes:
   - zh/introduction
@@ -16,7 +16,10 @@ includes:
   - zh/accounts
   - zh/orders
   - zh/order_errors
+  - zh/otc
+  - zh/leveraged
   - zh/errors
+
 
 search: true
 ---

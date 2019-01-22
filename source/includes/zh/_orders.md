@@ -132,9 +132,9 @@ let orders = api.orders.get();
 --------- | ------- | -----------
 symbol |  | 交易对
 states |  | 订单状态，多种状态联合查询：submitted,partial_filled,partial_canceled,filled,canceled,中间用逗号隔开
-before |  | 查询某个页码之前的订单，时间戳
-after |  | 查询某个页码之后的订单，时间戳
-limit |  | 每页的订单数量，默认为 20 条
+before |  | 查询某个时间戳之前的订单
+after |  | 查询某个时间戳之后的订单
+limit |  | 每页的订单数量，默认为 20 条，最大100
 
 
 
