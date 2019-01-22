@@ -264,7 +264,7 @@
               </ul>
           </li>
           <li>
-            <a href="#6055443976" class="toc-h1 toc-link" data-title="">账户与资产</a>
+            <a href="#0685016e14" class="toc-h1 toc-link" data-title="">币币账户与资产</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#486f6037ed" class="toc-h2 toc-link" data-title="">查询账户资产</a>
@@ -298,11 +298,66 @@
               </ul>
           </li>
           <li>
+            <a href="#otc" class="toc-h1 toc-link" data-title="otc">OTC账户</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#otc-2" class="toc-h2 toc-link" data-title="otc">OTC 资产转入</a>
+                  </li>
+                  <li>
+                    <a href="#otc-3" class="toc-h2 toc-link" data-title="otc">OTC资产转出</a>
+                  </li>
+                  <li>
+                    <a href="#otc-4" class="toc-h2 toc-link" data-title="otc">OTC订单</a>
+                  </li>
+                  <li>
+                    <a href="#otc-5" class="toc-h2 toc-link" data-title="otc">查询OTC订单列表</a>
+                  </li>
+                  <li>
+                    <a href="#92d59b6aad" class="toc-h2 toc-link" data-title="">查询订单详情</a>
+                  </li>
+                  <li>
+                    <a href="#1c1324c9dd" class="toc-h2 toc-link" data-title="">订单确认支付</a>
+                  </li>
+                  <li>
+                    <a href="#fd2d69e9bc" class="toc-h2 toc-link" data-title="">买家取消订单</a>
+                  </li>
+                  <li>
+                    <a href="#95e1a9a617" class="toc-h2 toc-link" data-title="">查询卖家支付方式</a>
+                  </li>
+                  <li>
+                    <a href="#otc-6" class="toc-h2 toc-link" data-title="otc">获取OTC账户信息</a>
+                  </li>
+                  <li>
+                    <a href="#otc-7" class="toc-h2 toc-link" data-title="otc">查询OTC账户所有币种余额</a>
+                  </li>
+                  <li>
+                    <a href="#otc-8" class="toc-h2 toc-link" data-title="otc">获取OTC账户指定币种余额</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#a245a237e7" class="toc-h1 toc-link" data-title="">杠杆账户</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#0071c5603b" class="toc-h2 toc-link" data-title="">杠杆账户资产转入</a>
+                  </li>
+                  <li>
+                    <a href="#c916e08f3b" class="toc-h2 toc-link" data-title="">杠杆账户资产转出</a>
+                  </li>
+                  <li>
+                    <a href="#a5a7557a99" class="toc-h2 toc-link" data-title="">查询指定杠杆账户的信息</a>
+                  </li>
+                  <li>
+                    <a href="#5bfdc8ea76" class="toc-h2 toc-link" data-title="">查询所有杠杆账户的信息</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#cf68bca02a" class="toc-h1 toc-link" data-title="">错误代码</a>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://exchange.fcoin.com/setting'>申请 API 秘钥</a></li>
+            <li><a href='https://exchange.fcoin.com/setting/api'>申请 API 秘钥</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -321,7 +376,7 @@
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
 </code></pre>
-<p>FCoin 使用 API key 和 API secret 进行验证，请访问 <a href="https://exchange.fcoin.com/setting">设置中心</a>，并注册成为开发者，获取 API key 和 API secret。</p>
+<p>FCoin 使用 API key 和 API secret 进行验证，请访问 <a href="https://exchange.fcoin.com/settings/api">设置中心</a>，并注册成为开发者，获取 API key 和 API secret。</p>
 
 <p>FCoin 的 API 请求，除公开的 API 外都需要携带 API key 以及签名</p>
 <h2 id='12907e94be'>访问限制</h2>
@@ -1008,7 +1063,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   </span><span class="s2">"base_vol"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"quote_vol"</span><span class="p">:</span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='6055443976'>账户与资产</h1><h2 id='486f6037ed'>查询账户资产</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+</span></code></pre><h1 id='0685016e14'>币币账户与资产</h1><h2 id='486f6037ed'>查询账户资产</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">accounts_balance</span>
@@ -1262,17 +1317,17 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <tr>
 <td>before</td>
 <td></td>
-<td>查询某个页码之前的订单，时间戳</td>
+<td>查询某个时间戳之前的订单</td>
 </tr>
 <tr>
 <td>after</td>
 <td></td>
-<td>查询某个页码之后的订单，时间戳</td>
+<td>查询某个时间戳之后的订单</td>
 </tr>
 <tr>
 <td>limit</td>
 <td></td>
-<td>每页的订单数量，默认为 20 条</td>
+<td>每页的订单数量，默认为 20 条，最大100</td>
 </tr>
 </tbody></table>
 <h2 id='5faf03be01'>获取指定订单</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
@@ -1406,7 +1461,568 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td>账户错误</td>
 </tr>
 </tbody></table>
-<h1 id='cf68bca02a'>错误代码</h1>
+<h1 id='otc'>OTC账户</h1><h2 id='otc-2'>OTC 资产转入</h2>
+<p>此API用于将交易账户或资产账户的资产转入到OTC账户。</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/assets/transfer/in</code></p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">划转数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">币种名称：usdt、btc、eth</td>
+</tr>
+<tr>
+<td style="text-align: left">source_account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">资产来源账户类型: exchange: 交易账户; assets: 资产账户</td>
+</tr>
+<tr>
+<td style="text-align: left">target_account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">目标账户类型: otc: 法币账户</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+  "source_account_type": "exchange",
+  "target_account_type": "otc"
+}
+</code></pre><h3 id='306fc38aa3'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h2 id='otc-3'>OTC资产转出</h2>
+<p>此API用于将OTC账户资产转入到交易账户或资产账户。</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/assets/transfer/out</code></p>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">划转数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">币种名称：usdt、btc、eth</td>
+</tr>
+<tr>
+<td style="text-align: left">source_account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">资产来源账户类型:otc: 法币账户</td>
+</tr>
+<tr>
+<td style="text-align: left">target_account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">目标账户类型: exchange: 交易账户; assets: 资产账户</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+  "source_account_type": "otc",
+  "target_account_type": "exchange"
+}
+</code></pre><h3 id='306fc38aa3-2'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h2 id='otc-4'>OTC订单</h2><h3 id='4a3e521c3b'>创建新的订单</h3>
+<p>此API用于创建一个新的OTC订单。</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/suborders</code></p>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">交易数量</td>
+</tr>
+<tr>
+<td style="text-align: left">delegation_order_id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">委托单id</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "delegation_order_id": "St5_OiSE5YQiy4lxkQhq8w"
+}
+</code></pre><h3 id='306fc38aa3-3'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "err_code": "",
+  "err_msg": "",
+  "status": "ok",
+  "data": 4064224473046529
+}
+</code></pre><h2 id='otc-5'>查询OTC订单列表</h2>
+<p>此API用于查询订单列表。</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/suborders</code></p>
+<h3 id='1f9ac54b15-4'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">最后一次分页的id</td>
+</tr>
+<tr>
+<td style="text-align: left">page_size</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">每页记录数</td>
+</tr>
+<tr>
+<td style="text-align: left">delegation_order_id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">委托单id</td>
+</tr>
+<tr>
+<td style="text-align: left">states</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">订单状态。 1 confirmed 已确认;2 buyer_appeal 买方申诉中;3 seller_appeal 卖方申诉中;4 paid 买家已付款;5 released 卖家已放币;6 filled 已成交;7 cancelled 已撤销;8 timeout 超时撤销;9 system_cancelled 系统撤销（余额不足）</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3-4'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "err_code": "",
+  "err_msg": "",
+  "status": "ok",
+  "data": {
+    "content": [
+      {
+        "id": "4064224473046529",
+        "currency": "usdt",
+        "legal_currency": "cny",
+        "direction": "buy",
+        "type": "normal",
+        "price": "7.00",
+        "amount": "100.000000",
+        "total_price": "700.00",
+        "start_at": 1546614090132,
+        "created_at": 1546614090135,
+        "state": "confirmed"
+      },
+      {
+        "id": "3214937639915529",
+        "currency": "usdt",
+        "legal_currency": "cny",
+        "direction": "buy",
+        "type": "normal",
+        "price": "7.70",
+        "amount": "100.000000",
+        "total_price": "770.00",
+        "start_at": 1546421969839,
+        "created_at": 1546421969842,
+        "state": "filled"
+      }
+    ],
+    "current_elements": 2,
+    "has_prev": true,
+    "has_next": false,
+    "next_page_id": 3214937639915529
+  }
+}
+</code></pre><h2 id='92d59b6aad'>查询订单详情</h2>
+<p>此API用于查询订单列表。</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/suborders/{id}</code></p>
+<h3 id='1f9ac54b15-5'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">订单id</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3-5'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "status": "ok",
+  "data": {
+    "id": "4064224473046529",
+    "currency": "usdt",
+    "legal_currency": "cny",
+    "direction": "buy",
+    "type": "normal",
+    "price": "7.00",
+    "amount": "100.000000",
+    "payment_method": "wechat_pay",
+    "total_price": "700.00",
+    "start_at": 1546614090132,
+    "paid_at": 1546614126421,
+    "finished_at": 1546614470679,
+    "created_at": 1546614090135,
+    "release_begin_at": 1546614294160,
+    "buyer_user_id": "hXD7rALO-p899HLEG6OGCA",
+    "seller_user_id": "U_g-dtTE_B8Q2eQYa4a8Bw",
+    "state": "filled",
+    "first_name": "Tim",
+    "last_name": "im"
+  }
+}
+</code></pre><h2 id='1c1324c9dd'>订单确认支付</h2>
+<p>此API用于确认支付。</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/suborders/{id}/pay_confirm</code></p>
+<h3 id='1f9ac54b15-6'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">订单id</td>
+</tr>
+<tr>
+<td style="text-align: left">payment_method</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">支付方式。 1 alipay 支付宝;2 wechat_pay 微信;3 bank_card_pay 银行卡</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3-6'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "err_code": "",
+  "err_msg": "",
+  "status": "ok"
+}
+</code></pre><h2 id='fd2d69e9bc'>买家取消订单</h2>
+<p>此API用于买家取消订单。</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/suborders/{id}/cancel</code></p>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">订单id</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3-7'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "err_code": "",
+  "err_msg": "",
+  "status": "ok"
+}
+</code></pre><h2 id='95e1a9a617'>查询卖家支付方式</h2>
+<p>此API用于下订单后，查询卖家的支付方式。</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/suborders/{id}/payments</code></p>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">订单id</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3-8'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "status": "ok",
+  "data": [
+    {
+      "payment_method": "alipay",
+      "first_name": "Tim",
+      "last_name": "im",
+      "bank_name": null,
+      "bank_branch_name": null,
+      "account": "zhifubao",
+      "account_image_key": "551c9c2d6bad417fb4aa171bcc6b861d.jpg",
+      "account_image_read_url": "https://s3.ap-northeast-1.amazonaws.com/local-s3.bitdict.com/kyc/551c9c2d6bad417fb4aa171bcc6b861d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20190115T113640Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=7200&amp;X-Amz-Credential=AKIAIZ37IMEFO7JZRBOQ%2F20190115%2Fap-northeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=26788f3972b7a732b232cc08a54cd7afa038da0a219bf20076267ec70037bf3c"
+    },
+    {
+      "payment_method": "wechat_pay",
+      "first_name": "Tim",
+      "last_name": "im",
+      "bank_name": null,
+      "bank_branch_name": null,
+      "account": "weixina",
+      "account_image_key": "e5b20c5af24232f11ec4ce187f7c6998.jpg",
+      "account_image_read_url": "https://s3.ap-northeast-1.amazonaws.com/local-s3.bitdict.com/kyc/e5b20c5af24232f11ec4ce187f7c6998.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20190115T113640Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=7200&amp;X-Amz-Credential=AKIAIZ37IMEFO7JZRBOQ%2F20190115%2Fap-northeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=8d9e599cf672d3cc495407d2c9538e3b4fb7275aee7201b48b8ba48c65f6fa68"
+    }
+  ]
+}
+</code></pre><h2 id='otc-6'>获取OTC账户信息</h2><h3 id='http'>HTTP请求</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/users</code></p>
+<h3 id='1f9ac54b15-9'>请求参数</h3>
+<p>无</p>
+<h3 id='306fc38aa3-9'>响应结果</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+        "user_id": "Hff9R282Ty8wDa5Xb8AaLg",                #用户ID
+        "nickname": "isfulei",                              #昵称
+        "merchant": true,                                   #是否是商家
+        "margin_amount": "1.00000000",                      #保证金数量
+        "total_transaction": 0,                             #总成交数
+        "recent_transaction": 0,                            #近期成交数
+        "total_release_time": "0",                          #总放行时间(分钟)
+        "average_release_time": "0",                        #平均放行时间(分钟)
+        "recent_success_transaction_ratio": "0",            #近期成交率
+        "register_at": 1,                                   #注册时间
+        "remark": "备注",                                    #备注
+        "bind_email": true,                                 #是否绑定邮箱
+        "bind_phone": true,                                 #是否绑定手机
+        "kyc": true,                                        #时候KYC
+        "enable_otc": true,                                 #是否是OTC用户
+        "set_payment_method": false,                        #是否设置了支付方式
+        "set_assets_password": false,                       #是否设置了资金密码
+        "binding_google_auth": false,                       #是否绑定了GA
+        "phone": "86-13000000000",                          #联系电话
+        "first_name": fu,                                   #first name
+        "last_name": lei,                                   #last name
+        "email": "mock_user@fcoin.com"                      #邮箱
+    }
+</code></pre><h2 id='otc-7'>查询OTC账户所有币种余额</h2><h3 id='926f6b6b6a'>请求</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/users/me/balances</code></p>
+<h3 id='1f9ac54b15-10'>请求参数</h3>
+<p>无</p>
+<h3 id='9c51d97223'>响应格式</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+        "summary": "0.00000000",
+        "balances": [
+            {
+                "currency": "btc",
+                "available_amount": 20.3202023,
+                "frozen_amount": 32093.3223
+            },
+            {
+                "currency": "eth",
+                "available_amount": 20.3202023,
+                "frozen_amount": 32093.3223
+            }
+        ]
+    }
+}
+summary             
+currency            币种名称
+available_amount    可用数量
+frozen_amount       冻结数量        
+</code></pre><h2 id='otc-8'>获取OTC账户指定币种余额</h2><h3 id='url'>请求url</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/users/me/balance</code></p>
+<h3 id='1f9ac54b15-11'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">币种名称，如：btc/eth/usdt</td>
+</tr>
+</tbody></table>
+<h3 id='b5b0102430'>响应结果</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+        "summary": "0.00000000",
+        "balances": [
+            {
+                "currency": "btc",
+                "available_amount": 20.3202023,
+                "frozen_amount": 32093.3223
+            }
+        ]
+    }
+}
+summary             折合btc的数量
+currency            币种名称
+available_amount    可用数量
+frozen_amount       冻结数量        
+</code></pre><h1 id='a245a237e7'>杠杆账户</h1><h2 id='0071c5603b'>杠杆账户资产转入</h2>
+<p>此API用于将交易账户或资产账户的资产转入到杠杆账户。</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/leveraged/assets/transfer/in</code></p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">划转数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">币种名称：usdt、btc、eth</td>
+</tr>
+<tr>
+<td style="text-align: left">source_account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">资产来源账户类型: exchange: 交易账户; assets: 资产账户</td>
+</tr>
+<tr>
+<td style="text-align: left">target_account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">目标账户类型: leveraged_btcusdt、leveraged_ethusdt、leveraged_eosusdt、leveraged_xrpusdt</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+  "source_account_type": "exchange",
+  "target_account_type": "leveraged_btcusdt"
+}
+</code></pre><h3 id='306fc38aa3'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h2 id='c916e08f3b'>杠杆账户资产转出</h2>
+<p>此API用于将杠杆账户资产转入到交易账户或资产账户。</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/leveraged/assets/transfer/out</code></p>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">划转数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">币种名称：usdt、btc、eth、eos、xrp</td>
+</tr>
+<tr>
+<td style="text-align: left">source_account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">资产来源账户类型: leveraged_btcusdt、leveraged_ethusdt、leveraged_eosusdt、leveraged_xrpusdt</td>
+</tr>
+<tr>
+<td style="text-align: left">target_account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">目标账户类型: exchange: 交易账户; assets: 资产账户</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+  "source_account_type": "leveraged_btcusdt",
+  "target_account_type": "exchange"
+}
+</code></pre><h3 id='306fc38aa3-2'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h2 id='a5a7557a99'>查询指定杠杆账户的信息</h2><h3 id='url'>请求url</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/leveraged_accounts/account</code></p>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">杠杆账户类型:btcusdt/ethusdt</td>
+</tr>
+</tbody></table>
+<h3 id='ee266c3aa8'>响应格式</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+        "open": true,                                    #是否已经开通该类型杠杆账户. true:已开通;false:未开通
+        "leveraged_account_type": "btcusdt",             #杠杆账户类型
+        "base": "btc",                                   #基准币种
+        "quote": "usdt",                                 #计价币种
+        "available_base_currency_amount": "1001.00",     #可用的基准币种资产
+        "frozen_base_currency_amount": "0",              #冻结的基准币种资产
+        "available_quote_currency_amount": "100100",     #可用的计价币种资产
+        "frozen_quote_currency_amount": "0",             #冻结的计价币种资产
+        "available_base_currency_loan_amount": "2.000",  #可借的基准币种数量
+        "available_quote_currency_loan_amount": "300.000",#可借的计价币种数量
+        "blow_up_price": null,                           #爆仓价
+        "risk_rate": "0.90",                             #爆仓风险率
+        "state": "open"                                  #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓", allowableValues = "close,open,normal,blow_up,overrun")
+
+    }
+}
+</code></pre><h2 id='5bfdc8ea76'>查询所有杠杆账户的信息</h2><h3 id='url-2'>请求url</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/leveraged_accounts</code></p>
+<h3 id='1f9ac54b15-4'>请求参数</h3>
+<p>无</p>
+<h3 id='306fc38aa3-3'>响应结果</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": [
+        {
+            "open": true,                                    #是否已经开通该类型杠杆账户. true:已开通;false:未开通
+            "leveraged_account_type": "btcusdt",             #杠杆账户类型
+            "base": "btc",                                   #基准币种
+            "quote": "usdt",                                 #计价币种
+            "available_base_currency_amount": "1001.00",     #可用的基准币种资产
+            "frozen_base_currency_amount": "0",              #冻结的基准币种资产
+            "available_quote_currency_amount": "100100",     #可用的计价币种资产
+            "frozen_quote_currency_amount": "0",             #冻结的计价币种资产
+            "available_base_currency_loan_amount": "2.000",  #可借的基准币种数量
+            "available_quote_currency_loan_amount": "300.000",#可借的计价币种数量
+            "blow_up_price": null,                           #爆仓价
+            "risk_rate": "0.90",                             #爆仓风险率
+            "state": "open"                                  #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓"
+        }
+    ]
+}
+</code></pre><h1 id='cf68bca02a'>错误代码</h1>
 <table><thead>
 <tr>
 <th>错误代码</th>
