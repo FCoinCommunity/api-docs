@@ -1828,9 +1828,9 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
         "summary": "0.00000000",
         "balances": [
             {
-                "currency": "btc",
-                "available_amount": 20.3202023,
-                "frozen_amount": 32093.3223
+                "currency": "btc",                 # 币种名称
+                "available_amount": 20.3202023,    # 可用数量
+                "frozen_amount": 32093.3223        # 冻结数量
             },
             {
                 "currency": "eth",
@@ -1839,11 +1839,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
             }
         ]
     }
-}
-summary             
-currency            币种名称
-available_amount    可用数量
-frozen_amount       冻结数量        
+}            
 </code></pre><h2 id='otc-8'>获取OTC账户指定币种余额</h2><h3 id='url'>请求url</h3>
 <p><code>GET https://api.fcoin.com/v2/broker/otc/users/me/balance</code></p>
 <h3 id='1f9ac54b15-11'>请求参数</h3>
@@ -1863,20 +1859,16 @@ frozen_amount       冻结数量
 <h3 id='b5b0102430'>响应结果</h3><pre class="highlight plaintext"><code>{
     "status": "ok",
     "data": {
-        "summary": "0.00000000",
+        "summary": "0.00000000",                  # 折合btc的数量
         "balances": [
             {
-                "currency": "btc",
-                "available_amount": 20.3202023,
-                "frozen_amount": 32093.3223
+                "currency": "btc",               # 币种名称
+                "available_amount": 20.3202023,  # 可用数量
+                "frozen_amount": 32093.3223      # 冻结数量
             }
         ]
     }
-}
-summary             折合btc的数量
-currency            币种名称
-available_amount    可用数量
-frozen_amount       冻结数量        
+}             
 </code></pre><h1 id='edaa33a157'>杠杆</h1><h2 id='0071c5603b'>杠杆账户资产转入</h2>
 <p>此API用于将交易账户或资产账户的资产转入到杠杆账户。</p>
 <h3 id='http-request'>HTTP Request</h3>
