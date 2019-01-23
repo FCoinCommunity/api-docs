@@ -298,6 +298,61 @@
               </ul>
           </li>
           <li>
+            <a href="#otc" class="toc-h1 toc-link" data-title="otc">OTC</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#otc-2" class="toc-h2 toc-link" data-title="otc">OTC資産の振込入金</a>
+                  </li>
+                  <li>
+                    <a href="#otc-3" class="toc-h2 toc-link" data-title="otc">OTC資産の振込出金</a>
+                  </li>
+                  <li>
+                    <a href="#otc-4" class="toc-h2 toc-link" data-title="otc">OTC注文</a>
+                  </li>
+                  <li>
+                    <a href="#otc-5" class="toc-h2 toc-link" data-title="otc">OTC注文リストを照会する</a>
+                  </li>
+                  <li>
+                    <a href="#0e59768ff5" class="toc-h2 toc-link" data-title="">注文詳細を照会する</a>
+                  </li>
+                  <li>
+                    <a href="#c1b4af4d26" class="toc-h2 toc-link" data-title="">注文支払いの確認</a>
+                  </li>
+                  <li>
+                    <a href="#8a2456a092" class="toc-h2 toc-link" data-title="">買い手の注文キャンセル</a>
+                  </li>
+                  <li>
+                    <a href="#ccec8ae230" class="toc-h2 toc-link" data-title="">売り手の支払い方法の確認</a>
+                  </li>
+                  <li>
+                    <a href="#otc-6" class="toc-h2 toc-link" data-title="otc">OTC口座情報の獲得</a>
+                  </li>
+                  <li>
+                    <a href="#otc-7" class="toc-h2 toc-link" data-title="otc">OTC口座資金総額の照会</a>
+                  </li>
+                  <li>
+                    <a href="#otc-8" class="toc-h2 toc-link" data-title="otc">OTC口座の指定された通貨の資金照会</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#06ce28d2d5" class="toc-h1 toc-link" data-title="">レバレッジ</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#a84ad32734" class="toc-h2 toc-link" data-title="">レバレッジ口座へ資産の振込入金</a>
+                  </li>
+                  <li>
+                    <a href="#51bbf5ba19" class="toc-h2 toc-link" data-title="">レバレッジ口座から資産の振込出金</a>
+                  </li>
+                  <li>
+                    <a href="#c7bfb1a0e0" class="toc-h2 toc-link" data-title="">指定されたレバレッジ口座の情報を照会する</a>
+                  </li>
+                  <li>
+                    <a href="#fcfb3b2fea" class="toc-h2 toc-link" data-title="">全てのレバレッジ口座の情報を照会する</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#044106d39a" class="toc-h1 toc-link" data-title="">エラーコード</a>
           </li>
       </div>
@@ -1303,7 +1358,567 @@ args: [topic, limit]</p>
 <td>アカウントエラー</td>
 </tr>
 </tbody></table>
-<h1 id='044106d39a'>エラーコード</h1>
+<h1 id='otc'>OTC</h1><h2 id='otc-2'>OTC資産の振込入金</h2>
+<p>このAPIは、取引口座やマイウォレットの資産をOTC口座に振込入金するために使用されます。</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/assets/transfer/in</code></p>
+<h3 id='4c4f7e67fc'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">振込入金の数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">通貨：usdt、btc、eth</td>
+</tr>
+<tr>
+<td style="text-align: left">source_account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">送金口座のタイプ: exchange: 取引口座; assets: マイウォレット</td>
+</tr>
+<tr>
+<td style="text-align: left">target_account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">入金先の口座のタイプ: otc:法定通貨口座</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+  "source_account_type": "exchange",
+  "target_account_type": "otc"
+}
+</code></pre><h3 id='347e18424f'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h2 id='otc-3'>OTC資産の振込出金</h2>
+<p>このAPIは、OTC口座の資産を取引口座やマイウォレットに振込出金するために使用されます。</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/assets/transfer/out</code></p>
+<h3 id='4c4f7e67fc-2'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">振込出金の数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">通貨：usdt、btc、eth</td>
+</tr>
+<tr>
+<td style="text-align: left">source_account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">送金口座のタイプ:otc: 法币账户</td>
+</tr>
+<tr>
+<td style="text-align: left">target_account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">入金先の口座のタイプ: exchange: 取引口座; assets: マイウォレット</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+  "source_account_type": "otc",
+  "target_account_type": "exchange"
+}
+</code></pre><h3 id='347e18424f-2'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h2 id='otc-4'>OTC注文</h2><h3 id='d48994f8cb'>新しい注文を作る</h3>
+<p>このAPIは、新しいOTC注文を作るために使用されます。</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/suborders</code></p>
+<h3 id='4c4f7e67fc-3'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">取引数量</td>
+</tr>
+<tr>
+<td style="text-align: left">delegation_order_id</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">委託注文id</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "delegation_order_id": "St5_OiSE5YQiy4lxkQhq8w"
+}
+</code></pre><h3 id='347e18424f-3'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "err_code": "",
+  "err_msg": "",
+  "status": "ok",
+  "data": 4064224473046529
+}
+</code></pre><h2 id='otc-5'>OTC注文リストを照会する</h2>
+<p>このAPIは、OTC注文リストを照会するために使用されます。</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/suborders</code></p>
+<h3 id='4c4f7e67fc-4'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">最後のページングのID</td>
+</tr>
+<tr>
+<td style="text-align: left">page_size</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">各ページの記録回数</td>
+</tr>
+<tr>
+<td style="text-align: left">delegation_order_id</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">委託注文id</td>
+</tr>
+<tr>
+<td style="text-align: left">states</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">注文状態：</td>
+</tr>
+</tbody></table>
+
+<p>1 confirmed 確認済 2 buyer_appeal 買い手申し立て中 3 seller_appeal 売り手申し立て中 4 paid 買い手が支払い済み 5 released 通貨が転送済み
+6 filled 約定済 7 cancelled キャンセル済 8 timeout キャンセル時間切れ 9 system_cancelled システムキャンセル（残高不足）|</p>
+<h3 id='347e18424f-4'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "err_code": "",
+  "err_msg": "",
+  "status": "ok",
+  "data": {
+    "content": [
+      {
+        "id": "4064224473046529",
+        "currency": "usdt",
+        "legal_currency": "cny",
+        "direction": "buy",
+        "type": "normal",
+        "price": "7.00",
+        "amount": "100.000000",
+        "total_price": "700.00",
+        "start_at": 1546614090132,
+        "created_at": 1546614090135,
+        "state": "confirmed"
+      },
+      {
+        "id": "3214937639915529",
+        "currency": "usdt",
+        "legal_currency": "cny",
+        "direction": "buy",
+        "type": "normal",
+        "price": "7.70",
+        "amount": "100.000000",
+        "total_price": "770.00",
+        "start_at": 1546421969839,
+        "created_at": 1546421969842,
+        "state": "filled"
+      }
+    ],
+    "current_elements": 2,
+    "has_prev": true,
+    "has_next": false,
+    "next_page_id": 3214937639915529
+  }
+}
+</code></pre><h2 id='0e59768ff5'>注文詳細を照会する</h2>
+<p>このAPIは、注文詳細を照会するために使用されます。</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/suborders/{id}</code></p>
+<h3 id='4c4f7e67fc-5'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">注文id</td>
+</tr>
+</tbody></table>
+<h3 id='347e18424f-5'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "status": "ok",
+  "data": {
+    "id": "4064224473046529",
+    "currency": "usdt",
+    "legal_currency": "cny",
+    "direction": "buy",
+    "type": "normal",
+    "price": "7.00",
+    "amount": "100.000000",
+    "payment_method": "wechat_pay",
+    "total_price": "700.00",
+    "start_at": 1546614090132,
+    "paid_at": 1546614126421,
+    "finished_at": 1546614470679,
+    "created_at": 1546614090135,
+    "release_begin_at": 1546614294160,
+    "buyer_user_id": "hXD7rALO-p899HLEG6OGCA",
+    "seller_user_id": "U_g-dtTE_B8Q2eQYa4a8Bw",
+    "state": "filled",
+    "first_name": "Tim",
+    "last_name": "im"
+  }
+}
+</code></pre><h2 id='c1b4af4d26'>注文支払いの確認</h2>
+<p>このAPIは、注文の支払いを確認するために使用されます。</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/suborders/{id}/pay_confirm</code></p>
+<h3 id='4c4f7e67fc-6'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">注文id</td>
+</tr>
+<tr>
+<td style="text-align: left">payment_method</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">支払い方法：</td>
+</tr>
+</tbody></table>
+
+<p>1 alipay Alipay
+2 wechat_pay Wechat Pay
+3 bank_card_pay 銀行カード</p>
+<h3 id='347e18424f-6'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "err_code": "",
+  "err_msg": "",
+  "status": "ok"
+}
+</code></pre><h2 id='8a2456a092'>買い手の注文キャンセル</h2>
+<p>このAPIは、買い手が注文をキャンセルするために使用されます。</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/suborders/{id}/cancel</code></p>
+<h3 id='4c4f7e67fc-7'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">注文id</td>
+</tr>
+</tbody></table>
+<h3 id='347e18424f-7'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "err_code": "",
+  "err_msg": "",
+  "status": "ok"
+}
+</code></pre><h2 id='ccec8ae230'>売り手の支払い方法の確認</h2>
+<p>このAPIは、注文した後、売り手の支払い方法を確認するために使用されます。</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/suborders/{id}/payments</code></p>
+<h3 id='4c4f7e67fc-8'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">注文id</td>
+</tr>
+</tbody></table>
+<h3 id='347e18424f-8'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "status": "ok",
+  "data": [
+    {
+      "payment_method": "alipay",
+      "first_name": "Tim",
+      "last_name": "im",
+      "bank_name": null,
+      "bank_branch_name": null,
+      "account": "zhifubao",
+      "account_image_key": "551c9c2d6bad417fb4aa171bcc6b861d.jpg",
+      "account_image_read_url": "https://s3.ap-northeast-1.amazonaws.com/local-s3.bitdict.com/kyc/551c9c2d6bad417fb4aa171bcc6b861d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20190115T113640Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=7200&amp;X-Amz-Credential=AKIAIZ37IMEFO7JZRBOQ%2F20190115%2Fap-northeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=26788f3972b7a732b232cc08a54cd7afa038da0a219bf20076267ec70037bf3c"
+    },
+    {
+      "payment_method": "wechat_pay",
+      "first_name": "Tim",
+      "last_name": "im",
+      "bank_name": null,
+      "bank_branch_name": null,
+      "account": "weixina",
+      "account_image_key": "e5b20c5af24232f11ec4ce187f7c6998.jpg",
+      "account_image_read_url": "https://s3.ap-northeast-1.amazonaws.com/local-s3.bitdict.com/kyc/e5b20c5af24232f11ec4ce187f7c6998.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20190115T113640Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=7200&amp;X-Amz-Credential=AKIAIZ37IMEFO7JZRBOQ%2F20190115%2Fap-northeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=8d9e599cf672d3cc495407d2c9538e3b4fb7275aee7201b48b8ba48c65f6fa68"
+    }
+  ]
+}
+</code></pre><h2 id='otc-6'>OTC口座情報の獲得</h2><h3 id='http'>HTTP请求</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/users</code></p>
+<h3 id='4c4f7e67fc-9'>リクエスト・パラメータ</h3>
+<p>无</p>
+<h3 id='347e18424f-9'>応答結果</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+        "user_id": "Hff9R282Ty8wDa5Xb8AaLg",                #ユーザーID
+        "nickname": "isfulei",                              #ニックネーム
+        "merchant": true,                                   #OTCメーカーですか？
+        "margin_amount": "1.00000000",                      #証拠金の数量
+        "total_transaction": 0,                             #約定済の注文総数
+        "recent_transaction": 0,                            #最近約定済の注文数
+        "total_release_time": "0",                          #合計転送時間（分）
+        "average_release_time": "0",                        #平均転送時間（分）
+        "recent_success_transaction_ratio": "0",            #最近の成約率
+        "register_at": 1,                                   #登録時間
+        "remark": "备注",                                    #メモ
+        "bind_email": true,                                 #メールアドレスの紐付けを設定しますか？
+        "bind_phone": true,                                 #携帯の紐付けを設定しますか？
+        "kyc": true,                                        #KYC認証しますか？
+        "enable_otc": true,                                 #OTCユーザーでありますか？
+        "set_payment_method": false,                        #支払い方法を設定しましたか？
+        "set_assets_password": false,                       #資金パスワードを設定しましたか？
+        "binding_google_auth": false,                       #2段階認証を設定しましたか？
+        "phone": "86-13000000000",                          #電話番号
+        "first_name": fu,                                   #姓
+        "last_name": lei,                                   #名
+        "email": "mock_user@fcoin.com"                      #メール
+    }
+</code></pre><h2 id='otc-7'>OTC口座資金総額の照会</h2><h3 id='90aa7c4e14'>リクエスト</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/users/me/balances</code></p>
+<h3 id='4c4f7e67fc-10'>リクエスト・パラメータ</h3>
+<p>無</p>
+<h3 id='5126f8e363'>応答結果</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+        "summary": "0.00000000",
+        "balances": [
+            {
+                "currency": "btc",                 # 通貨
+                "available_amount": 20.3202023,    # 利用可能額
+                "frozen_amount": 32093.3223        # 凍結中の数量
+            },
+            {
+                "currency": "eth",
+                "available_amount": 20.3202023,
+                "frozen_amount": 32093.3223
+            }
+        ]
+    }
+}            
+</code></pre><h2 id='otc-8'>OTC口座の指定された通貨の資金照会</h2><h3 id='url'>リクエスト・URL</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/users/me/balance</code></p>
+<h3 id='4c4f7e67fc-11'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">通貨（例）：btc/eth/usdt</td>
+</tr>
+</tbody></table>
+<h3 id='5126f8e363-2'>応答結果</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+        "summary": "0.00000000",                  # btcに換算すると
+        "balances": [
+            {
+                "currency": "btc",               # 通貨
+                "available_amount": 20.3202023,  # 利用可能額
+                "frozen_amount": 32093.3223      # 凍結中の数量
+            }
+        ]
+    }
+}             
+</code></pre><h1 id='06ce28d2d5'>レバレッジ</h1><h2 id='a84ad32734'>レバレッジ口座へ資産の振込入金</h2>
+<p>このAPIは、取引口座或いはマイウォレットの資産をレバレッジ口座に振込入金するために使用されます。</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/leveraged/assets/transfer/in</code></p>
+<h3 id='4c4f7e67fc'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">振込入金の数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">通貨：usdt、btc、eth</td>
+</tr>
+<tr>
+<td style="text-align: left">source_account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">送金口座のタイプ: exchange: 取引口座; assets: マイウォレット</td>
+</tr>
+<tr>
+<td style="text-align: left">target_account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">入金先の口座のタイプ: leveraged_btcusdt、leveraged_ethusdt、leveraged_eosusdt、leveraged_xrpusdt</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+  "source_account_type": "exchange",
+  "target_account_type": "leveraged_btcusdt"
+}
+</code></pre><h3 id='347e18424f'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h2 id='51bbf5ba19'>レバレッジ口座から資産の振込出金</h2>
+<p>このAPIは、レバレッジ口座から取引口座或いはマイウォレットに資産を振込出金するために使用されます。</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/leveraged/assets/transfer/out</code></p>
+<h3 id='4c4f7e67fc-2'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">振込出金の数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">通貨：usdt、btc、eth、eos、xrp</td>
+</tr>
+<tr>
+<td style="text-align: left">source_account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">資産の元口座のタイプ: leveraged_btcusdt、leveraged_ethusdt、leveraged_eosusdt、leveraged_xrpusdt</td>
+</tr>
+<tr>
+<td style="text-align: left">target_account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">出金先の口座のタイプ:: exchange: 取引口座; assets: マイウォレット</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+  "source_account_type": "leveraged_btcusdt",
+  "target_account_type": "exchange"
+}
+</code></pre><h3 id='347e18424f-2'>応答結果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h2 id='c7bfb1a0e0'>指定されたレバレッジ口座の情報を照会する</h2><h3 id='url'>リクエスト・URL</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/leveraged_accounts/account</code></p>
+<h3 id='4c4f7e67fc-3'>リクエスト・パラメータ</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">ペラメータ</th>
+<th style="text-align: center">デフォルト値</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">account_type</td>
+<td style="text-align: center">無</td>
+<td style="text-align: left">レバレッジ口座のタイプ:btcusdt/ethusdt</td>
+</tr>
+</tbody></table>
+<h3 id='347e18424f-3'>応答結果</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+       "open": true,                                    #本タイプのレバレッジ口座を開設しましたか？ true:はい;false:いいえ
+        "leveraged_account_type": "btcusdt",             #レバレッジ口座のタイプ
+        "base": "btc",                                   #基軸通貨
+        "quote": "usdt",                                 #評価通貨
+        "available_base_currency_amount": "1001.00",     #利用可能の基軸通貨資産
+        "frozen_base_currency_amount": "0",              #凍結中の基軸通貨資産
+        "available_quote_currency_amount": "100100",     #利用可能の評価通貨資産
+        "frozen_quote_currency_amount": "0",             #凍結中の評価通貨資産
+        "available_base_currency_loan_amount": "2.000",  #貸借可能の基軸通貨資産        
+　　　　　"available_quote_currency_loan_amount": "300.000",#貸借可能の評価通貨数量
+        "blow_up_price": null,                           #清算価格
+        "risk_rate": "0.90",                             #ロスカットリスク率
+        "state": "open"                                  #口座状態. close クローズ;open オープン-貸借無し;normal 貸借あり-ノーマルなリスク率;blow_up ロスカット;overrun 追証", allowableValues = "close,open,normal,blow_up,overrun")
+
+    }
+}
+</code></pre><h2 id='fcfb3b2fea'>全てのレバレッジ口座の情報を照会する</h2><h3 id='url-2'>リクエスト・URL</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/leveraged_accounts</code></p>
+<h3 id='4c4f7e67fc-4'>リクエスト・パラメータ</h3>
+<p>无</p>
+<h3 id='347e18424f-4'>応答結果</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": [
+        {
+       "open": true,                                    #本タイプのレバレッジ口座を開設しましたか？ true:はい;false:いいえ
+        "leveraged_account_type": "btcusdt",             #レバレッジ口座のタイプ
+        "base": "btc",                                   #基軸通貨
+        "quote": "usdt",                                 #評価通貨
+        "available_base_currency_amount": "1001.00",     #利用可能の基軸通貨資産
+        "frozen_base_currency_amount": "0",              #凍結中の基軸通貨資産
+        "available_quote_currency_amount": "100100",     #利用可能の評価通貨資産
+        "frozen_quote_currency_amount": "0",             #凍結中の評価通貨資産
+        "available_base_currency_loan_amount": "2.000",  #貸借可能の基軸通貨資産        
+　　　　　"available_quote_currency_loan_amount": "300.000",#貸借可能の評価通貨数量
+        "blow_up_price": null,                           #清算価格
+        "risk_rate": "0.90",                             #ロスカットリスク率
+        "state": "open"                                  #口座状態. close クローズ;open オープン-貸借無し;normal 貸借あり-ノーマルなリスク率;blow_up ロスカット;overrun 追証"
+        }
+    ]
+}
+</code></pre><h1 id='044106d39a'>エラーコード</h1>
 <table><thead>
 <tr>
 <th>エラーコード</th>

@@ -1653,7 +1653,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   }
 }
 </code></pre><h2 id='92d59b6aad'>查询订单详情</h2>
-<p>此API用于查询订单列表。</p>
+<p>此API用于查询订单详情。</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/broker/otc/suborders/{id}</code></p>
 <h3 id='1f9ac54b15-5'>请求参数</h3>
@@ -1808,7 +1808,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
         "remark": "备注",                                    #备注
         "bind_email": true,                                 #是否绑定邮箱
         "bind_phone": true,                                 #是否绑定手机
-        "kyc": true,                                        #时候KYC
+        "kyc": true,                                        #是否KYC
         "enable_otc": true,                                 #是否是OTC用户
         "set_payment_method": false,                        #是否设置了支付方式
         "set_assets_password": false,                       #是否设置了资金密码
@@ -1822,7 +1822,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <p><code>GET https://api.fcoin.com/v2/broker/otc/users/me/balances</code></p>
 <h3 id='1f9ac54b15-10'>请求参数</h3>
 <p>无</p>
-<h3 id='9c51d97223'>响应格式</h3><pre class="highlight plaintext"><code>{
+<h3 id='b5b0102430'>响应结果</h3><pre class="highlight plaintext"><code>{
     "status": "ok",
     "data": {
         "summary": "0.00000000",
@@ -1856,7 +1856,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">币种名称，如：btc/eth/usdt</td>
 </tr>
 </tbody></table>
-<h3 id='b5b0102430'>响应结果</h3><pre class="highlight plaintext"><code>{
+<h3 id='b5b0102430-2'>响应结果</h3><pre class="highlight plaintext"><code>{
     "status": "ok",
     "data": {
         "summary": "0.00000000",                  # 折合btc的数量
@@ -1971,7 +1971,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">杠杆账户类型:btcusdt/ethusdt</td>
 </tr>
 </tbody></table>
-<h3 id='ee266c3aa8'>响应格式</h3><pre class="highlight plaintext"><code>{
+<h3 id='306fc38aa3-3'>响应结果</h3><pre class="highlight plaintext"><code>{
     "status": "ok",
     "data": {
         "open": true,                                    #是否已经开通该类型杠杆账户. true:已开通;false:未开通
@@ -1994,7 +1994,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <p><code>GET https://api.fcoin.com/v2/broker/leveraged_accounts</code></p>
 <h3 id='1f9ac54b15-4'>请求参数</h3>
 <p>无</p>
-<h3 id='306fc38aa3-3'>响应结果</h3><pre class="highlight plaintext"><code>{
+<h3 id='306fc38aa3-4'>响应结果</h3><pre class="highlight plaintext"><code>{
     "status": "ok",
     "data": [
         {
