@@ -16,6 +16,8 @@ includes:
   - jp/accounts
   - jp/orders
   - jp/order_errors
+  - jp/otc
+  - jp/leveraged
   - jp/errors
 
 search: true
