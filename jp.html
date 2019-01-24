@@ -247,19 +247,19 @@
                     <a href="#websocket-heartbeat" class="toc-h2 toc-link" data-title="websocket-heartbeat">WebSocket 接続の維持 - heartbeat</a>
                   </li>
                   <li>
-                    <a href="#64a72194fc" class="toc-h2 toc-link" data-title="">プッシュサーバー時間の取得</a>
+                    <a href="#websocket-3" class="toc-h2 toc-link" data-title="websocket">WebSocket サブスクリプション</a>
                   </li>
                   <li>
-                    <a href="#ticker" class="toc-h2 toc-link" data-title="ticker">tickerデータの取得</a>
+                    <a href="#ticker" class="toc-h2 toc-link" data-title="ticker">ticker データの取得</a>
                   </li>
                   <li>
-                    <a href="#044d1e4947" class="toc-h2 toc-link" data-title="">詳細マーケット情報取得</a>
+                    <a href="#240d66ab51" class="toc-h2 toc-link" data-title="">最新の厚み詳細の取得</a>
                   </li>
                   <li>
-                    <a href="#26371a524f" class="toc-h2 toc-link" data-title="">最新の出来高明細の取得</a>
+                    <a href="#906d86c346" class="toc-h2 toc-link" data-title="">最新の取引明細の取得</a>
                   </li>
                   <li>
-                    <a href="#candle" class="toc-h2 toc-link" data-title="candle">Candle情報の取得</a>
+                    <a href="#candle" class="toc-h2 toc-link" data-title="candle">Candle 情報の取得</a>
                   </li>
               </ul>
           </li>
@@ -553,97 +553,150 @@ timestamp: 1523069544359
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/public/symbols</code></p>
 <h1 id='c06c016e90'>マーケット情報</h1><h2 id='0093b50f1a'>マーケット情報概述</h2>
-<p>マーケット情報は公開APIを通じて取得できます。現在、HTTPとWebSocketの2つのAPIを提供しています。 タイムリーにマーケット情報を取得するため、WebSocketを使用してアクセスすることをお勧めします。 マーケット情報のリアルタイムパフォーマンスを可能な限り高めるために、現在の公開している部分は最新のマーケットデータのみを取得することができます。もし全部の情報、または履歴情報を取得する必要がある場合は、<code>support@fcoin.com</code>までご連絡ください</p>
+<p>マーケット情報は公開APIを通じて取得できます。現在、HTTPとWebSocketの2つのAPIを提供しています。タイムリーにマーケット情報を取得するため、WebSocketを使用してアクセスすることをお勧めします。マーケット情報のリアルタイムパフォーマンスを可能な限り高めるために、現在の公開している部分は最新のマーケットデータのみを取得することができます。もし全部の情報、または履歴情報を取得する必要がある場合は、support@fcoin.comまでご連絡ください。</p>
 
-<p>すべてのHTTP リクエストのURLベースは：<code>https://api.fcoin.com/v2/market</code>です</p>
+<p>すべての HTTP リクエストのURLベースは：https://api.fcoin.com/v2/market です</p>
 
-<p>すべてのWebSocket リクエストのURLは: <code>wss://api.fcoin.com/v2/ws</code>です</p>
+<p>すべての WebSocket リクエストのURLは: wss://api.fcoin.com/v2/ws です</p>
 
 <p>用語は以下のように統一されます:</p>
 
 <ul>
-<li><code>topic</code> サブスクリプションのテーマを示します</li>
-<li><code>symbol</code> 対応する取引通貨を示します。すべての通貨区分のトピックはトピックの最後に表示されます.</li>
-<li><code>ticker</code> マーケット情報のtickデータ、最新の買い売りの約定価格と出来高、24時間の出来高が含まれます.</li>
-<li><code>depth</code> デプス情報、買い注文と売り注文の数量、ハンディキャップを示します.</li>
-<li><code>level</code> デプス情報のタイプを示します。例えば、 <code>L20</code>, <code>L150</code>.</li>
-<li><code>trade</code> 最新の約定と取引を示します.</li>
-<li><code>candle</code> ローソクチャート、ローソク足、平均足を示します.</li>
-<li><code>resolution</code> ローソクチャートの種類を示します。 例えば、 <code>M1</code>, <code>M15</code>.</li>
-<li><code>base volume</code> 基準通貨の出来高を示します。例えば、btcusdtのbtcのボリューム.</li>
-<li><code>quote volume</code> 評価通貨の出来高を示します。例えば、btcusdtのusdtのボリューム</li>
-<li><code>ts</code> プッシュサーバーの時刻を示します。ミリ秒単位の数値フィールドです, unix epoch in millisecond.</li>
+<li><code>topic</code> サブスクリプションのテーマを示します。</li>
+<li><code>symbol</code> 対応する取引通貨を示します。すべての通貨区分のトピックはトピックの最後に表示されます。</li>
+<li><code>ticker</code> マーケット情報のtickデータ、最新の買い売りの約定価格と出来高、買い注文の最高値と売り注文の最安値、24時間の出来高が含まれます。</li>
+<li><code>depth</code> 板の厚さ、相場を示します。</li>
+<li><code>level</code> 板の厚さのタイプを示します。例えば、<code>L20</code>, <code>L100</code>。</li>
+<li><code>trade</code> 最新の成約と取引を示します。</li>
+<li><code>candle</code> チャート、ローソク足、平均足を示します。</li>
+<li><code>resolution</code> チャートの種類を示します。例えば、<code>M1</code>, <code>M15</code>。</li>
+<li><code>base volume</code> 基軸通貨の出来高を示します。例えば、 btcusdt 中 btc のボリューム。</li>
+<li><code>quote volume</code> 評価通貨の出来高を示します。例えば、 btcusdt 中 usdt のボリューム。</li>
+<li><code>ts</code> プッシュサーバーの時刻を示します。ミリ秒単位の数値フィールドです。 unix epoch in millisecond.</li>
 </ul>
 <h2 id='websocket'>WebSocket 初回接続の確立</h2>
-<p>サーバーからウェルカムメッセージを送信します</p>
+<p>接続ができたら、サーバーからウェルカムメッセージを送信します。</p>
 
 <blockquote>
-<p>サーバーからのレスポンス</p>
+<p>接続成功後、サーバーからメッセージを返します:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"hello"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693784042</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
 <ul>
-<li><code>ts</code>: サーバーの現在時間をプッシュします.</li>
+<li><code>ts</code>: プッシュサーバーの現在の時点。</li>
 </ul>
-<h2 id='websocket-heartbeat'>WebSocket 接続の維持 - heartbeat</h2>
-<p>WebSocket クライアント側はWebSocket サーバーとの接続を確立後、お勧めとして、WebSocket Client 30sごとに（この頻度は変化する可能性があります）、サーバーへping リクエストを送ります。サーバーがクライアントのping要求を長時間受信しなかった場合、サーバーはアクティブに切断します（300s）。</p>
-<h3 id='websocket-2'>WebSocket 请求</h3><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">time</span>
+</blockquote>
+<h2 id='websocket-heartbeat'>WebSocket 接続の維持 - heartbeat</h2><pre class="highlight python tab-python"><code><span class="c"># WebSocket サーバーに ping を送信し、ハートビートを維持します。</span>
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">fcoin</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
 <span class="n">now_ms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
 <span class="n">api</span><span class="o">.</span><span class="n">market</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="n">now_ms</span><span class="p">)</span>
 </code></pre>
+<p>WebSocket クライアント側は WebSocket サーバーとの接続を確立後、お勧めとして、WebSocket Client が30sごとに（この頻度は変化する可能性があります）、サーバーへ ping リクエストを送信します。サーバーがクライアントのping要求を長時間受信しなかった場合、サーバーはアクティブに接続を切断します（300s）。</p>
+<h3 id='websocket-2'>WebSocket リクエスト</h3>
+<p><strong>ping リクエスト</strong>の送信: <code>{&quot;cmd&quot;:&quot;ping&quot;,&quot;args&quot;:[$client_ts],&quot;id&quot;:&quot;$client_id&quot;}</code></p>
+
+<ul>
+<li><code>client_id</code>: クライアントが現在のリクエストで指定されたカスタムidであり、サーバーはそのままで返します。</li>
+<li><code>client_ts</code>: クライアントの現在の時点</li>
+</ul>
+
 <blockquote>
-<p>サーバーからのレスポンス</p>
+<p>ping リクエストの例：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"cmd"</span><span class="p">:</span><span class="s2">"ping"</span><span class="p">,</span><span class="s2">"args"</span><span class="p">:[</span><span class="mi">1540557696867</span><span class="p">],</span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"sample.client.id"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>ping リクエストが成功になり、サーバーから以下の情報を返しました：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"sample.client.id"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693784042</span><span class="p">,</span><span class="w">
   </span><span class="s2">"gap"</span><span class="p">:</span><span class="mi">112</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
 <ul>
-<li><code>gap</code>: プッシュサーバーがこのステートメントを処理する時間とクライアント側伝送との時間差.</li>
-<li><code>ts</code>: サーバーの現在時間をプッシュします.</li>
+<li><code>gap</code>: プッシュサーバーがこのリクエストを処理する時間と、ユーザーまで送信する時差。</li>
+<li><code>ts</code>:  プッシュサーバーの現在の時点。</li>
 </ul>
-<h2 id='64a72194fc'>プッシュサーバー時間の取得</h2>
-<p>プッシュサーバーの時刻とデータ転送の時間差は、pingリクエスト時のサーバーから返されたtsとgapの値によって取得できます</p>
+</blockquote>
+
+<aside class="notice">
+tip: ping リクエストでサーバーから返した ts 和 gap を通して、プッシュサーバーの時間とユーザーまで送信する時差を取得することができます。
+</aside>
+<h2 id='websocket-3'>WebSocket サブスクリプション</h2>
+<p><strong>sub リクエスト</strong>の送信: <code>{&quot;cmd&quot;:&quot;sub&quot;,&quot;args&quot;:[&quot;$topic&quot;, ...],&quot;id&quot;:&quot;$client_id&quot;}</code></p>
 
 <ul>
-<li>gap: プッシュサーバーがこのステートメントを処理する時間とクライアント側伝送との時間差.</li>
-<li>ts: サーバーの現在時間をプッシュします.</li>
+<li><code>client_id</code>: クライアントが現在のリクエストで指定されたカスタムidであり、サーバーはそのままで返します。</li>
+<li><code>topic</code>: サブスクリプション待ちの topic が複数である場合は、特殊記号<code>,</code>で区切ってください。</li>
 </ul>
-<h2 id='ticker'>tickerデータの取得</h2>
-<p>ticker情報ブロックを十分に小さく、迅速に取得するために、強制的にリスト表式を使用しています.</p>
 
 <blockquote>
-<p>ticker リスト表の該当フィールドの意味説明を示します:</p>
+<p>sub リクエストの例（単一 topic）：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"cmd"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="s2">"args"</span><span class="p">:[</span><span class="s2">"ticker.ethbtc"</span><span class="p">]}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>sub リクエストの例（複数 topic）：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"cmd"</span><span class="p">:</span><span class="s2">"sub"</span><span class="p">,</span><span class="s2">"args"</span><span class="p">:[</span><span class="s2">"ticker.ethbtc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ticker.btcusdt"</span><span class="p">]}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>サブスクリプション成功した場合の応答結果は下記のとおりです：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ticker.ethbtc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ticker.btcusdt"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>サブスクリプション失敗した場合の応答結果は下記のとおりです：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"invalid_topics_sample"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">41002</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"invalid sub topic, xxx.M1.xxx"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='ticker'>ticker データの取得</h2>
+<p>ticker 情報ブロックを十分に小さく、迅速に取得するために、強制的にリスト形式を使用しています。</p>
+
+<blockquote>
+<p>ticker リストの対応するフィールドの意味説明：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="s2">"最新取引価格"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"最新約定の出来高"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"最高取引価格（買）"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"最大出来高（買）"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"最安取引価格（売）"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"最小出来高（売）"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"24時間前取引価格"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"24時間内最高価格"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"24時間内最安価格"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"24時間内基準通貨出来高。例えば、btcusdtのbtcのボリューム"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"24時間内評価通貨出来高。例えば、btcusdtのusdtのボリューム"</span><span class="w">
+  </span><span class="s2">"最新の成約高"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"買い注文価格の最高値"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"買い注文取引量の最高値"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"売り注文価格の最安値"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"売り注文取引量の最安値"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24時間前の成約価格"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24時間価格の最高値"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24時間価格の最安値"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24時間基軸通貨の取引量。例えば、btcusdt の btc のボリューム"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"24時間評価通貨の取引量。例えば、btcusdt の usdt のボリューム"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='http'>HTTP リクエスト</h3>
 <p><code>GET https://api.fcoin.com/v2/market/ticker/$symbol</code></p>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+<pre class="highlight python tab-python"><code><span class="c">#  ticker データの取得</span>
+<span class="kn">import</span> <span class="nn">fcoin</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">market</span><span class="o">.</span><span class="n">get_ticker</span><span class="p">(</span><span class="s">"ethbtc"</span><span class="p">)</span>
-
-</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</code></pre>
+<blockquote>
+<p>HTTP リクエストの応答結果は下記の通りです：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ticker.btcusdt"</span><span class="p">,</span><span class="w">
@@ -663,9 +716,10 @@ timestamp: 1523069544359
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='websocket-3'>WebSocket サブスクリプション</h3>
-<p>topic: <code>ticker.$symbol</code></p>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+</span></code></pre><h3 id='websocket-4'>WebSocket サブスクリプション</h3>
+<p><strong>sub リクエスト</strong>の送信、topic: <code>ticker.$symbol</code>  ( <code>WebSocket サブスクリプション</code>をご参照ください)</p>
+<pre class="highlight python tab-python"><code><span class="c"># ticker データのサブスクリプション</span>
+<span class="kn">import</span> <span class="nn">fcoin</span>
 
 <span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
 <span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"ticker.ethbtc"</span><span class="p">,</span> <span class="s">"ticker.btcusdt"</span><span class="p">]</span>
@@ -673,15 +727,7 @@ timestamp: 1523069544359
 <span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
 </code></pre>
 <blockquote>
-<p>サブスクリプション成功した場合のレスポンスは次のとおりです：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ticker.ethbtc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ticker.btcusdt"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>通常のサブスクリプションの通知メッセージのフォーマットは次のとおりです:</p>
+<p>WebSocket サブスクリプションの通知結果は下記の通りです：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ticker.btcusdt"</span><span class="p">,</span><span class="w">
@@ -700,60 +746,66 @@ timestamp: 1523069544359
     </span><span class="mf">7140.890000000000000000</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='044d1e4947'>詳細マーケット情報取得</h2><h3 id='http-request'>HTTP Request</h3>
+</span></code></pre><h2 id='240d66ab51'>最新の厚み詳細の取得</h2><h3 id='http-2'>HTTP リクエスト</h3>
 <p><code>GET https://api.fcoin.com/v2/market/depth/$level/$symbol</code></p>
 
-<p><code>$level</code> 下記種類を含みます:</p>
+<p><code>$level</code> 含まれる種類(大文字と小文字にご注意ください)：</p>
 
 <table><thead>
 <tr>
-<th>タイプ</th>
+<th>種類</th>
 <th>説明</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>L20</code></td>
-<td>レベル20のマーケット情報.</td>
+<td>20 番目の注文までの明細</td>
 </tr>
 <tr>
 <td><code>L150</code></td>
-<td>レベル100のマーケット情報.</td>
+<td>150 番目の注文までの明細</td>
 </tr>
 <tr>
 <td><code>full</code></td>
-<td>全レベルのマーケット情報、送信時間と通知保証は.</td>
+<td>全ての厚みの明細。時間やプッシュを保証しません。</td>
 </tr>
 </tbody></table>
 
-<p>その中、 L20の通知時間は L150より若干早く、通知頻度は L100より若干多いです。実際の圧力と状況に基づきます。必要に応じて使用してください.</p>
-<h3 id='websocket-4'>WebSocket サブスクリプション</h3>
-<p>サブスクリプション topic: <code>depth.$level.$symbol</code></p>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+<p>その中で、 <code>L20</code> のプッシュ時間が <code>L150</code>より少し早くなり、プッシュの頻度が <code>L150</code>より少し多くなります。具体的なストレスや状況により決められます。自身のニーズによって、ご利用ください。</p>
+
+<blockquote>
+<p>HTTP リクエストの応答結果は下記の通りです：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"depth.L20.ethbtc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523619211000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seq"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.000100000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">0.000010000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='websocket-5'>WebSocket サブスクリプション</h3><pre class="highlight python tab-python"><code><span class="c"># WebSocket サブスクリプションのデプス詳細</span>
+<span class="kn">import</span> <span class="nn">fcoin</span>
 
 <span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
-<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"depth.L20.ethbtc"</span><span class="p">,</span> <span class="s">"depth.L100.btcusdt"</span><span class="p">]</span>
+<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"depth.L20.ethbtc"</span><span class="p">,</span> <span class="s">"depth.L150.btcusdt"</span><span class="p">]</span>
 <span class="n">fcoin_ws</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="k">print</span><span class="p">)</span>
 <span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// WebSocket サブスクリプションのデプス詳細</span>
+<span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">fcoin_ws</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">init_ws</span><span class="p">()</span>
-<span class="nx">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"depth.L20.ethbtc"</span><span class="p">,</span> <span class="s2">"depth.L100.btcusdt"</span><span class="p">]</span>
+<span class="nx">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"depth.L20.ethbtc"</span><span class="p">,</span> <span class="s2">"depth.L150.btcusdt"</span><span class="p">]</span>
 <span class="nx">fcoin_ws</span><span class="p">.</span><span class="nx">handle</span><span class="p">(</span><span class="nx">print</span><span class="p">)</span>
 <span class="nx">fcoin_ws</span><span class="p">.</span><span class="nx">sub</span><span class="p">(</span><span class="nx">topics</span><span class="p">)</span>
 </code></pre>
-<blockquote>
-<p>サブスクリプション成功した場合のレスポンスは次のとおりです：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"depth.L20.ethbtc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"depth.L100.btcusdt"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>通常の通知結果は下記のとおりです</p>
-</blockquote>
+<p><strong>sub リクエスト</strong>の送信，topic: <code>depth.$level.$symbol</code>   ( <code>WebSocket サブスクリプション</code>をご参照ください)</p>
 
-<p>bidsとasksに対応する配列は、偶数でなければならず、1つの価格を購入（売却）し、1つの数量を購入（売却）し、順次後ろに並べる必要があります.</p>
+<blockquote>
+<p>WebSocket サブスクリプションの通知結果が下記の通りです：</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"depth.L20.ethbtc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1523619211000</span><span class="p">,</span><span class="w">
@@ -761,16 +813,37 @@ timestamp: 1523069544359
   </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.000100000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">0.000010000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">],</span><span class="w">
   </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w"> </span><span class="mf">1.000000000</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='26371a524f'>最新の出来高明細の取得</h2>
-<p>取引idのサイズを比較することによって、更新された取引かどうかを判断できます。{trade id} 通常、traceからtransactionまでのプロセスがあるため、公開”行情”の取引idは、決済システム中の取引idと実際には一致しないことにご留意いただきたい。 取引記録が１つであっても、最新の取引が再取得されたときに、IDが常に一致しているという保証はできません.</p>
+</span></code></pre>
+<blockquote>
+<p>bids 和 asks に対応する配列は偶数の項目であります。買い（売り）注文１の価格、買い（売り）注文１の数量のように順序に並びます。</p>
+</blockquote>
+<h2 id='906d86c346'>最新の取引明細の取得</h2>
+<p>取引 id のサイズを比較することによって、最新の取引かどうかを判断できます。{trade id}
+通常、 trade から transaction までのプロセスがあるため、公開マーケットの取引 id は、決済システム中の取引 id と実際には一致しないことにご注意ください。
+取引記録が１つであっても、最新の取引が再取得されたときに、 id が常に一致しているという保証はできません。</p>
 
-<p>PS: 過去のマーケット情報では、取引IDが１つであることが保証できます。{transaction id} ここは”行情”の更新通知としてのみ使用され、アーカイブに使用しないでください.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<p>PS:過去のマーケット情報では、取引 id が１つであることが保証できます。{transaction id} ここはマーケットの更新通知としてのみ使用され、アーカイブに使用しないでください。</p>
+<pre class="highlight python tab-python"><code><span class="c"># WebSocket 最新の取引明細を照会するリクエスト</span>
+<span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
+<span class="n">topic</span> <span class="o">=</span> <span class="s">"trade.ethbtc"</span>
+<span class="n">limit</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">topic</span><span class="p">,</span> <span class="n">limit</span><span class="p">]</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">req</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">rep_handler</span><span class="p">)</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="c"># WebSocket 最新の取引明細のサブスクリプション</span>
+<span class="kn">import</span> <span class="nn">fcoin</span>
+
+<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
+<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"trade.ethbtc"</span><span class="p">,</span> <span class="s">"trade.btcusdt"</span><span class="p">]</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="k">print</span><span class="p">)</span>
+<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
+</code></pre><h3 id='http-3'>HTTP リクエスト</h3>
 <p><code>GET https://api.fcoin.com/v2/market/trades/$symbol</code></p>
-<h3 id='http-query'>パラメータの照会(HTTP Query)</h3>
+<h4 id='http-4'>ペラメータの紹介(HTTP リクエスト)</h4>
 <table><thead>
 <tr>
-<th>パラメータ</th>
+<th>ペラメータ</th>
 <th>デフォルト値</th>
 <th>説明</th>
 </tr>
@@ -778,72 +851,62 @@ timestamp: 1523069544359
 <tr>
 <td>before</td>
 <td></td>
-<td>あるidの前のTradeの照会</td>
+<td>ある id より小さい id の Candle を照会する</td>
 </tr>
 <tr>
 <td>limit</td>
 <td></td>
-<td>デフォルトは20条</td>
+<td>デフォルトは 20 条</td>
 </tr>
 </tbody></table>
-<h3 id='websocket-5'>WebSocket 最新の取引データの照会</h3>
-<p>topic: <code>trade.$symbol</code>
-limit: 最新の取引ボリューム
-args: [topic, limit]</p>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+<h3 id='websocket-6'>WebSocket リクエスト</h3>
+<p><strong>req リクエスト</strong>の送信: <code>{&quot;cmd&quot;:&quot;req&quot;, &quot;args&quot;:[&quot;$topic&quot;, limit],&quot;id&quot;:&quot;$client_id&quot;}</code></p>
 
-<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
-<span class="n">topic</span> <span class="o">=</span> <span class="s">"trade.ethbtc"</span>
-<span class="n">limit</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">topic</span><span class="p">,</span> <span class="n">limit</span><span class="p">]</span>
-<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">req</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">rep_handler</span><span class="p">)</span>
-</code></pre>
-<blockquote>
-<p>リクエスト成功した際のレスポンスは下記のとおりです：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693400329</span><span class="p">,</span><span class="w">
- </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523419946174</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">76000</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.000000000</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523419114272</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">74000</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.000000000</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523415182356</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">71000</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">3.000000000</span><span class="w">
-   </span><span class="p">}</span><span class="w">
- </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='websocket-6'>WebSocket サブスクリプション</h3><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+<ul>
+<li><code>client_id</code>: クライアントが現在のリクエストで指定されたカスタムidであり、サーバーはそのままで返します。</li>
+<li><code>topic</code>: <code>trade.$symbol</code></li>
+<li><code>limit</code>: 取得する必要がある最近の成約数</li>
+</ul>
 
-<span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
-<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"trade.ethbtc"</span><span class="p">,</span> <span class="s">"trade.btcusdt"</span><span class="p">]</span>
-<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="k">print</span><span class="p">)</span>
-<span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
-</code></pre>
 <blockquote>
-<p>订阅成功的响应结果如下：</p>
+<p>WebSocket リクエストが成功した場合の応答結果が下記の通りです：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"trade.ethbtc"</span><span class="p">]</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523693400329</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523419946174</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">76000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.000000000</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523419114272</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">74000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.000000000</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.000000000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1523415182356</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">71000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">3.000000000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><h3 id='websocket-7'>WebSocket サブスクリプション</h3>
+<p><strong>sub リクエスト</strong>の送信、topic: <code>trade.$symbol</code>   ( <code>WebSocket サブスクリプション</code>をご参照ください)</p>
+
+<ul>
+<li><code>symbol</code>: 対応の取引ペア</li>
+</ul>
+
 <blockquote>
-<p>通常の通知結果は下記のとおりです</p>
+<p>WebSocket サブスクリプションの通知結果が下記の通りです：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"trade.ethbtc"</span><span class="p">,</span><span class="w">
@@ -853,12 +916,12 @@ args: [topic, limit]</p>
   </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.000000000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='candle'>Candle情報の取得</h2><h3 id='http-request-3'>HTTP Request</h3>
+</span></code></pre><h2 id='candle'>Candle 情報の取得</h2><h3 id='http-5'>HTTP リクエスト</h3>
 <p><code>GET https://api.fcoin.com/v2/market/candles/$resolution/$symbol</code></p>
-<h3 id='http-query-2'>パラメータの照会(HTTP Query)</h3>
+<h4 id='http-6'>パラメータの照会(HTTP リクエスト)</h4>
 <table><thead>
 <tr>
-<th>パラメータ</th>
+<th>ペラメータ</th>
 <th>デフォルト値</th>
 <th>説明</th>
 </tr>
@@ -866,42 +929,42 @@ args: [topic, limit]</p>
 <tr>
 <td>before</td>
 <td></td>
-<td>查あるidより小さいidのCandle情報</td>
+<td>ある id より小さい id の Candle を照会する</td>
 </tr>
 <tr>
 <td>limit</td>
 <td></td>
-<td>デフォルトは20条</td>
+<td>デフォルトは 20 条</td>
 </tr>
 </tbody></table>
 
-<p>$resolution 含める種類</p>
+<p>$resolution 含まれる種類（大文字と小文字にご注意ください）：</p>
 
 <table><thead>
 <tr>
-<th>タイプ</th>
+<th>種類</th>
 <th>説明</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>M1</code></td>
-<td>1 分間</td>
+<td>1 分</td>
 </tr>
 <tr>
 <td><code>M3</code></td>
-<td>3 分間</td>
+<td>3 分</td>
 </tr>
 <tr>
 <td><code>M5</code></td>
-<td>5 分間</td>
+<td>5 分</td>
 </tr>
 <tr>
 <td><code>M15</code></td>
-<td>15 分間</td>
+<td>15 分</td>
 </tr>
 <tr>
 <td><code>M30</code></td>
-<td>30 分間</td>
+<td>30 分</td>
 </tr>
 <tr>
 <td><code>H1</code></td>
@@ -917,36 +980,73 @@ args: [topic, limit]</p>
 </tr>
 <tr>
 <td><code>D1</code></td>
-<td>1 日間</td>
+<td>1 日</td>
 </tr>
 <tr>
 <td><code>W1</code></td>
-<td>1 週間</td>
+<td>1 週</td>
 </tr>
 <tr>
 <td><code>MN</code></td>
 <td>1 ヶ月</td>
 </tr>
 </tbody></table>
-<h3 id='weboskcet-candle'>Weboskcet Candle情報のサブスクリプション</h3>
-<p>topic: <code>candle.$resolution.$symbol</code></p>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+<h3 id='websocket-8'>WebSocket リクエスト</h3>
+<p><strong>req リクエスト</strong>の送信: <code>{&quot;cmd&quot;:&quot;req&quot;,&quot;args&quot;:[&quot;$topic&quot;,limit,before],&quot;id&quot;:&quot;$client_id&quot;}</code></p>
+
+<ul>
+<li><code>client_id</code>: クライアントが現在のリクエストで指定されたカスタムidであり、サーバーはそのままで返します</li>
+<li><code>topic</code>: <code>candle.$resolution.$symbol</code></li>
+<li><code>limit</code>: 取得する必要がある candle の数</li>
+<li><code>before</code>: ある id より小さい id の Candle を照会する</li>
+</ul>
+
+<blockquote>
+<p>WebSocket リクエストが成功した場合の応答結果が下記の通りです：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"candle.btcusdt.M1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1540809840</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"seq"</span><span class="p">:</span><span class="mi">24793830600000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">6491.74</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">6489.24</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">6491.24</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">6490.07</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">26</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"base_vol"</span><span class="p">:</span><span class="mf">8.2221</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_vol"</span><span class="p">:</span><span class="mf">53371.531286</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1540809900</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"seq"</span><span class="p">:</span><span class="mi">24793879800000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">6490.47</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">6487.62</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">6490.09</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">6487.62</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"base_vol"</span><span class="p">:</span><span class="mf">10.8527</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"quote_vol"</span><span class="p">:</span><span class="mf">70430.840624</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='weboskcet'>Weboskcet サブスクリプション</h3>
+<p><strong>sub リクエスト</strong>の送信，topic: <code>candle.$resolution.$symbol</code>   ( <code>WebSocket サブスクリプショ</code>をご参照ください)</p>
+
+<ul>
+<li><code>resolution</code>： HTTP からの resolution ペラメータへのリクエストに相当します</li>
+</ul>
+<pre class="highlight python tab-python"><code><span class="c"># WebSocket サブスクリプション candle データ</span>
+<span class="kn">import</span> <span class="nn">fcoin</span>
 
 <span class="n">fcoin_ws</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">init_ws</span><span class="p">()</span>
-<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"candle.M1.ethbtc"</span><span class="p">,</span> <span class="s">"depth.L20.ethbtc"</span><span class="p">,</span> <span class="s">"trade.ethbtc"</span><span class="p">]</span>
+<span class="n">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s">"candle.M1.ethbtc"</span><span class="p">]</span>
 <span class="n">fcoin_ws</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="k">print</span><span class="p">)</span>
 <span class="n">fcoin_ws</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">topics</span><span class="p">)</span>
 </code></pre>
 <blockquote>
-<p>サブスクリプション成功した場合のレスポンスは次のとおりです：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"candle.M1.ethbtc"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>通常のサブスクリプションの通知メッセージのフォーマットは次のとおりです:</p>
+<p>WebSocket サブスクリプションの通知結果が下記の通りです：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"candle.M1.ethbtc"</span><span class="p">,</span><span class="w">
