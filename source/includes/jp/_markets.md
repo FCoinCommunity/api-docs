@@ -2,31 +2,31 @@
 
 ## マーケット情報概述
 
-マーケット情報は公開APIを通じて取得できます。現在、HTTPとWebSocketの2つのAPIを提供しています。 タイムリーにマーケット情報を取得するため、WebSocketを使用してアクセスすることをお勧めします。 マーケット情報のリアルタイムパフォーマンスを可能な限り高めるために、現在の公開している部分は最新のマーケットデータのみを取得することができます。もし全部の情報、または履歴情報を取得する必要がある場合は、`support@fcoin.com`までご連絡ください
+マーケット情報は公開APIを通じて取得できます。現在、HTTPとWebSocketの2つのAPIを提供しています。タイムリーにマーケット情報を取得するため、WebSocketを使用してアクセスすることをお勧めします。マーケット情報のリアルタイムパフォーマンスを可能な限り高めるために、現在の公開している部分は最新のマーケットデータのみを取得することができます。もし全部の情報、または履歴情報を取得する必要がある場合は、support@fcoin.comまでご連絡ください。
 
-すべてのHTTP リクエストのURLベースは：`https://api.fcoin.com/v2/market`です
+すべての HTTP リクエストのURLベースは：https://api.fcoin.com/v2/market です
 
-すべてのWebSocket リクエストのURLは: `wss://api.fcoin.com/v2/ws`です
+すべての WebSocket リクエストのURLは: wss://api.fcoin.com/v2/ws です
 
 用語は以下のように統一されます:
 
-- `topic` サブスクリプションのテーマを示します
-- `symbol` 対応する取引通貨を示します。すべての通貨区分のトピックはトピックの最後に表示されます.
-- `ticker` マーケット情報のtickデータ、最新の買い売りの約定価格と出来高、24時間の出来高が含まれます.
-- `depth` デプス情報、買い注文と売り注文の数量、ハンディキャップを示します.
-- `level` デプス情報のタイプを示します。例えば、 `L20`, `L150`.
-- `trade` 最新の約定と取引を示します.
-- `candle` ローソクチャート、ローソク足、平均足を示します.
-- `resolution` ローソクチャートの種類を示します。 例えば、 `M1`, `M15`.
-- `base volume` 基準通貨の出来高を示します。例えば、btcusdtのbtcのボリューム.
-- `quote volume` 評価通貨の出来高を示します。例えば、btcusdtのusdtのボリューム
-- `ts` プッシュサーバーの時刻を示します。ミリ秒単位の数値フィールドです, unix epoch in millisecond.
+- `topic` サブスクリプションのテーマを示します。
+- `symbol` 対応する取引通貨を示します。すべての通貨区分のトピックはトピックの最後に表示されます。
+- `ticker` マーケット情報のtickデータ、最新の買い売りの約定価格と出来高、買い注文の最高値と売り注文の最安値、24時間の出来高が含まれます。
+- `depth` 板の厚さ、相場を示します。
+- `level` 板の厚さのタイプを示します。例えば、`L20`, `L100`。
+- `trade` 最新の成約と取引を示します。
+- `candle` チャート、ローソク足、平均足を示します。
+- `resolution` チャートの種類を示します。例えば、`M1`, `M15`。
+- `base volume` 基軸通貨の出来高を示します。例えば、 btcusdt 中 btc のボリューム。
+- `quote volume` 評価通貨の出来高を示します。例えば、 btcusdt 中 usdt のボリューム。
+- `ts` プッシュサーバーの時刻を示します。ミリ秒単位の数値フィールドです。 unix epoch in millisecond.
 
 ## WebSocket 初回接続の確立
 
-サーバーからウェルカムメッセージを送信します
+接続ができたら、サーバーからウェルカムメッセージを送信します。
 
-> サーバーからのレスポンス
+> 接続成功後、サーバーからメッセージを返します:
 
 ```json
 {
@@ -35,15 +35,12 @@
 }
 ```
 
-- `ts`: サーバーの現在時間をプッシュします.
+> * `ts`: プッシュサーバーの現在の時点。
 
 ## WebSocket 接続の維持 - heartbeat
 
-WebSocket クライアント側はWebSocket サーバーとの接続を確立後、お勧めとして、WebSocket Client 30sごとに（この頻度は変化する可能性があります）、サーバーへping リクエストを送ります。サーバーがクライアントのping要求を長時間受信しなかった場合、サーバーはアクティブに切断します（300s）。
-
-### WebSocket 请求
-
 ```python
+# WebSocket サーバーに ping を送信し、ハートビートを維持します。
 import time
 import fcoin
 
@@ -53,46 +50,96 @@ api.market.ping(now_ms)
 ```
 
 
-> サーバーからのレスポンス
+WebSocket クライアント側は WebSocket サーバーとの接続を確立後、お勧めとして、WebSocket Client が30sごとに（この頻度は変化する可能性があります）、サーバーへ ping リクエストを送信します。サーバーがクライアントのping要求を長時間受信しなかった場合、サーバーはアクティブに接続を切断します（300s）。
+
+### WebSocket リクエスト
+
+**ping リクエスト**の送信: `{"cmd":"ping","args":[$client_ts],"id":"$client_id"}`
+
+* `client_id`: クライアントが現在のリクエストで指定されたカスタムidであり、サーバーはそのままで返します。
+* `client_ts`: クライアントの現在の時点
+
+> ping リクエストの例：
+
+```json
+{"cmd":"ping","args":[1540557696867],"id":"sample.client.id"}
+```
+
+> ping リクエストが成功になり、サーバーから以下の情報を返しました：
 
 ```json
 {
+  "id":"sample.client.id",
   "type":"ping",
   "ts":1523693784042,
   "gap":112
 }
 ```
 
-- `gap`: プッシュサーバーがこのステートメントを処理する時間とクライアント側伝送との時間差.
-- `ts`: サーバーの現在時間をプッシュします.
+> * `gap`: プッシュサーバーがこのリクエストを処理する時間と、ユーザーまで送信する時差。
+> * `ts`:  プッシュサーバーの現在の時点。
 
-## プッシュサーバー時間の取得
+<aside class="notice">
+tip: ping リクエストでサーバーから返した ts 和 gap を通して、プッシュサーバーの時間とユーザーまで送信する時差を取得することができます。
+</aside>
 
-プッシュサーバーの時刻とデータ転送の時間差は、pingリクエスト時のサーバーから返されたtsとgapの値によって取得できます
+## WebSocket サブスクリプション
 
-- gap: プッシュサーバーがこのステートメントを処理する時間とクライアント側伝送との時間差.
-- ts: サーバーの現在時間をプッシュします.
+ **sub リクエスト**の送信: `{"cmd":"sub","args":["$topic", ...],"id":"$client_id"}`
 
+* `client_id`: クライアントが現在のリクエストで指定されたカスタムidであり、サーバーはそのままで返します。
+* `topic`: サブスクリプション待ちの topic が複数である場合は、特殊記号`,`で区切ってください。
 
-## tickerデータの取得
+> sub リクエストの例（単一 topic）：
 
-ticker情報ブロックを十分に小さく、迅速に取得するために、強制的にリスト表式を使用しています.
+```json
+{"cmd":"sub","args":["ticker.ethbtc"]}
+```
 
-> ticker リスト表の該当フィールドの意味説明を示します:
+> sub リクエストの例（複数 topic）：
+
+```json
+{"cmd":"sub","args":["ticker.ethbtc", "ticker.btcusdt"]}
+```
+
+> サブスクリプション成功した場合の応答結果は下記のとおりです：
+
+```json
+{
+  "type": "topics",
+  "topics": ["ticker.ethbtc", "ticker.btcusdt"]
+}
+```
+
+> サブスクリプション失敗した場合の応答結果は下記のとおりです：
+
+```json
+{
+  "id":"invalid_topics_sample",
+  "status":41002,
+  "msg":"invalid sub topic, xxx.M1.xxx"
+}
+```
+
+## ticker データの取得
+
+ticker 情報ブロックを十分に小さく、迅速に取得するために、強制的にリスト形式を使用しています。
+
+> ticker リストの対応するフィールドの意味説明：
 
 ```json
 [
   "最新取引価格",
-  "最新約定の出来高",
-  "最高取引価格（買）",
-  "最大出来高（買）",
-  "最安取引価格（売）",
-  "最小出来高（売）",
-  "24時間前取引価格",
-  "24時間内最高価格",
-  "24時間内最安価格",
-  "24時間内基準通貨出来高。例えば、btcusdtのbtcのボリューム",
-  "24時間内評価通貨出来高。例えば、btcusdtのusdtのボリューム"
+  "最新の成約高",
+  "買い注文価格の最高値",
+  "買い注文取引量の最高値",
+  "売り注文価格の最安値",
+  "売り注文取引量の最安値",
+  "24時間前の成約価格",
+  "24時間価格の最高値",
+  "24時間価格の最安値",
+  "24時間基軸通貨の取引量。例えば、btcusdt の btc のボリューム",
+  "24時間評価通貨の取引量。例えば、btcusdt の usdt のボリューム"
 ]
 ```
 
@@ -102,12 +149,14 @@ ticker情報ブロックを十分に小さく、迅速に取得するために�
 `GET https://api.fcoin.com/v2/market/ticker/$symbol`
 
 ```python
+#  ticker データの取得
 import fcoin
 
 api = fcoin.authorize('key', 'secret', timestamp)
 api.market.get_ticker("ethbtc")
-
 ```
+
+> HTTP リクエストの応答結果は下記の通りです：
 
 ```json
 {
@@ -134,9 +183,10 @@ api.market.get_ticker("ethbtc")
 
 ### WebSocket サブスクリプション
 
-topic: `ticker.$symbol`
+ **sub リクエスト**の送信、topic: `ticker.$symbol`  ( `WebSocket サブスクリプション`をご参照ください)
 
 ```python
+# ticker データのサブスクリプション
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
@@ -145,16 +195,7 @@ fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
-> サブスクリプション成功した場合のレスポンスは次のとおりです：
-
-```json
-{
-  "type": "topics",
-  "topics": ["ticker.ethbtc", "ticker.btcusdt"]
-}
-```
-
-> 通常のサブスクリプションの通知メッセージのフォーマットは次のとおりです:
+> WebSocket サブスクリプションの通知結果は下記の通りです：
 
 ```json
 {
@@ -178,57 +219,62 @@ fcoin_ws.sub(topics)
 
 
 
-## 詳細マーケット情報取得
+## 最新の厚み詳細の取得
 
-### HTTP Request
+### HTTP リクエスト
 
 `GET https://api.fcoin.com/v2/market/depth/$level/$symbol`
 
-`$level` 下記種類を含みます:
+`$level` 含まれる種類(大文字と小文字にご注意ください)：
 
-タイプ | 説明
+種類 | 説明
 -------- | --------
-`L20` | レベル20のマーケット情報.
-`L150` | レベル100のマーケット情報.
-`full` | 全レベルのマーケット情報、送信時間と通知保証は.
+`L20` | 20 番目の注文までの明細
+`L150` | 150 番目の注文までの明細
+`full` | 全ての厚みの明細。時間やプッシュを保証しません。
 
-その中、 L20の通知時間は L150より若干早く、通知頻度は L100より若干多いです。実際の圧力と状況に基づきます。必要に応じて使用してください.
+その中で、 `L20` のプッシュ時間が `L150`より少し早くなり、プッシュの頻度が `L150`より少し多くなります。具体的なストレスや状況により決められます。自身のニーズによって、ご利用ください。
+
+> HTTP リクエストの応答結果は下記の通りです：
+
+```json
+{
+  "status":0,
+  "data":{
+    "type": "depth.L20.ethbtc",
+    "ts": 1523619211000,
+    "seq": 120,
+    "bids": [0.000100000, 1.000000000, 0.000010000, 1.000000000],
+    "asks": [1.000000000, 1.000000000]
+  }
+}
+```
 
 ### WebSocket サブスクリプション
 
-サブスクリプション topic: `depth.$level.$symbol`
-
 ```python
+# WebSocket サブスクリプションのデプス詳細
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
-topics = ["depth.L20.ethbtc", "depth.L100.btcusdt"]
+topics = ["depth.L20.ethbtc", "depth.L150.btcusdt"]
 fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
 ```javascript
+// WebSocket サブスクリプションのデプス詳細
 const fcoin = require('fcoin');
 
 let fcoin_ws = fcoin.init_ws()
-topics = ["depth.L20.ethbtc", "depth.L100.btcusdt"]
+topics = ["depth.L20.ethbtc", "depth.L150.btcusdt"]
 fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
+ **sub リクエスト**の送信，topic: `depth.$level.$symbol`   ( `WebSocket サブスクリプション`をご参照ください)
 
-> サブスクリプション成功した場合のレスポンスは次のとおりです：
-
-```json
-{
-  "type": "topics",
-  "topics": ["depth.L20.ethbtc", "depth.L100.btcusdt"]
-}
-```
-
-> 通常の通知結果は下記のとおりです
-
-bidsとasksに対応する配列は、偶数でなければならず、1つの価格を購入（売却）し、1つの数量を購入（売却）し、順次後ろに並べる必要があります.
+> WebSocket サブスクリプションの通知結果が下記の通りです：
 
 ```json
 {
@@ -240,31 +286,20 @@ bidsとasksに対応する配列は、偶数でなければならず、1つの�
 }
 ```
 
-## 最新の出来高明細の取得
-
-取引idのサイズを比較することによって、更新された取引かどうかを判断できます。{trade id} 通常、traceからtransactionまでのプロセスがあるため、公開”行情”の取引idは、決済システム中の取引idと実際には一致しないことにご留意いただきたい。 取引記録が１つであっても、最新の取引が再取得されたときに、IDが常に一致しているという保証はできません.
-
-PS: 過去のマーケット情報では、取引IDが１つであることが保証できます。{transaction id} ここは”行情”の更新通知としてのみ使用され、アーカイブに使用しないでください.
+> bids 和 asks に対応する配列は偶数の項目であります。買い（売り）注文１の価格、買い（売り）注文１の数量のように順序に並びます。
 
 
-### HTTP Request
+## 最新の取引明細の取得
 
-`GET https://api.fcoin.com/v2/market/trades/$symbol`
+取引 id のサイズを比較することによって、最新の取引かどうかを判断できます。{trade id}
+通常、 trade から transaction までのプロセスがあるため、公開マーケットの取引 id は、決済システム中の取引 id と実際には一致しないことにご注意ください。
+取引記録が１つであっても、最新の取引が再取得されたときに、 id が常に一致しているという保証はできません。
 
-### パラメータの照会(HTTP Query)
+PS:過去のマーケット情報では、取引 id が１つであることが保証できます。{transaction id} ここはマーケットの更新通知としてのみ使用され、アーカイブに使用しないでください。
 
-パラメータ | デフォルト値 | 説明
---------- | ------- | -----------
-before |  | あるidの前のTradeの照会
-limit |  | デフォルトは20条
-
-### WebSocket 最新の取引データの照会
-
-topic: `trade.$symbol`
-limit: 最新の取引ボリューム
-args: [topic, limit]
 
 ```python
+# WebSocket 最新の取引明細を照会するリクエスト
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
@@ -274,40 +309,8 @@ args = [topic, limit]
 fcoin_ws.req(args, rep_handler)
 ```
 
-> リクエスト成功した際のレスポンスは下記のとおりです：
-
-```json
-{"id":null,
- "ts":1523693400329,
- "data":[
-   {
-     "amount":1.000000000,
-     "ts":1523419946174,
-     "id":76000,
-     "side":"sell",
-     "price":4.000000000
-   },
-   {
-     "amount":1.000000000,
-     "ts":1523419114272,
-     "id":74000,
-     "side":"sell",
-     "price":4.000000000
-   },
-   {
-     "amount":1.000000000,
-     "ts":1523415182356,
-     "id":71000,
-     "side":"sell",
-     "price":3.000000000
-   }
- ]
-}
-```
-
-### WebSocket サブスクリプション
-
 ```python
+# WebSocket 最新の取引明細のサブスクリプション
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
@@ -316,17 +319,65 @@ fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
-> 订阅成功的响应结果如下：
+
+### HTTP リクエスト
+
+`GET https://api.fcoin.com/v2/market/trades/$symbol`
+
+#### ペラメータの紹介(HTTP リクエスト)
+
+ペラメータ | デフォルト値 | 説明
+--------- | ------- | -----------
+before |  | ある id より小さい id の Candle を照会する
+limit |  | デフォルトは 20 条
+
+### WebSocket リクエスト
+
+ **req リクエスト**の送信: `{"cmd":"req", "args":["$topic", limit],"id":"$client_id"}`
+
+* `client_id`: クライアントが現在のリクエストで指定されたカスタムidであり、サーバーはそのままで返します。
+* `topic`: `trade.$symbol`
+* `limit`: 取得する必要がある最近の成約数
+
+> WebSocket リクエストが成功した場合の応答結果が下記の通りです：
 
 ```json
 {
-  "type": "topics",
-  "topics": ["trade.ethbtc"]
+  "id":null,
+  "ts":1523693400329,
+  "data":[
+    {
+      "amount":1.000000000,
+      "ts":1523419946174,
+      "id":76000,
+      "side":"sell",
+      "price":4.000000000
+    },
+    {
+      "amount":1.000000000,
+      "ts":1523419114272,
+      "id":74000,
+      "side":"sell",
+      "price":4.000000000
+    },
+    {
+      "amount":1.000000000,
+      "ts":1523415182356,
+      "id":71000,
+      "side":"sell",
+      "price":3.000000000
+    }
+  ]
 }
 ```
 
+### WebSocket サブスクリプション
 
-> 通常の通知結果は下記のとおりです
+ **sub リクエスト**の送信、topic: `trade.$symbol`   ( `WebSocket サブスクリプション`をご参照ください)
+
+* `symbol`: 対応の取引ペア
+
+> WebSocket サブスクリプションの通知結果が下記の通りです：
 
 ```json
 {
@@ -339,59 +390,93 @@ fcoin_ws.sub(topics)
 }
 ```
 
-## Candle情報の取得
+##  Candle 情報の取得
 
-### HTTP Request
+### HTTP リクエスト
 
 `GET https://api.fcoin.com/v2/market/candles/$resolution/$symbol`
 
-### パラメータの照会(HTTP Query)
+#### パラメータの照会(HTTP リクエスト)
 
-パラメータ | デフォルト値 | 説明
+ペラメータ | デフォルト値 | 説明
 --------- | ------- | -----------
-before |  | 查あるidより小さいidのCandle情報
-limit |  | デフォルトは20条
+before |  | ある id より小さい id の Candle を照会する
+limit |  | デフォルトは 20 条
 
-$resolution 含める種類
+$resolution 含まれる種類（大文字と小文字にご注意ください）：
 
-タイプ     | 説明
+種類     | 説明
 -------- | --------
- `M1`    | 1 分間
- `M3`    | 3 分間
- `M5`    | 5 分間
- `M15`   | 15 分間
- `M30`   | 30 分間
+ `M1`    | 1 分
+ `M3`    | 3 分
+ `M5`    | 5 分
+ `M15`   | 15 分
+ `M30`   | 30 分
  `H1`    | 1 時間
  `H4`    | 4 時間
  `H6`    | 6 時間
- `D1`    | 1 日間
- `W1`    | 1 週間
+ `D1`    | 1 日
+ `W1`    | 1 週
  `MN`    | 1 ヶ月
 
-### Weboskcet Candle情報のサブスクリプション
+### WebSocket リクエスト
 
-topic: `candle.$resolution.$symbol`
+ **req リクエスト**の送信: `{"cmd":"req","args":["$topic",limit,before],"id":"$client_id"}`
+
+- `client_id`: クライアントが現在のリクエストで指定されたカスタムidであり、サーバーはそのままで返します
+- `topic`: `candle.$resolution.$symbol`
+- `limit`: 取得する必要がある candle の数
+- `before`: ある id より小さい id の Candle を照会する
+
+> WebSocket リクエストが成功した場合の応答結果が下記の通りです：
+
+```json
+{
+  "id":"candle.btcusdt.M1",
+  "data":[
+    {
+      "id":1540809840,
+      "seq":24793830600000,
+      "high":6491.74,
+      "low":6489.24,
+      "open":6491.24,
+      "close":6490.07,
+      "count":26,
+      "base_vol":8.2221,
+      "quote_vol":53371.531286
+    },
+    {
+      "id":1540809900,
+      "seq":24793879800000,
+      "high":6490.47,
+      "low":6487.62,
+      "open":6490.09,
+      "close":6487.62,
+      "count":23,
+      "base_vol":10.8527,
+      "quote_vol":70430.840624
+    }
+  ]
+}
+```
+
+### Weboskcet サブスクリプション
+
+ **sub リクエスト**の送信，topic: `candle.$resolution.$symbol`   ( `WebSocket サブスクリプショ`をご参照ください)
+
+* `resolution`： HTTP からの resolution ペラメータへのリクエストに相当します
 
 ```python
+# WebSocket サブスクリプション candle データ
 import fcoin
 
 fcoin_ws = fcoin.init_ws()
-topics = ["candle.M1.ethbtc", "depth.L20.ethbtc", "trade.ethbtc"]
+topics = ["candle.M1.ethbtc"]
 fcoin_ws.handle(print)
 fcoin_ws.sub(topics)
 ```
 
-> サブスクリプション成功した場合のレスポンスは次のとおりです：
-
-
-```json
-{
-  "type": "topics",
-  "topics": ["candle.M1.ethbtc"]
-}
-```
-
-> 通常のサブスクリプションの通知メッセージのフォーマットは次のとおりです:
+> WebSocket サブスクリプションの通知結果が下記の通りです：
 
 ```json
 {
