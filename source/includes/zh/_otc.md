@@ -417,7 +417,7 @@
     }
 ```
 
-### 查询指定委托单 
+## 查询指定委托单 
 ### HTTP Request
   `GET https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}`
 
@@ -456,9 +456,9 @@
   `POST https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}/cancel`
 
 ###  请求参数
-  |参数|默认值|描述|
-  |:------|:------:|:------|
-  |delegation_order_id|无|订单ID
+|参数|默认值|描述|
+|:------|:------:|:------|
+|delegation_order_id|无|订单ID
 
 ## 查询当前用户委托单
 ### HTTP Request
@@ -466,12 +466,12 @@
 
 ### 请求参数
 
-  |参数|默认值|描述|
-  |:------|:------:|:------|
-  |has_prev|无|是否包含前一页，该参数由前端控制，原样返回
-  |id|无|最后一次分页的ID
-  |page_size integer|无| 请求数量，1-40
-  |states|无| 委托单状态 1 trading 交易中;2 filled 已成交;3 partial_filled 部分成交;4 canceled 已撤销
+|参数|默认值|描述|
+|:------|:------:|:------|
+|has_prev|无|是否包含前一页，该参数由前端控制，原样返回
+|id|无|最后一次分页的ID
+|page_size integer|无| 请求数量，1-40
+|states|无| 委托单状态 1 trading 交易中;2 filled 已成交;3 partial_filled 部分成交;4 canceled 已撤销
 
 ### 返回数据
 
@@ -510,7 +510,12 @@
 ```
 ## 刷新委托单
 `POST https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}/refresh`
-URL 参数  delegation_order_id : 委托单ID
+
+### 请求参数
+
+|参数|默认值|描述|
+|:------|:------:|:------|
+|delegation_order_id|无|委托单ID
 
 ### 响应结果
 ```
