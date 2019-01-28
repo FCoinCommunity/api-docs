@@ -249,23 +249,33 @@
   "data": [
     {
       "payment_method": "alipay",
-      "first_name": "Tim",
-      "last_name": "im",
+      "first_name": "first_name",
+      "last_name": "last_name",
       "bank_name": null,
       "bank_branch_name": null,
-      "account": "zhifubao",
+      "account": "alipay_account",
       "account_image_key": "551c9c2d6bad417fb4aa171bcc6b861d.jpg",
-      "account_image_read_url": "https://s3.ap-northeast-1.amazonaws.com/local-s3.bitdict.com/kyc/551c9c2d6bad417fb4aa171bcc6b861d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20190115T113640Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAIZ37IMEFO7JZRBOQ%2F20190115%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Signature=26788f3972b7a732b232cc08a54cd7afa038da0a219bf20076267ec70037bf3c"
+      "account_image_read_url": "***"
     },
     {
       "payment_method": "wechat_pay",
-      "first_name": "Tim",
-      "last_name": "im",
+      "first_name": "first_name",
+      "last_name": "last_name",
       "bank_name": null,
       "bank_branch_name": null,
-      "account": "weixina",
+      "account": "wechat_pay_account",
       "account_image_key": "e5b20c5af24232f11ec4ce187f7c6998.jpg",
-      "account_image_read_url": "https://s3.ap-northeast-1.amazonaws.com/local-s3.bitdict.com/kyc/e5b20c5af24232f11ec4ce187f7c6998.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20190115T113640Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAIZ37IMEFO7JZRBOQ%2F20190115%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Signature=8d9e599cf672d3cc495407d2c9538e3b4fb7275aee7201b48b8ba48c65f6fa68"
+      "account_image_read_url": "***"
+    },
+    {
+      "payment_method": "bank_card_pay",
+      "first_name": "first_name",
+      "last_name": "last_name",
+      "bank_name": "A银行",
+      "bank_branch_name": "A银行XX支行",
+      "account": "bank_card_pay_account",
+      "account_image_key": "e5b20c5af24232f11ec4ce187f7c6998.jpg",
+      "account_image_read_url": "***"
     }
   ]
 }
@@ -327,7 +337,7 @@
 {
     "status": "ok",
     "data": {
-        "summary": "0.00000000",
+        "summary": "0.00000000",                   # 折合btc的数量
         "balances": [
             {
                 "currency": "btc",                 # 币种名称
@@ -426,7 +436,7 @@
 |:------|:------:|:------|
 |delegation_order_id|无|订单ID
 
-### 返回数据
+### 响应结果
 ```
     {
      "amount": 0,                       总数量
@@ -473,7 +483,7 @@
 |page_size integer|无| 请求数量，1-40
 |states|无| 委托单状态 1 trading 交易中;2 filled 已成交;3 partial_filled 部分成交;4 canceled 已撤销
 
-### 返回数据
+### 响应结果
 
 ```
     

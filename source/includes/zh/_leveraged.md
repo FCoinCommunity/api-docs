@@ -127,3 +127,125 @@
     ]
 }
 ```
+
+## 杠杆借贷和还款
+
+## 下借款单
+
+`POST https://api.fcoin.com/v2/broker/leveraged/loans`
+
+### 请求参数
+|参数|默认值|描述|
+|:------|:------:|:------|
+|account_type|无|杠杆账户类型:btcusdt/ethusdt 
+|amount|无|借款数量
+|currency|无|借款币种名称
+|loan_type|无|借款类型. normal 正常借款（指定借款数量）; all 全部（把剩余资产全部用来借款）
+
+### 响应结果
+```
+        {
+        "amount": 0,                借款数量
+        "created_at": 0,            账单生成时间
+        "currency": "string",       借款币种名称
+        "finished_at": 0,           还款完成时间
+        "interest": 0,              总利息
+        "interest_rate": 0,         借款利率
+        "interest_start_at": 0,     计息开始时间
+        "last_repayment_at": 0,     最后一次还款时间
+        "loan_bill_id": 0,          借贷账单ID
+        "next_interest_at": 0,      下一次计息时间
+        "state": "string",          账单状态. submitted 已提交; 2 confirmed 已确认; 5 finished 还款完成
+        "unpaid_amount": 0,         未还款数量
+        "unpaid_interest": 0,       未还利息
+        "unpaid_total_amount": 0    待还款总数量 (未还款数量+未还利息)
+        }
+
+```
+
+
+## 自定义查询杠杆借贷记录  
+
+`GET https://api.fcoin.com/v2/broker/leveraged/loans`
+
+### 请求参数
+|参数|默认值|描述|
+|:------|:------:|:------|
+|has_prev|无|是否包含前一页，该参数由前端控制，原样返回
+|id|无| 最后一次分页的ID
+|page_size|无| 请求数量，1-40
+|accountType|无| 借款账户类型 BTCUSDT ETHUSDT 
+
+### 响应结果
+  
+  ```
+        {
+        "content": [
+            {
+            "amount": 0,                借款数量
+            "created_at": 0,            账单生成时间
+            "currency": "string",       借款币种名称
+            "finished_at": 0,           还款完成时间
+            "interest": 0,              总利息
+            "interest_rate": 0,         借款利率
+            "interest_start_at": 0,     计息开始时间
+            "last_repayment_at": 0,     最后一次还款时间
+            "loan_bill_id": 0,          借贷账单ID
+            "next_interest_at": 0,      下一次计息时间
+            "state": "string",          账单状态. submitted 已提交; 2 confirmed 已确认; 5 finished 还款完成
+            "unpaid_amount": 0,         未还款数量
+            "unpaid_interest": 0,       未还利息
+            "unpaid_total_amount": 0    待还款总数量 (未还款数量+未还利息)
+        }
+        ],
+        "current_elements": 0,          查询结果集数量
+        "has_next": true,               是否包含下一页
+        "has_prev": true,               是否包含前一页，该参数由前端控制，原样返回
+        "next_page_id": "string"        下一页查询条件ID
+    }
+  ```  
+
+## 查询指定杠杆借贷详情
+
+`GET https://api.fcoin.com/v2/broker/leveraged/loans/{leveraged_loan_id}`
+
+### 请求参数
+|参数|默认值|描述|
+|:------|:------:|:------|
+|leveraged_loan_id|无|借贷账单ID
+### 响应结果
+```
+
+     {
+                "amount": 0,                借款数量
+                "created_at": 0,            账单生成时间
+                "currency": "string",       借款币种名称
+                "finished_at": 0,           还款完成时间
+                "interest": 0,              总利息
+                "interest_rate": 0,         借款利率
+                "interest_start_at": 0,     计息开始时间
+                "last_repayment_at": 0,     最后一次还款时间
+                "loan_bill_id": 0,          借贷账单ID
+                "next_interest_at": 0,      下一次计息时间
+                "state": "string",          账单状态. submitted 已提交; 2 confirmed 已确认; 5 finished 还款完成
+                "unpaid_amount": 0,         未还款数量
+                "unpaid_interest": 0,       未还利息
+                "unpaid_total_amount": 0    待还款总数量 (未还款数量+未还利息)
+        }
+```
+
+
+## 杠杆借款单还款
+`POST https://api.fcoin.com/v2/broker/leveraged/repayments/{loan_bill_id}`
+### 请求参数
+|参数|默认值|描述|
+|:------|:------:|:------|
+|loan_bill_id|无|借款单编号
+
+  body
+  {
+   "amount": 0  还款数量
+  } 
+
+### 响应结果
+  还款单ID
