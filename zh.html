@@ -337,6 +337,9 @@
                     <a href="#otc-9" class="toc-h2 toc-link" data-title="otc">OTC 委托单</a>
                   </li>
                   <li>
+                    <a href="#69a44b282b" class="toc-h2 toc-link" data-title="">查询指定委托单</a>
+                  </li>
+                  <li>
                     <a href="#otc-11" class="toc-h2 toc-link" data-title="otc">撤销otc委托单</a>
                   </li>
                   <li>
@@ -1944,7 +1947,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
         "status": "ok",
         "data": "string"                    委托单id
     }
-</code></pre><h3 id='69a44b282b'>查询指定委托单</h3><h3 id='http-request-9'>HTTP Request</h3>
+</code></pre><h2 id='69a44b282b'>查询指定委托单</h2><h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}</code></p>
 <h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
@@ -1985,18 +1988,50 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 </code></pre><h2 id='otc-11'>撤销otc委托单</h2><h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}/cancel</code></p>
 <h3 id='1f9ac54b15-13'>请求参数</h3>
-<p>|参数|默认值|描述|
-  |:------|:------:|:------|
-  |delegation_order_id|无|订单ID</p>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">delegation_order_id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">订单ID</td>
+</tr>
+</tbody></table>
 <h2 id='8a6bd1e3c2'>查询当前用户委托单</h2><h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/broker/otc/delegation_orders/me</code></p>
 <h3 id='1f9ac54b15-14'>请求参数</h3>
-<p>|参数|默认值|描述|
-  |:------|:------:|:------|
-  |has_prev|无|是否包含前一页，该参数由前端控制，原样返回
-  |id|无|最后一次分页的ID
-  |page_size integer|无| 请求数量，1-40
-  |states|无| 委托单状态 1 trading 交易中;2 filled 已成交;3 partial_filled 部分成交;4 canceled 已撤销</p>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">has_prev</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">是否包含前一页，该参数由前端控制，原样返回</td>
+</tr>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">最后一次分页的ID</td>
+</tr>
+<tr>
+<td style="text-align: left">page_size integer</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">请求数量，1-40</td>
+</tr>
+<tr>
+<td style="text-align: left">states</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">委托单状态 1 trading 交易中;2 filled 已成交;3 partial_filled 部分成交;4 canceled 已撤销</td>
+</tr>
+</tbody></table>
 <h3 id='b691cfe782-2'>返回数据</h3><pre class="highlight plaintext"><code>
     {
         "content": [
@@ -2029,8 +2064,21 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
     }
 
 </code></pre><h2 id='2582bbf9b0'>刷新委托单</h2>
-<p><code>POST https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}/refresh</code>
-URL 参数  delegation_order_id : 委托单ID</p>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}/refresh</code></p>
+<h3 id='1f9ac54b15-15'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">delegation_order_id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">委托单ID</td>
+</tr>
+</tbody></table>
 <h3 id='306fc38aa3-11'>响应结果</h3><pre class="highlight plaintext"><code>{
   "data": null,
   "status": "ok"
