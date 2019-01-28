@@ -333,6 +333,18 @@
                   <li>
                     <a href="#otc-8" class="toc-h2 toc-link" data-title="otc">获取OTC账户指定币种余额</a>
                   </li>
+                  <li>
+                    <a href="#otc-9" class="toc-h2 toc-link" data-title="otc">OTC 委托单</a>
+                  </li>
+                  <li>
+                    <a href="#otc-11" class="toc-h2 toc-link" data-title="otc">撤销otc委托单</a>
+                  </li>
+                  <li>
+                    <a href="#8a6bd1e3c2" class="toc-h2 toc-link" data-title="">查询当前用户委托单</a>
+                  </li>
+                  <li>
+                    <a href="#2582bbf9b0" class="toc-h2 toc-link" data-title="">刷新委托单</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1869,6 +1881,161 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
         ]
     }
 }             
+</code></pre><h2 id='otc-9'>OTC 委托单</h2>
+<ul>
+<li>委托单状态说明:</li>
+</ul>
+
+<hr>
+
+<table><thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SUBMITTED</td>
+<td>已提交</td>
+</tr>
+<tr>
+<td>CONFIRMED</td>
+<td>已确认</td>
+</tr>
+<tr>
+<td>PARTIAL_FILLED</td>
+<td>部分成交</td>
+</tr>
+<tr>
+<td>PARTIAL_CANCELED</td>
+<td>部分成交(已撤单)</td>
+</tr>
+<tr>
+<td>FILLED</td>
+<td>完全成交</td>
+</tr>
+<tr>
+<td>CANCELED</td>
+<td>已撤销</td>
+</tr>
+<tr>
+<td>SYSTEM_CANCELED</td>
+<td>系统撤销(余额不足)</td>
+</tr>
+</tbody></table>
+
+<hr>
+<h3 id='otc-10'>创建otc委托单</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/delegation_orders</code></p>
+<h3 id='2eb6f47757'>请求参数:</h3><pre class="highlight plaintext"><code>    {
+            "amount": 0,                    总数量
+            "currency": "string",           支持OTC的币种名称 BTC; ETH; USDT
+            "direction": "string",          买卖方向：1 buy 买、2 sell 卖
+            "legal_currency": "string",     法币币种
+            "max_limit": 0,                 最大买/卖金额
+            "min_limit": 0,                 最小买/卖金额
+            "payment_methods": [            支付方式. alipay 支付宝; wechat_pay 微信; bank_card_pay 银行卡
+                "string"
+            ],
+            "price": 0,                     价格
+            "remark": "string"              备注
+    }
+</code></pre><h3 id='306fc38aa3-10'>响应结果</h3><pre class="highlight plaintext"><code>    {
+        "status": "ok",
+        "data": "string"                    委托单id
+    }
+</code></pre><h3 id='69a44b282b'>查询指定委托单</h3><h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}</code></p>
+<h3 id='1f9ac54b15-12'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">delegation_order_id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">订单ID</td>
+</tr>
+</tbody></table>
+<h3 id='b691cfe782'>返回数据</h3><pre class="highlight plaintext"><code>    {
+     "amount": 0,                       总数量
+    "canceled_at": 0,                   委托单被撤销时间
+    "currency": "string",               数字货币名称
+    "direction": "string",              买卖方向
+    "filled_amount": 0,                 已经完成的数量
+    "finished_at": 0,                   委托单完成时间
+    "id": 0,                            委托单ID
+    "legal_currency": "string",         法币币种名称
+    "max_limit": 0,                     最大买/卖金额
+    "min_limit": 0,                     最小买/卖金额
+    "payment_methods": [                支付方式
+      "string"
+    ],
+    "price": 0,                         单价
+    "processing_amount": 0,             处理中的数量
+    "remark": "string",                 委托单备注
+    "state": "string",                  委托单状态
+    "total_amount": 0,                  总金额
+    "type": "string",                   委托单类型
+    "unprocessed_amount": 0             未处理的数量
+    }
+</code></pre><h2 id='otc-11'>撤销otc委托单</h2><h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}/cancel</code></p>
+<h3 id='1f9ac54b15-13'>请求参数</h3>
+<p>|参数|默认值|描述|
+  |:------|:------:|:------|
+  |delegation_order_id|无|订单ID</p>
+<h2 id='8a6bd1e3c2'>查询当前用户委托单</h2><h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/broker/otc/delegation_orders/me</code></p>
+<h3 id='1f9ac54b15-14'>请求参数</h3>
+<p>|参数|默认值|描述|
+  |:------|:------:|:------|
+  |has_prev|无|是否包含前一页，该参数由前端控制，原样返回
+  |id|无|最后一次分页的ID
+  |page_size integer|无| 请求数量，1-40
+  |states|无| 委托单状态 1 trading 交易中;2 filled 已成交;3 partial_filled 部分成交;4 canceled 已撤销</p>
+<h3 id='b691cfe782-2'>返回数据</h3><pre class="highlight plaintext"><code>
+    {
+        "content": [
+        {
+            "amount": 0,                        总数量
+            "created_at": 0,                    创建时间
+            "currency": "string",               数字货币名称
+            "direction": "string",              买卖方向
+            "filled_amount": 0,                 已经完成的数量
+            "id": 0,                            委托单ID
+            "legal_currency": "string",         法币币种名称
+            "max_limit": 0,                     最大买/卖金额
+            "min_limit": 0,                     最小买/卖金额
+            "payment_methods": [                支付方式
+            "string"
+            ],
+            "price": 0,                         单价
+            "processing_amount": 0,             处理中的数量
+            "state": "string",                  委托单状态 submited 已提交;confirmed 已确认; partial_filled 部分                                     成交;partial_canceled 部分成交（已撤单） filled 完全成交;                                              canceled 已撤销; system_canceled 系统撤销（余额不足）
+            "total_amount": 0,                  总金额
+            "unprocessed_amount": 0             未处理的数量
+            "next_refresh_at"                       下一次刷新时间
+            "refresh_at"                        刷新时间
+        }
+        ],
+        "current_elements": 0, 查询结果集数量
+        "has_next": true,      是否包含下一页
+        "has_prev": true,      是否包含前一页，该参数由前端控制，原样返回
+        "next_page_id": "string" 下一页查询条件ID
+    }
+
+</code></pre><h2 id='2582bbf9b0'>刷新委托单</h2>
+<p><code>POST https://api.fcoin.com/v2/broker/otc/delegation_orders/{delegation_order_id}/refresh</code>
+URL 参数  delegation_order_id : 委托单ID</p>
+<h3 id='306fc38aa3-11'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+
 </code></pre><h1 id='edaa33a157'>杠杆</h1><h2 id='0071c5603b'>杠杆账户资产转入</h2>
 <p>此API用于将交易账户或资产账户的资产转入到杠杆账户。</p>
 <h3 id='http-request'>HTTP Request</h3>
