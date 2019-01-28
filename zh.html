@@ -365,6 +365,21 @@
                   <li>
                     <a href="#5bfdc8ea76" class="toc-h2 toc-link" data-title="">查询所有杠杆账户的信息</a>
                   </li>
+                  <li>
+                    <a href="#aa65c8c9af" class="toc-h2 toc-link" data-title="">杠杆借贷和还款</a>
+                  </li>
+                  <li>
+                    <a href="#4a0556d517" class="toc-h2 toc-link" data-title="">下借款单</a>
+                  </li>
+                  <li>
+                    <a href="#21ab3b70d7" class="toc-h2 toc-link" data-title="">自定义查询杠杆借贷记录</a>
+                  </li>
+                  <li>
+                    <a href="#6f9e333342" class="toc-h2 toc-link" data-title="">查询指定杠杆借贷详情</a>
+                  </li>
+                  <li>
+                    <a href="#5e9e7e54f5" class="toc-h2 toc-link" data-title="">杠杆借款单还款</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1783,23 +1798,33 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   "data": [
     {
       "payment_method": "alipay",
-      "first_name": "Tim",
-      "last_name": "im",
+      "first_name": "first_name",
+      "last_name": "last_name",
       "bank_name": null,
       "bank_branch_name": null,
-      "account": "zhifubao",
+      "account": "alipay_account",
       "account_image_key": "551c9c2d6bad417fb4aa171bcc6b861d.jpg",
-      "account_image_read_url": "https://s3.ap-northeast-1.amazonaws.com/local-s3.bitdict.com/kyc/551c9c2d6bad417fb4aa171bcc6b861d.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20190115T113640Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=7200&amp;X-Amz-Credential=AKIAIZ37IMEFO7JZRBOQ%2F20190115%2Fap-northeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=26788f3972b7a732b232cc08a54cd7afa038da0a219bf20076267ec70037bf3c"
+      "account_image_read_url": "***"
     },
     {
       "payment_method": "wechat_pay",
-      "first_name": "Tim",
-      "last_name": "im",
+      "first_name": "first_name",
+      "last_name": "last_name",
       "bank_name": null,
       "bank_branch_name": null,
-      "account": "weixina",
+      "account": "wechat_pay_account",
       "account_image_key": "e5b20c5af24232f11ec4ce187f7c6998.jpg",
-      "account_image_read_url": "https://s3.ap-northeast-1.amazonaws.com/local-s3.bitdict.com/kyc/e5b20c5af24232f11ec4ce187f7c6998.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20190115T113640Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=7200&amp;X-Amz-Credential=AKIAIZ37IMEFO7JZRBOQ%2F20190115%2Fap-northeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=8d9e599cf672d3cc495407d2c9538e3b4fb7275aee7201b48b8ba48c65f6fa68"
+      "account_image_read_url": "***"
+    },
+    {
+      "payment_method": "bank_card_pay",
+      "first_name": "first_name",
+      "last_name": "last_name",
+      "bank_name": "A银行",
+      "bank_branch_name": "A银行XX支行",
+      "account": "bank_card_pay_account",
+      "account_image_key": "e5b20c5af24232f11ec4ce187f7c6998.jpg",
+      "account_image_read_url": "***"
     }
   ]
 }
@@ -1840,7 +1865,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <h3 id='b5b0102430'>响应结果</h3><pre class="highlight plaintext"><code>{
     "status": "ok",
     "data": {
-        "summary": "0.00000000",
+        "summary": "0.00000000",                   # 折合btc的数量
         "balances": [
             {
                 "currency": "btc",                 # 币种名称
@@ -1963,7 +1988,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">订单ID</td>
 </tr>
 </tbody></table>
-<h3 id='b691cfe782'>返回数据</h3><pre class="highlight plaintext"><code>    {
+<h3 id='306fc38aa3-11'>响应结果</h3><pre class="highlight plaintext"><code>    {
      "amount": 0,                       总数量
     "canceled_at": 0,                   委托单被撤销时间
     "currency": "string",               数字货币名称
@@ -2032,7 +2057,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">委托单状态 1 trading 交易中;2 filled 已成交;3 partial_filled 部分成交;4 canceled 已撤销</td>
 </tr>
 </tbody></table>
-<h3 id='b691cfe782-2'>返回数据</h3><pre class="highlight plaintext"><code>
+<h3 id='306fc38aa3-12'>响应结果</h3><pre class="highlight plaintext"><code>
     {
         "content": [
         {
@@ -2079,7 +2104,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">委托单ID</td>
 </tr>
 </tbody></table>
-<h3 id='306fc38aa3-11'>响应结果</h3><pre class="highlight plaintext"><code>{
+<h3 id='306fc38aa3-13'>响应结果</h3><pre class="highlight plaintext"><code>{
   "data": null,
   "status": "ok"
 }
@@ -2229,7 +2254,166 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
         }
     ]
 }
-</code></pre><h1 id='cf68bca02a'>错误代码</h1>
+</code></pre><h2 id='aa65c8c9af'>杠杆借贷和还款</h2><h2 id='4a0556d517'>下借款单</h2>
+<p><code>POST https://api.fcoin.com/v2/broker/leveraged/loans</code></p>
+<h3 id='1f9ac54b15-5'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">account_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">杠杆账户类型:btcusdt/ethusdt</td>
+</tr>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">借款数量</td>
+</tr>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">借款币种名称</td>
+</tr>
+<tr>
+<td style="text-align: left">loan_type</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">借款类型. normal 正常借款（指定借款数量）; all 全部（把剩余资产全部用来借款）</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3-5'>响应结果</h3><pre class="highlight plaintext"><code>        {
+        "amount": 0,                借款数量
+        "created_at": 0,            账单生成时间
+        "currency": "string",       借款币种名称
+        "finished_at": 0,           还款完成时间
+        "interest": 0,              总利息
+        "interest_rate": 0,         借款利率
+        "interest_start_at": 0,     计息开始时间
+        "last_repayment_at": 0,     最后一次还款时间
+        "loan_bill_id": 0,          借贷账单ID
+        "next_interest_at": 0,      下一次计息时间
+        "state": "string",          账单状态. submitted 已提交; 2 confirmed 已确认; 5 finished 还款完成
+        "unpaid_amount": 0,         未还款数量
+        "unpaid_interest": 0,       未还利息
+        "unpaid_total_amount": 0    待还款总数量 (未还款数量+未还利息)
+        }
+
+</code></pre><h2 id='21ab3b70d7'>自定义查询杠杆借贷记录</h2>
+<p><code>GET https://api.fcoin.com/v2/broker/leveraged/loans</code></p>
+<h3 id='1f9ac54b15-6'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">has_prev</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">是否包含前一页，该参数由前端控制，原样返回</td>
+</tr>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">最后一次分页的ID</td>
+</tr>
+<tr>
+<td style="text-align: left">page_size</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">请求数量，1-40</td>
+</tr>
+<tr>
+<td style="text-align: left">accountType</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">借款账户类型 BTCUSDT ETHUSDT</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3-6'>响应结果</h3><pre class="highlight plaintext"><code>        {
+        "content": [
+            {
+            "amount": 0,                借款数量
+            "created_at": 0,            账单生成时间
+            "currency": "string",       借款币种名称
+            "finished_at": 0,           还款完成时间
+            "interest": 0,              总利息
+            "interest_rate": 0,         借款利率
+            "interest_start_at": 0,     计息开始时间
+            "last_repayment_at": 0,     最后一次还款时间
+            "loan_bill_id": 0,          借贷账单ID
+            "next_interest_at": 0,      下一次计息时间
+            "state": "string",          账单状态. submitted 已提交; 2 confirmed 已确认; 5 finished 还款完成
+            "unpaid_amount": 0,         未还款数量
+            "unpaid_interest": 0,       未还利息
+            "unpaid_total_amount": 0    待还款总数量 (未还款数量+未还利息)
+        }
+        ],
+        "current_elements": 0,          查询结果集数量
+        "has_next": true,               是否包含下一页
+        "has_prev": true,               是否包含前一页，该参数由前端控制，原样返回
+        "next_page_id": "string"        下一页查询条件ID
+    }
+</code></pre><h2 id='6f9e333342'>查询指定杠杆借贷详情</h2>
+<p><code>GET https://api.fcoin.com/v2/broker/leveraged/loans/{leveraged_loan_id}</code></p>
+<h3 id='1f9ac54b15-7'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">leveraged_loan_id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">借贷账单ID</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3-7'>响应结果</h3><pre class="highlight plaintext"><code>
+     {
+                "amount": 0,                借款数量
+                "created_at": 0,            账单生成时间
+                "currency": "string",       借款币种名称
+                "finished_at": 0,           还款完成时间
+                "interest": 0,              总利息
+                "interest_rate": 0,         借款利率
+                "interest_start_at": 0,     计息开始时间
+                "last_repayment_at": 0,     最后一次还款时间
+                "loan_bill_id": 0,          借贷账单ID
+                "next_interest_at": 0,      下一次计息时间
+                "state": "string",          账单状态. submitted 已提交; 2 confirmed 已确认; 5 finished 还款完成
+                "unpaid_amount": 0,         未还款数量
+                "unpaid_interest": 0,       未还利息
+                "unpaid_total_amount": 0    待还款总数量 (未还款数量+未还利息)
+        }
+</code></pre><h2 id='5e9e7e54f5'>杠杆借款单还款</h2>
+<p><code>POST https://api.fcoin.com/v2/broker/leveraged/repayments/{loan_bill_id}</code></p>
+<h3 id='1f9ac54b15-8'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">loan_bill_id</td>
+<td style="text-align: center">无</td>
+<td style="text-align: left">借款单编号</td>
+</tr>
+</tbody></table>
+
+<p>body
+  {
+   &quot;amount&quot;: 0  还款数量
+  } </p>
+<h3 id='306fc38aa3-8'>响应结果</h3>
+<p>还款单ID</p>
+<h1 id='cf68bca02a'>错误代码</h1>
 <table><thead>
 <tr>
 <th>错误代码</th>
