@@ -135,6 +135,7 @@ states |  | State of Orders
 before |  | query orders before a specified page
 after |  | query orders after a specified page
 limit |  | the number of orders in each page, the default is 20
+account_type | Null | Order type（margin:margin）
 
 
 

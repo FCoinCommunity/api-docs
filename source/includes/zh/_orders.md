@@ -135,6 +135,7 @@ states |  | 订单状态，多种状态联合查询：submitted,partial_filled,p
 before |  | 查询某个时间戳之前的订单
 after |  | 查询某个时间戳之后的订单
 limit |  | 每页的订单数量，默认为 20 条，最大100
+account_type |  | 杠杆：margin
 
 
 
