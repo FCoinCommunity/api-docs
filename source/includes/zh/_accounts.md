@@ -50,8 +50,13 @@ let orders = api.accountsBalance;
 |:------|:------:|:------|
 currency|  |币种名称
 amount|  |数量
-
-
+### 请求示例：
+```
+{
+  "currency": "btc",
+  "amount": 1
+}
+```
 ### 响应结果
 ```
 {

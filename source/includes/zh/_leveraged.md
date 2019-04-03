@@ -12,7 +12,7 @@
 |currency|无|币种名称：usdt、btc、eth|
 |source_account_type|无|资产来源账户类型: exchange: 交易账户; assets: 资产账户|
 |target_account_type|无|目标账户类型: leveraged_btcusdt、leveraged_ethusdt、leveraged_eosusdt、leveraged_xrpusdt|
-
+### 请求示例：
 ```
 {
   "amount": 1,
@@ -43,7 +43,7 @@
 |currency|无|币种名称：usdt、btc、eth、eos、xrp|
 |source_account_type|无|资产来源账户类型: leveraged_btcusdt、leveraged_ethusdt、leveraged_eosusdt、leveraged_xrpusdt|
 |target_account_type|无|目标账户类型: exchange: 交易账户; assets: 资产账户|
-
+### 请求示例：
 ```
 {
   "amount": 1,

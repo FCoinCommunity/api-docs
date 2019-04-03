@@ -13,6 +13,7 @@
 |source_account_type|无|资产来源账户类型: exchange: 交易账户; assets: 资产账户|
 |target_account_type|无|目标账户类型: otc: 法币账户|
 
+### 请求示例：
 ```
 {
   "amount": 1,
@@ -45,6 +46,7 @@
 |source_account_type|无|资产来源账户类型:otc: 法币账户 |
 |target_account_type|无|目标账户类型: exchange: 交易账户; assets: 资产账户|
 
+### 请求示例：
 ```
 {
   "amount": 1,
@@ -74,6 +76,8 @@
 |:------|:------:|:------|
 |amount|无|交易数量|
 |delegation_order_id|无|委托单id|
+
+### 请求示例：
 
 ```
 {
@@ -386,7 +390,6 @@
 ## OTC 委托单
 - 委托单状态说明:
  
-  ------
    属性  |  含义
    ----  |  ----- 
    SUBMITTED|已提交
@@ -396,7 +399,6 @@
    FILLED|完全成交
    CANCELED|已撤销
    SYSTEM_CANCELED|系统撤销(余额不足)
-  ------
 
 ### 创建otc委托单
 
