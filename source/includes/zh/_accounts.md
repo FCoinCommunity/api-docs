@@ -37,3 +37,33 @@ let orders = api.accountsBalance;
 ### HTTP Request
 
 `GET https://api.fcoin.com/v2/accounts/balance`
+
+
+## 从我的钱包划转到交易账户
+此接口用于从我的钱包将资产划转到交易账户
+
+### HTTP Request
+`POST https://api.fcoin.com/v2/assets/accounts/assets-to-spot`
+
+### 请求参数
+|参数|默认值|描述|
+|:------|:------:|:------|
+currency|  |币种名称
+amount|  |数量
+
+
+```
+{
+  "amount": 1,
+  "currency": "btc",
+
+}
+```
+
+### 响应结果
+```
+{
+  "data": null,
+  "status": "ok"
+}
+```
