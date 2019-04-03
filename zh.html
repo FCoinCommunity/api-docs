@@ -269,6 +269,9 @@
                   <li>
                     <a href="#486f6037ed" class="toc-h2 toc-link" data-title="">查询账户资产</a>
                   </li>
+                  <li>
+                    <a href="#b502279a49" class="toc-h2 toc-link" data-title="">从我的钱包划转到交易账户</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1120,7 +1123,39 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <p>此 API 用于查询用户的资产列表。</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/accounts/balance</code></p>
-<h1 id='81b3798beb'>订单</h1><h2 id='804ca63a95'>订单模型说明</h2>
+<h2 id='b502279a49'>从我的钱包划转到交易账户</h2>
+<p>此接口用于从我的钱包将资产划转到交易账户</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.fcoin.com/v2/assets/accounts/assets-to-spot</code></p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">currency</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">币种名称</td>
+</tr>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center"></td>
+<td style="text-align: left">数量</td>
+</tr>
+</tbody></table>
+<pre class="highlight plaintext"><code>{
+  "amount": 1,
+  "currency": "btc",
+
+}
+</code></pre><h3 id='306fc38aa3'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "data": null,
+  "status": "ok"
+}
+</code></pre><h1 id='81b3798beb'>订单</h1><h2 id='804ca63a95'>订单模型说明</h2>
 <p>订单模型由以下属性构成：</p>
 
 <table><thead>
