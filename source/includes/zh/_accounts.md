@@ -52,14 +52,6 @@ currency|  |币种名称
 amount|  |数量
 
 
-```
-{
-  "amount": 1,
-  "currency": "btc",
-
-}
-```
-
 ### 响应结果
 ```
 {
