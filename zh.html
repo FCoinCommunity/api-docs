@@ -1146,7 +1146,11 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">数量</td>
 </tr>
 </tbody></table>
-<h3 id='306fc38aa3'>响应结果</h3><pre class="highlight plaintext"><code>{
+<h3 id='4978996777'>请求示例：</h3><pre class="highlight plaintext"><code>{
+  "currency": "btc",
+  "amount": 1
+}
+</code></pre><h3 id='306fc38aa3'>响应结果</h3><pre class="highlight plaintext"><code>{
   "data": null,
   "status": "ok"
 }
@@ -1559,7 +1563,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">目标账户类型: otc: 法币账户</td>
 </tr>
 </tbody></table>
-<pre class="highlight plaintext"><code>{
+<h3 id='4978996777'>请求示例：</h3><pre class="highlight plaintext"><code>{
   "amount": 1,
   "currency": "btc",
   "source_account_type": "exchange",
@@ -1602,7 +1606,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">目标账户类型: exchange: 交易账户; assets: 资产账户</td>
 </tr>
 </tbody></table>
-<pre class="highlight plaintext"><code>{
+<h3 id='4978996777-2'>请求示例：</h3><pre class="highlight plaintext"><code>{
   "amount": 1,
   "currency": "btc",
   "source_account_type": "otc",
@@ -1635,7 +1639,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">委托单id</td>
 </tr>
 </tbody></table>
-<pre class="highlight plaintext"><code>{
+<h3 id='4978996777-3'>请求示例：</h3><pre class="highlight plaintext"><code>{
   "amount": 1,
   "delegation_order_id": "St5_OiSE5YQiy4lxkQhq8w"
 }
@@ -1949,8 +1953,6 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <li>委托单状态说明:</li>
 </ul>
 
-<hr>
-
 <table><thead>
 <tr>
 <th>属性</th>
@@ -1986,8 +1988,6 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td>系统撤销(余额不足)</td>
 </tr>
 </tbody></table>
-
-<hr>
 <h3 id='otc-10'>创建otc委托单</h3>
 <p><code>POST https://api.fcoin.com/v2/broker/otc/delegation_orders</code></p>
 <h3 id='2eb6f47757'>请求参数:</h3><pre class="highlight plaintext"><code>    {
@@ -2177,7 +2177,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">目标账户类型: leveraged_btcusdt、leveraged_ethusdt、leveraged_eosusdt、leveraged_xrpusdt</td>
 </tr>
 </tbody></table>
-<pre class="highlight plaintext"><code>{
+<h3 id='4978996777'>请求示例：</h3><pre class="highlight plaintext"><code>{
   "amount": 1,
   "currency": "btc",
   "source_account_type": "exchange",
@@ -2220,7 +2220,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td style="text-align: left">目标账户类型: exchange: 交易账户; assets: 资产账户</td>
 </tr>
 </tbody></table>
-<pre class="highlight plaintext"><code>{
+<h3 id='4978996777-2'>请求示例：</h3><pre class="highlight plaintext"><code>{
   "amount": 1,
   "currency": "btc",
   "source_account_type": "leveraged_btcusdt",
