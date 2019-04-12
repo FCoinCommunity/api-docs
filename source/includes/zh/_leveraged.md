@@ -174,7 +174,8 @@
 |has_prev|无|是否包含前一页，该参数由前端控制，原样返回
 |id|无| 最后一次分页的ID
 |page_size|无| 请求数量，1-40
-|accountType|无| 借款账户类型 BTCUSDT ETHUSDT 
+|account_type|无| 借款账户类型 BTCUSDT ETHUSDT 
+|skip_finish|false| 是否忽略已完成状态的借款单，默认不忽略
 
 ### 响应结果
   
