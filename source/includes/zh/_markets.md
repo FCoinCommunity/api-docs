@@ -90,7 +90,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 发送 **sub 指令**: `{"cmd":"sub","args":["$topic", ...],"id":"$client_id"}`
 
 * `client_id`: 客户端为当前请求指定的自定义 id，服务器端会原样返回
-* `topic`: 待订阅的 topic，多个请用英文逗号`,`分隔
+* `topic`: 待订阅的 topic，多个请用英文逗号`,`分隔，最多可以订阅20个
 
 > sub 指令请求示例（单 topic）：
 
