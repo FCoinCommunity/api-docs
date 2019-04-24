@@ -261,6 +261,9 @@
                   <li>
                     <a href="#candle" class="toc-h2 toc-link" data-title="candle">获取 Candle 信息</a>
                   </li>
+                  <li>
+                    <a href="#ticker-2" class="toc-h2 toc-link" data-title="ticker">获取所有的ticker数据</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1096,7 +1099,11 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   </span><span class="s2">"base_vol"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
   </span><span class="s2">"quote_vol"</span><span class="p">:</span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='0685016e14'>币币账户与资产</h1><h2 id='486f6037ed'>查询账户资产</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
+</span></code></pre><h2 id='ticker-2'>获取所有的ticker数据</h2><h3 id='http-7'>HTTP 请求</h3>
+<p><code>GET https://api.fcoin.com/v2/market/all-tickers</code></p>
+<h4 id='http-8'>查询参数(HTTP 请求)</h4>
+<p>无</p>
+<h1 id='0685016e14'>币币账户与资产</h1><h2 id='486f6037ed'>查询账户资产</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">accounts_balance</span>
