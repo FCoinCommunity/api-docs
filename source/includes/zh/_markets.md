@@ -495,3 +495,15 @@ fcoin_ws.sub(topics)
   "quote_vol":0
 }
 ```
+
+
+
+## 获取所有的ticker数据
+
+### HTTP 请求
+
+`GET https://api.fcoin.com/v2/market/all-tickers`
+
+#### 查询参数(HTTP 请求)
+
+无
