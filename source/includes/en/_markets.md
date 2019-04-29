@@ -192,7 +192,6 @@ Type | Description
 -------- | --------
 `L20` | 20 -level market depth.
 `L150` | 150 -level market depth.
-`full` | full market depth, no time guarantee or push guarantee.
 
 The `L20` push time will be slightly earlier than `L100`, and the push frequency will be slightly more than `L100`, depending on the specified pressure and situation.
 
