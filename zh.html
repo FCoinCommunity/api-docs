@@ -273,6 +273,12 @@
                     <a href="#486f6037ed" class="toc-h2 toc-link" data-title="">查询账户资产</a>
                   </li>
                   <li>
+                    <a href="#9ddbfe98c4" class="toc-h2 toc-link" data-title="">查询交易账户的资产列表。</a>
+                  </li>
+                  <li>
+                    <a href="#370b72974b" class="toc-h2 toc-link" data-title="">查询我的钱包的资产列表。</a>
+                  </li>
+                  <li>
                     <a href="#b502279a49" class="toc-h2 toc-link" data-title="">从我的钱包划转到交易账户</a>
                   </li>
                   <li>
@@ -1125,9 +1131,13 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>此 API 用于查询我的钱包的资产列表。</p>
+</span></code></pre><h2 id='9ddbfe98c4'>查询交易账户的资产列表。</h2>
+<p>此api用于查询交易账户的资产</p>
 <h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://api.fcoin.com/v2/accounts/balance</code></p>
+<pre class="highlight plaintext"><code></code></pre><h2 id='370b72974b'>查询我的钱包的资产列表。</h2>
+<p>此api用于查询我的钱包的资产</p>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/assets/accounts/balance</code></p>
 <h3 id='306fc38aa3'>响应结果</h3><pre class="highlight plaintext"><code>{
   'status': 0,
@@ -1150,11 +1160,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
     },
     ...
 }
-</code></pre>
-<p>此 API 用于查询交易账户的资产列表。</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.fcoin.com/v2/accounts/balance</code></p>
-<h2 id='b502279a49'>从我的钱包划转到交易账户</h2>
+</code></pre><h2 id='b502279a49'>从我的钱包划转到交易账户</h2>
 <p>此接口用于从我的钱包将资产划转到交易账户</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST https://api.fcoin.com/v2/assets/accounts/assets-to-spot</code></p>
