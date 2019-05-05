@@ -32,7 +32,22 @@ let orders = api.accountsBalance;
 }
 ```
 
-此 API 用于查询我的钱包的资产列表。
+
+
+## 查询交易账户的资产列表。
+
+此api用于查询交易账户的资产
+### HTTP Request
+
+`GET https://api.fcoin.com/v2/accounts/balance`
+
+```
+```
+
+
+
+## 查询我的钱包的资产列表。
+此api用于查询我的钱包的资产
 
 ### HTTP Request
 
@@ -63,12 +78,6 @@ let orders = api.accountsBalance;
 }
 ```
 
-
-此 API 用于查询交易账户的资产列表。
-
-### HTTP Request
-
-`GET https://api.fcoin.com/v2/accounts/balance`
 
 
 ## 从我的钱包划转到交易账户
