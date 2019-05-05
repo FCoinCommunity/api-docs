@@ -270,9 +270,6 @@
             <a href="#0685016e14" class="toc-h1 toc-link" data-title="">币币账户与资产</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#486f6037ed" class="toc-h2 toc-link" data-title="">查询账户资产</a>
-                  </li>
-                  <li>
                     <a href="#9ddbfe98c4" class="toc-h2 toc-link" data-title="">查询交易账户的资产列表。</a>
                   </li>
                   <li>
@@ -1108,30 +1105,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <p><code>GET https://api.fcoin.com/v2/market/all-tickers</code></p>
 <h4 id='http-8'>查询参数(HTTP 请求)</h4>
 <p>无</p>
-<h1 id='0685016e14'>币币账户与资产</h1><h2 id='486f6037ed'>查询账户资产</h2><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">fcoin</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">fcoin</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'key'</span><span class="p">,</span> <span class="s">'secret'</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">accounts_balance</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">fcoin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fcoin'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">fcoin</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'key'</span><span class="p">,</span> <span class="s1">'secret'</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">orders</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">accountsBalance</span><span class="p">;</span>
-</code></pre>
-<blockquote>
-<p>响应结果如下：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='9ddbfe98c4'>查询交易账户的资产列表。</h2>
+<h1 id='0685016e14'>币币账户与资产</h1><h2 id='9ddbfe98c4'>查询交易账户的资产列表。</h2>
 <p>此api用于查询交易账户的资产</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://api.fcoin.com/v2/accounts/balance</code></p>
@@ -1187,7 +1161,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   "currency": "btc",
   "amount": 1
 }
-</code></pre><h3 id='306fc38aa3-2'>响应结果</h3><pre class="highlight plaintext"><code>{
+</code></pre><pre class="highlight plaintext"><code></code></pre><h3 id='306fc38aa3-2'>响应结果</h3><pre class="highlight plaintext"><code>{
   "data": null,
   "status": "ok"
 }
