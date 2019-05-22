@@ -402,20 +402,18 @@
 
 ### 创建otc委托单
 
-   `POST https://api.fcoin.com/v2/broker/otc/delegation_orders`
+   `POST https://api.fcoin.com/v2/broker/otc/delegation_orders/submit`
     
 ### 请求参数:
 ```
     {
             "amount": 0,                    总数量
             "currency": "string",           支持OTC的币种名称 BTC; ETH; USDT
-            "direction": "string",          买卖方向：1 buy 买、2 sell 卖
-            "legal_currency": "string",     法币币种
+            "direction": "string",          买卖方向：  buy 买; sell 卖
+            "legal_currency": "string",     法币币种   cny 人民币
             "max_limit": 0,                 最大买/卖金额
             "min_limit": 0,                 最小买/卖金额
-            "payment_methods": [            支付方式. alipay 支付宝; wechat_pay 微信; bank_card_pay 银行卡
-                "string"
-            ],
+            "payment_methods": "string"     支付方式. alipay 支付宝; wechat_pay 微信; bank_card_pay 银行卡 添加多种支付方式用","隔开 
             "price": 0,                     价格
             "remark": "string"              备注
     }
