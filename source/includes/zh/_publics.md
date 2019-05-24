@@ -118,3 +118,6 @@ let symbols = api.symbols();
 ### HTTP Request
 
 `GET https://api.fcoin.com/v2/public/symbols`
+
+或者，推荐使用下面接口
+`GET https://www.fcoin.com/openapi/v2/symbols`
