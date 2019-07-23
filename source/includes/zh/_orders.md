@@ -130,8 +130,8 @@ let orders = api.orders.get();
 
 参数 | 默认值 | 描述
 --------- | ------- | -----------
-symbol |  | 交易对
-states |  | 订单状态，多种状态联合查询：submitted,partial_filled,partial_canceled,filled,canceled,中间用逗号隔开
+symbol |  | 交易对，必填
+states |  | 订单状态，只支持单状态查询：submitted,partial_filled,partial_canceled,filled,canceled，必填
 before |  | 查询某个时间戳之前的订单
 after |  | 查询某个时间戳之后的订单
 limit |  | 每页的订单数量，默认为 20 条，最大100
