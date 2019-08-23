@@ -9,7 +9,7 @@ Property | type | interpretation
 `id` | `String` | Order ID
 `symbol` | `String` | Trading pairs
 `side` | `String` | Trading direction（`buy`, `sell`）
-`type` | `String` | Order type（`limit`，`market`）
+`type` | `String` | Order type（`limit`,`market`,`ioc`,`fok`）
 `price` | `String` | Order Price
 `amount` | `String` | Order quantity
 `state` | `String` | State of order
