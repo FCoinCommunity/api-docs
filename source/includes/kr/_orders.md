@@ -9,7 +9,7 @@
 `id` | `String` | 订单 ID
 `symbol` | `String` | 交易对
 `side` | `String` | 交易方向（`buy`, `sell`）
-`type` | `String` | 订单类型（`limit`，`market`）
+`type` | `String` | 订单类型（`limit`,`market`,`ioc`,`fok`）
 `price` | `String` | 下单价格
 `amount` | `String` | 下单数量
 `state` | `String` | 订单状态
