@@ -90,8 +90,9 @@
         "available_quote_currency_loan_amount": "300.000",#可借的计价币种数量
         "blow_up_price": null,                           #爆仓价
         "risk_rate": "0.90",                             #爆仓风险率
-        "state": "open"                                  #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓", allowableValues = "close,open,normal,blow_up,overrun")
- 
+        "state": "open",                                  #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓", allowableValues = "close,open,normal,blow_up,overrun")
+        "base_currency_unpaid_amount":"1",                #基准币种累计待还款数量(包含利息)
+        "quote_currency_unpaid_amount":"2"                #计价币种累计待还款数量(包含利息)
     }
 }
 ```
@@ -122,7 +123,9 @@
             "available_quote_currency_loan_amount": "300.000",#可借的计价币种数量
             "blow_up_price": null,                           #爆仓价
             "risk_rate": "0.90",                             #爆仓风险率
-            "state": "open"                                  #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓"
+            "state": "open",                                 #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓"
+            "base_currency_unpaid_amount":"1",                #基准币种累计待还款数量(包含利息)
+            "quote_currency_unpaid_amount":"2"                #计价币种累计待还款数量(包含利息)
         }
     ]
 }
