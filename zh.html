@@ -2304,8 +2304,9 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
         "available_quote_currency_loan_amount": "300.000",#可借的计价币种数量
         "blow_up_price": null,                           #爆仓价
         "risk_rate": "0.90",                             #爆仓风险率
-        "state": "open"                                  #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓", allowableValues = "close,open,normal,blow_up,overrun")
-
+        "state": "open",                                  #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓", allowableValues = "close,open,normal,blow_up,overrun")
+        "base_currency_unpaid_amount":"1",                #基准币种累计待还款数量(包含利息)
+        "quote_currency_unpaid_amount":"2"                #计价币种累计待还款数量(包含利息)
     }
 }
 </code></pre><h2 id='5bfdc8ea76'>查询所有杠杆账户的信息</h2><h3 id='url-2'>请求url</h3>
@@ -2328,7 +2329,9 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
             "available_quote_currency_loan_amount": "300.000",#可借的计价币种数量
             "blow_up_price": null,                           #爆仓价
             "risk_rate": "0.90",                             #爆仓风险率
-            "state": "open"                                  #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓"
+            "state": "open",                                 #账户状态. close 已关闭;open 已开通-未发生借贷;normal 已借贷-风险率正常;blow_up 已爆仓;overrun 已穿仓"
+            "base_currency_unpaid_amount":"1",                #基准币种累计待还款数量(包含利息)
+            "quote_currency_unpaid_amount":"2"                #计价币种累计待还款数量(包含利息)
         }
     ]
 }
