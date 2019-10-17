@@ -131,7 +131,7 @@ DeP6oftldIrys06uq3B7Lkh3a0U=
 
 > 即生成了用于向 API 服务器进行验证的最终签名
 
-## 参数名称
+## header中的参数名称
 
 * `FC-ACCESS-KEY`
 * `FC-ACCESS-SIGNATURE`
