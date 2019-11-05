@@ -402,7 +402,7 @@
 
 ### 创建otc委托单
 
-   `POST https://api.fcoin.com/v2/broker/otc/delegation_orders/submit`
+   `POST https://api.fcoin.com//v2/broker/otc/delegation_orders/submit-v3`
     
 ### 请求参数:
 ```
@@ -413,7 +413,7 @@
             "legal_currency": "string",     法币币种   cny 人民币
             "max_limit": 0,                 最大买/卖金额
             "min_limit": 0,                 最小买/卖金额
-            "payment_methods": "string"     支付方式. alipay 支付宝; wechat_pay 微信; bank_card_pay 银行卡 添加多种支付方式用","隔开 
+            "payment_method_ids": "string"  支付方式ID,可从支付方式的api中获取ID,添加多种支付方式用","隔开 
             "price": 0,                     价格
             "remark": "string"              备注
     }
@@ -534,4 +534,67 @@
   "status": "ok"
 }
 
+```
+
+## otc支付方式
+
+### 获取全部支付方式信息
+   GET /v2/broker/otc/payments
+### 请求参数
+     无
+     
+### 响应结果  
+```
+   {
+    "status":"ok",
+    "data":[
+        {
+            "payment_id":"ToMuTRjhCbrxv37JVMh05w",   支付方式ID
+            "payment_method":"alipay",               支付方式 alipay 支付宝;wechat_pay 微信;bank_card_pay 银行卡
+            "first_name":"firstName",                名
+            "last_name":"lastName",                  姓
+            "bank_name":"",                          开户银行(微信、支付宝请忽略此字段)
+            "bank_branch_name":"",                   开户支行名称(微信、支付宝请忽略此字段)
+            "account":"",                            账户
+            "state":"enabled",                       状态 enabled 启用; disabled 停用
+            "account_image_key":"imageKey.jpg",      账户图片地址，如二维码
+            "account_image_read_url":""              账户图片可读地址(无效)
+        },
+        {
+            "payment_id":"DedERVnG8GbKps57Di84mA",
+            "payment_method":"wechat_pay",
+            "first_name":"firstName",
+            "last_name":"lastName",
+            "bank_name":"",
+            "bank_branch_name":"",
+            "account":"",
+            "state":"enabled",
+            "account_image_key":"imageKey.jpg",
+            "account_image_read_url":""              
+        }
+    ]
+}
+```
+
+### 获取指定支付方式信息
+   GET /v2/broker/otc/payments/{payment_id}
+###  请求参数 
+     payment_id : 支付方式ID 
+### 响应结果   
+```
+   {
+    "status":"ok",
+    "data":{
+            "payment_id":"ToMuTRjhCbrxv37JVMh05w",   支付方式ID
+            "payment_method":"alipay",               支付方式 alipay 支付宝;wechat_pay 微信;bank_card_pay 银行卡
+            "first_name":"firstName",                名
+            "last_name":"lastName",                  姓
+            "bank_name":"",                          开户银行(微信、支付宝请忽略此字段)
+            "bank_branch_name":"",                   开户支行名称(微信、支付宝请忽略此字段)
+            "account":"",                            账户
+            "state":"enabled",                       状态 enabled 启用; disabled 停用
+            "account_image_key":"",                  账户图片地址，如二维码
+            "account_image_read_url":""              账户图片可读地址
+        }
+}
 ```
