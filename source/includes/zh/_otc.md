@@ -539,7 +539,7 @@
 ## otc支付方式
 
 ### 获取全部支付方式信息
-   GET /v2/broker/otc/payments
+`GET https://api.fcoin.com/v2/broker/otc/payments`
 ### 请求参数
      无
      
@@ -576,8 +576,8 @@
 }
 ```
 
-### 获取指定支付方式信息
-   GET /v2/broker/otc/payments/{payment_id}
+## 获取指定支付方式信息
+`GET https://api.fcoin.com//v2/broker/otc/payments/{payment_id}`
 ###  请求参数 
      payment_id : 支付方式ID 
 ### 响应结果   
