@@ -360,6 +360,9 @@
                   <li>
                     <a href="#2582bbf9b0" class="toc-h2 toc-link" data-title="">刷新委托单</a>
                   </li>
+                  <li>
+                    <a href="#otc-12" class="toc-h2 toc-link" data-title="otc">otc支付方式</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2035,7 +2038,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 </tr>
 </tbody></table>
 <h3 id='otc-10'>创建otc委托单</h3>
-<p><code>POST https://api.fcoin.com/v2/broker/otc/delegation_orders/submit</code></p>
+<p><code>POST https://api.fcoin.com//v2/broker/otc/delegation_orders/submit-v3</code></p>
 <h3 id='2eb6f47757'>请求参数:</h3><pre class="highlight plaintext"><code>    {
             "amount": 0,                    总数量
             "currency": "string",           支持OTC的币种名称 BTC; ETH; USDT
@@ -2043,7 +2046,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
             "legal_currency": "string",     法币币种   cny 人民币
             "max_limit": 0,                 最大买/卖金额
             "min_limit": 0,                 最小买/卖金额
-            "payment_methods": "string"     支付方式. alipay 支付宝; wechat_pay 微信; bank_card_pay 银行卡 添加多种支付方式用","隔开 
+            "payment_method_ids": "string"  支付方式ID,可从支付方式的api中获取ID,添加多种支付方式用","隔开 
             "price": 0,                     价格
             "remark": "string"              备注
     }
@@ -2188,6 +2191,58 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   "status": "ok"
 }
 
+</code></pre><h2 id='otc-12'>otc支付方式</h2><h3 id='01224ab635'>获取全部支付方式信息</h3>
+<p>GET /v2/broker/otc/payments</p>
+<h3 id='1f9ac54b15-16'>请求参数</h3>
+<p>无</p>
+<h3 id='306fc38aa3-14'>响应结果</h3><pre class="highlight plaintext"><code>   {
+    "status":"ok",
+    "data":[
+        {
+            "payment_id":"ToMuTRjhCbrxv37JVMh05w",   支付方式ID
+            "payment_method":"alipay",               支付方式 alipay 支付宝;wechat_pay 微信;bank_card_pay 银行卡
+            "first_name":"firstName",                名
+            "last_name":"lastName",                  姓
+            "bank_name":"",                          开户银行(微信、支付宝请忽略此字段)
+            "bank_branch_name":"",                   开户支行名称(微信、支付宝请忽略此字段)
+            "account":"",                            账户
+            "state":"enabled",                       状态 enabled 启用; disabled 停用
+            "account_image_key":"imageKey.jpg",      账户图片地址，如二维码
+            "account_image_read_url":""              账户图片可读地址(无效)
+        },
+        {
+            "payment_id":"DedERVnG8GbKps57Di84mA",
+            "payment_method":"wechat_pay",
+            "first_name":"firstName",
+            "last_name":"lastName",
+            "bank_name":"",
+            "bank_branch_name":"",
+            "account":"",
+            "state":"enabled",
+            "account_image_key":"imageKey.jpg",
+            "account_image_read_url":""              
+        }
+    ]
+}
+</code></pre><h3 id='df880f5b9a'>获取指定支付方式信息</h3>
+<p>GET /v2/broker/otc/payments/{payment_id}</p>
+<h3 id='1f9ac54b15-17'>请求参数</h3>
+<p>payment_id : 支付方式ID </p>
+<h3 id='306fc38aa3-15'>响应结果</h3><pre class="highlight plaintext"><code>   {
+    "status":"ok",
+    "data":{
+            "payment_id":"ToMuTRjhCbrxv37JVMh05w",   支付方式ID
+            "payment_method":"alipay",               支付方式 alipay 支付宝;wechat_pay 微信;bank_card_pay 银行卡
+            "first_name":"firstName",                名
+            "last_name":"lastName",                  姓
+            "bank_name":"",                          开户银行(微信、支付宝请忽略此字段)
+            "bank_branch_name":"",                   开户支行名称(微信、支付宝请忽略此字段)
+            "account":"",                            账户
+            "state":"enabled",                       状态 enabled 启用; disabled 停用
+            "account_image_key":"",                  账户图片地址，如二维码
+            "account_image_read_url":""              账户图片可读地址
+        }
+}
 </code></pre><h1 id='edaa33a157'>杠杆</h1><h2 id='0071c5603b'>杠杆账户资产转入</h2>
 <p>此API用于将交易账户或资产账户的资产转入到杠杆账户。</p>
 <h3 id='http-request'>HTTP Request</h3>
