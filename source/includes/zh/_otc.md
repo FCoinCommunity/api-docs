@@ -577,7 +577,7 @@
 ```
 
 ## 获取指定支付方式信息
-`GET https://api.fcoin.com//v2/broker/otc/payments/{payment_id}`
+`GET https://api.fcoin.com/v2/broker/otc/payments/{payment_id}`
 ###  请求参数 
      payment_id : 支付方式ID 
 ### 响应结果   
