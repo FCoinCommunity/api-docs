@@ -4,7 +4,7 @@
 
 行情是一个全公开的 API, 当前同时提供了 HTTP 和 WebSocket 的 API.
 为确保可以更及时的获得行情, 推荐使用 WebSocket 进行接入.
-为尽可能行情的实时性能, 当前公开部分只能获取最近一段时间的行情, 如果有需要获取全量或者历史行情, 请咨询 `support@fcoin.com`
+为尽可能行情的实时性能, 当前公开部分只能获取最近一段时间的行情
 
 所有 HTTP 请求的 URL base 为: `https://api.fcoin.com/v2/market`
 
