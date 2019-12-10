@@ -284,3 +284,85 @@ let max = api.orders.get('9d17a03b852e48c0b3920c7412867623').matchResults();
 参数 | 解释
 --------- | -----------
 order_id | 订单 ID
+
+
+
+## 创建计划委托订单
+
+`POST https://api.fcoin.com/v2/broker/entrust_orders/place_order`  
+
+### 请求参数
+
+| 参数 | 默认值 | 描述 |
+| :--- | ---  | :--- |
+|`symbol`|无|交易对|
+|`account_type`|无|账户类型：交易账户 spot；杠杆账户：margin|
+|`exchange`|无|交易区(可以不传)|
+|`trigger_type`|无|触发类型：greater_or_equal >= 向上击穿触发价格；less_or_equal <= 向下击穿触发价格|
+|`trigger_price`|无|触发价格|
+|`delegation_price`|无|委托价格|
+|`amount`|无|委托数量|
+|`type`|无|订单类型：限价卖出 buy_limit；限价买入 sell_limit|
+
+### response
+
+```
+{"status":"ok","data":"委托id"}
+```
+
+## 撤销计划委托订单
+
+`POST https://api.fcoin.com/v2/broker/entrust_orders/{委托id}/{cancel}`
+
+## 自定义查询计划委托订单
+
+`GET https://api.fcoin.com/v2/broker/entrust_orders`
+
+### 请求参数
+
+|参数|默认值|描述|
+| --- | --- | --- |
+|`exchange`|无|交易区|
+|`symbol`|无|交易对|
+|`state`|无|状态：submitted 已提交；finished 已完成；canceled 已撤销；user_insufficient_balance 用户余额不足|
+|`type`|无|订单类型：限价卖出 buy_limit；限价买入 sell_limit|
+|`account_type`|无|账户类型：交易账户 spot；杠杆账户：margin|
+|`skip_canceled`|false|是否隐藏已撤销委托单（包含用户余额不足的委托单）|
+
+查询杠杆账户是，交易对必须传
+
+### response
+
+```
+{
+    "status": "ok",
+    "data": {
+        "content": [
+            {
+                "id": "K87IRl38OdztQPmLMKoj6A",
+                "order_id": null,
+                "account_type": "spot",
+                "symbol": "btcusdt",
+                "base_currency": "btc",
+                "quote_currency": "usdt",
+                "trigger_type": "less_or_equal",
+                "trigger_price": "3720.000000000000000000",
+                "delegation_price": "3710.000000000000000000",
+                "amount": "1.000000000000000000",
+                "type": "buy_limit",
+                "source": "web",
+                "state": "submitted",
+                "state_i18n": "未触发",
+                "exchange": "main",
+                "finished_at": 0,
+                "canceled_at": 0,
+                "created_at": 1575947617345
+            }
+        ],
+        "current_elements": 1,
+        "has_prev": false,
+        "has_next": false,
+        "next_page_id": "xVPrrdjH6MAcGB_OuJhKAg"
+    }
+}
+```
