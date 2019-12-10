@@ -329,7 +329,7 @@ order_id | 订单 ID
 |`account_type`|无|账户类型：交易账户 spot；杠杆账户：margin|
 |`skip_canceled`|false|是否隐藏已撤销委托单（包含用户余额不足的委托单）|
 
-查询杠杆账户是，交易对必须传
+查询杠杆账户，交易对必须传
 
 ### response
 
