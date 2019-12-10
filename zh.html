@@ -305,6 +305,15 @@
                     <a href="#152112dfd6" class="toc-h2 toc-link" data-title="">查询指定订单的成交记录</a>
                   </li>
                   <li>
+                    <a href="#fc9a7682e2" class="toc-h2 toc-link" data-title="">创建计划委托订单</a>
+                  </li>
+                  <li>
+                    <a href="#3b6aca79ba" class="toc-h2 toc-link" data-title="">撤销计划委托订单</a>
+                  </li>
+                  <li>
+                    <a href="#71af56f3be" class="toc-h2 toc-link" data-title="">自定义查询计划委托订单</a>
+                  </li>
+                  <li>
                     <a href="#2b1ef4b5eb" class="toc-h2 toc-link" data-title="">订单错误代码</a>
                   </li>
               </ul>
@@ -1570,7 +1579,135 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 <td>订单 ID</td>
 </tr>
 </tbody></table>
-<h2 id='2b1ef4b5eb'>订单错误代码</h2>
+<h2 id='fc9a7682e2'>创建计划委托订单</h2>
+<p><code>POST https://api.fcoin.com/v2/broker/entrust_orders/place_order</code>  </p>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th>默认值</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><code>symbol</code></td>
+<td>无</td>
+<td style="text-align: left">交易对</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>account_type</code></td>
+<td>无</td>
+<td style="text-align: left">账户类型：交易账户 spot；杠杆账户：margin</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>exchange</code></td>
+<td>无</td>
+<td style="text-align: left">交易区(可以不传)</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>trigger_type</code></td>
+<td>无</td>
+<td style="text-align: left">触发类型：greater_or_equal &gt;= 向上击穿触发价格；less_or_equal &lt;= 向下击穿触发价格</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>trigger_price</code></td>
+<td>无</td>
+<td style="text-align: left">触发价格</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>delegation_price</code></td>
+<td>无</td>
+<td style="text-align: left">委托价格</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>amount</code></td>
+<td>无</td>
+<td style="text-align: left">委托数量</td>
+</tr>
+<tr>
+<td style="text-align: left"><code>type</code></td>
+<td>无</td>
+<td style="text-align: left">订单类型：限价卖出 buy_limit；限价买入 sell_limit</td>
+</tr>
+</tbody></table>
+<h3 id='response'>response</h3><pre class="highlight plaintext"><code>{"status":"ok","data":"委托id"}
+</code></pre><h2 id='3b6aca79ba'>撤销计划委托订单</h2>
+<p><code>POST https://api.fcoin.com/v2/broker/entrust_orders/{委托id}/{cancel}</code></p>
+<h2 id='71af56f3be'>自定义查询计划委托订单</h2>
+<p><code>GET https://api.fcoin.com/v2/broker/entrust_orders</code></p>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>exchange</code></td>
+<td>无</td>
+<td>交易区</td>
+</tr>
+<tr>
+<td><code>symbol</code></td>
+<td>无</td>
+<td>交易对</td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td>无</td>
+<td>状态：submitted 已提交；finished 已完成；canceled 已撤销；user_insufficient_balance 用户余额不足</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>无</td>
+<td>订单类型：限价卖出 buy_limit；限价买入 sell_limit</td>
+</tr>
+<tr>
+<td><code>account_type</code></td>
+<td>无</td>
+<td>账户类型：交易账户 spot；杠杆账户：margin</td>
+</tr>
+<tr>
+<td><code>skip_canceled</code></td>
+<td>false</td>
+<td>是否隐藏已撤销委托单（包含用户余额不足的委托单）</td>
+</tr>
+</tbody></table>
+
+<p>查询杠杆账户是，交易对必须传</p>
+<h3 id='response-2'>response</h3><pre class="highlight plaintext"><code>{
+    "status": "ok",
+    "data": {
+        "content": [
+            {
+                "id": "K87IRl38OdztQPmLMKoj6A",
+                "order_id": null,
+                "account_type": "spot",
+                "symbol": "btcusdt",
+                "base_currency": "btc",
+                "quote_currency": "usdt",
+                "trigger_type": "less_or_equal",
+                "trigger_price": "3720.000000000000000000",
+                "delegation_price": "3710.000000000000000000",
+                "amount": "1.000000000000000000",
+                "type": "buy_limit",
+                "source": "web",
+                "state": "submitted",
+                "state_i18n": "未触发",
+                "exchange": "main",
+                "finished_at": 0,
+                "canceled_at": 0,
+                "created_at": 1575947617345
+            }
+        ],
+        "current_elements": 1,
+        "has_prev": false,
+        "has_next": false,
+        "next_page_id": "xVPrrdjH6MAcGB_OuJhKAg"
+    }
+}
+</code></pre><h2 id='2b1ef4b5eb'>订单错误代码</h2>
 <table><thead>
 <tr>
 <th>错误代码</th>
