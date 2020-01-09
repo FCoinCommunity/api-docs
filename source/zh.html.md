@@ -18,6 +18,7 @@ includes:
   - zh/order_errors
   - zh/otc
   - zh/leveraged
+  - zh/small_currency_exchange
   - zh/errors
 
 
