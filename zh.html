@@ -2741,7 +2741,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 </tr>
 </tbody></table>
 <h2 id='86a20ca307'>用户兑换碎币</h2>
-<p>POST /v2/broker/auth/small_currency_exchange</p>
+<p><code>POST https://api.fcoin.com/v2/broker/auth/small_currency_exchange</code></p>
 <h3 id='1f9ac54b15'>请求参数</h3>
 <table><thead>
 <tr>
@@ -2751,7 +2751,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 </thead><tbody>
 <tr>
 <td style="text-align: left">exchange_currency</td>
-<td style="text-align: left">要兑换成的币种，如ft</td>
+<td style="text-align: left">要兑换成的币种，ft</td>
 </tr>
 <tr>
 <td style="text-align: left">small_currency_amounts</td>
@@ -2763,7 +2763,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   "data": null
 }
 </code></pre><h2 id='802a9a3865'>查询可兑换的币种</h2>
-<p>GET /v2/broker/auth/small_currency_exchange/exchangeable_small_currencies/{exchange_currency}</p>
+<p><code>GET https://api.fcoin.com/v2/broker/auth/small_currency_exchange/exchangeable_small_currencies/{exchange_currency}</code></p>
 <h3 id='1f9ac54b15-2'>请求参数</h3>
 <p>exchange_currency: 要兑换成的币种</p>
 <h3 id='306fc38aa3-2'>响应结果</h3><pre class="highlight plaintext"><code>  {
@@ -2775,7 +2775,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
           "available_amount": "0.00063517",     币种可用余额
           "valuation": "0.06805309",            可用余额估值(usdt)
           "exchange_amount": "1.71670037",      兑换可得数量(未扣除手续费)
-          "exchangeable": true                  是否可兑换(如果未false,兑换时将忽略不计)  
+          "exchangeable": true                  是否可兑换(如果为false,兑换时将忽略不计)  
       },
       {
           "currency": "usdt",
@@ -2788,7 +2788,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   }
 
 </code></pre><h2 id='19ee6e49a6'>查询兑换记录</h2>
-<p>GET /v2/broker/auth/small_currency_exchange</p>
+<p><code>GET https://api.fcoin.com/v2/broker/auth/small_currency_exchange</code></p>
 <h3 id='1f9ac54b15-3'>请求参数</h3>
 <table><thead>
 <tr>
@@ -2821,7 +2821,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
       "exchange_currency": "ft",                                 兑换成的币种
       "fees": "0.056006006006006007",                            手续费
       "exchange_amount": "28.003003003003003003",                兑换应得数量
-      "actual_exchange_amount": "27.946996996996996996",         兑换实际所得数量
+      "actual_exchange_amount": "27.946996996996996996",         兑换实际所得数量=兑换应得数量-手续费
       "state": "waiting_transfer_to_user",                       兑换状态
       "created_at": 1577949932988                                兑换时间
     }
