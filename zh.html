@@ -410,6 +410,20 @@
               </ul>
           </li>
           <li>
+            <a href="#8531859d1a" class="toc-h1 toc-link" data-title="">碎币兑换</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#86a20ca307" class="toc-h2 toc-link" data-title="">用户兑换碎币</a>
+                  </li>
+                  <li>
+                    <a href="#802a9a3865" class="toc-h2 toc-link" data-title="">查询可兑换的币种</a>
+                  </li>
+                  <li>
+                    <a href="#19ee6e49a6" class="toc-h2 toc-link" data-title="">查询兑换记录</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#cf68bca02a" class="toc-h1 toc-link" data-title="">错误代码</a>
           </li>
       </div>
@@ -1675,7 +1689,7 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
 </tr>
 </tbody></table>
 
-<p>查询杠杆账户是，交易对必须传</p>
+<p>查询杠杆账户，交易对必须传</p>
 <h3 id='response-2'>response</h3><pre class="highlight plaintext"><code>{
     "status": "ok",
     "data": {
@@ -2694,7 +2708,131 @@ tip: 可以通过 ping 请求时服务器返回的 ts 和 gap 值获取推送服
   } 
 </code></pre><h3 id='306fc38aa3-8'>响应结果</h3>
 <p>还款单ID</p>
-<h1 id='cf68bca02a'>错误代码</h1>
+<h1 id='8531859d1a'>碎币兑换</h1>
+<ul>
+<li>兑换记录状态说明:</li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">属性</th>
+<th style="text-align: center">含义</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">WAITING_TRANSFER_TO_SYSTEM</td>
+<td style="text-align: center">待划转到系统账户</td>
+</tr>
+<tr>
+<td style="text-align: left">WAITING_REFUND</td>
+<td style="text-align: center">待退款给用户</td>
+</tr>
+<tr>
+<td style="text-align: left">FAIL</td>
+<td style="text-align: center">兑换失败</td>
+</tr>
+<tr>
+<td style="text-align: left">WAITING_TRANSFER_TO_USER</td>
+<td style="text-align: center">待打款给用户</td>
+</tr>
+<tr>
+<td style="text-align: left">SUCCESS</td>
+<td style="text-align: center">兑换成功</td>
+</tr>
+</tbody></table>
+<h2 id='86a20ca307'>用户兑换碎币</h2>
+<p>POST /v2/broker/auth/small_currency_exchange</p>
+<h3 id='1f9ac54b15'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">属性</th>
+<th style="text-align: left">含义</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">exchange_currency</td>
+<td style="text-align: left">要兑换成的币种，如ft</td>
+</tr>
+<tr>
+<td style="text-align: left">small_currency_amounts</td>
+<td style="text-align: left">json格式: [{&quot;currency&quot;:&quot;usdt&quot;,&quot;amount&quot;:&quot;0.4&quot;},{&quot;currency&quot;:&quot;btc&quot;,&quot;amount&quot;:&quot;0.0002&quot;}]，其中currency: 待兑换的币种，amount: 要兑换的数量(必须大于0，最大支持18位精度)</td>
+</tr>
+</tbody></table>
+<h3 id='306fc38aa3'>响应结果</h3><pre class="highlight plaintext"><code>{
+  "status": "ok",
+  "data": null
+}
+</code></pre><h2 id='802a9a3865'>查询可兑换的币种</h2>
+<p>GET /v2/broker/auth/small_currency_exchange/exchangeable_small_currencies/{exchange_currency}</p>
+<h3 id='1f9ac54b15-2'>请求参数</h3>
+<p>exchange_currency: 要兑换成的币种</p>
+<h3 id='306fc38aa3-2'>响应结果</h3><pre class="highlight plaintext"><code>  {
+    "exchange_currency": "ft",                  要兑换成的币种
+    "total_exchange_amount": "0",               已经兑换所得总量
+    "exchangeable_small_currencies": [
+      {
+          "currency": "dash",                   待兑换的币种
+          "available_amount": "0.00063517",     币种可用余额
+          "valuation": "0.06805309",            可用余额估值(usdt)
+          "exchange_amount": "1.71670037",      兑换可得数量(未扣除手续费)
+          "exchangeable": true                  是否可兑换(如果未false,兑换时将忽略不计)  
+      },
+      {
+          "currency": "usdt",
+          "available_amount": "0.3",
+          "valuation": "0.3",
+          "exchange_amount": "15",
+          "exchangeable": true
+      }
+    ]
+  }
+
+</code></pre><h2 id='19ee6e49a6'>查询兑换记录</h2>
+<p>GET /v2/broker/auth/small_currency_exchange</p>
+<h3 id='1f9ac54b15-3'>请求参数</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">属性</th>
+<th style="text-align: center">类型</th>
+<th style="text-align: left">含义</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">has_prev</td>
+<td style="text-align: center">Boolean</td>
+<td style="text-align: left">是否包含前一页，该参数由前端控制，原样返回</td>
+</tr>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">String</td>
+<td style="text-align: left">最后一次分页的ID,非必传</td>
+</tr>
+<tr>
+<td style="text-align: left">page_size</td>
+<td style="text-align: center">Integer</td>
+<td style="text-align: left">请求数量(1-40),默认为40</td>
+</tr>
+</tbody></table>
+<h4 id='306fc38aa3-3'>响应结果</h4><pre class="highlight plaintext"><code>
+ {
+  "content": [
+    {
+      "id": "jS6XfuzBhXXhDBtt_dNDqw",                            记录id
+      "exchange_currency": "ft",                                 兑换成的币种
+      "fees": "0.056006006006006007",                            手续费
+      "exchange_amount": "28.003003003003003003",                兑换应得数量
+      "actual_exchange_amount": "27.946996996996996996",         兑换实际所得数量
+      "state": "waiting_transfer_to_user",                       兑换状态
+      "created_at": 1577949932988                                兑换时间
+    }
+  ],
+  "current_elements": 1,
+  "has_prev": false,
+  "has_next": false,
+  "next_page_id": "jS6XfuzBhXXhDBtt_dNDqw"
+ }
+
+</code></pre><h1 id='cf68bca02a'>错误代码</h1>
 <table><thead>
 <tr>
 <th>错误代码</th>
