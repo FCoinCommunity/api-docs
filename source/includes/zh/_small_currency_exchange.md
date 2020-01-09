@@ -13,12 +13,12 @@
 
 ## 用户兑换碎币
 
-   POST /v2/broker/auth/small_currency_exchange
+`POST https://api.fcoin.com/v2/broker/auth/small_currency_exchange`
 
 ### 请求参数   
 | 属性 |  含义 |
 |:------|:------|
-|exchange_currency | 要兑换成的币种，如ft
+|exchange_currency | 要兑换成的币种，ft
 |small_currency_amounts | json格式: [{"currency":"usdt","amount":"0.4"},{"currency":"btc","amount":"0.0002"}]，其中currency: 待兑换的币种，amount: 要兑换的数量(必须大于0，最大支持18位精度) 
  
 ### 响应结果  
@@ -31,7 +31,7 @@
 
 ## 查询可兑换的币种 
 
-  GET /v2/broker/auth/small_currency_exchange/exchangeable_small_currencies/{exchange_currency}
+`GET https://api.fcoin.com/v2/broker/auth/small_currency_exchange/exchangeable_small_currencies/{exchange_currency}`
 
 ### 请求参数
 
@@ -49,7 +49,7 @@ exchange_currency: 要兑换成的币种
           "available_amount": "0.00063517",     币种可用余额
           "valuation": "0.06805309",            可用余额估值(usdt)
           "exchange_amount": "1.71670037",      兑换可得数量(未扣除手续费)
-          "exchangeable": true                  是否可兑换(如果未false,兑换时将忽略不计)  
+          "exchangeable": true                  是否可兑换(如果为false,兑换时将忽略不计)  
       },
       {
           "currency": "usdt",
@@ -65,7 +65,7 @@ exchange_currency: 要兑换成的币种
 
 ## 查询兑换记录 
 
-  GET /v2/broker/auth/small_currency_exchange
+`GET https://api.fcoin.com/v2/broker/auth/small_currency_exchange`
 
 ### 请求参数  
 
@@ -87,7 +87,7 @@ exchange_currency: 要兑换成的币种
       "exchange_currency": "ft",                                 兑换成的币种
       "fees": "0.056006006006006007",                            手续费
       "exchange_amount": "28.003003003003003003",                兑换应得数量
-      "actual_exchange_amount": "27.946996996996996996",         兑换实际所得数量
+      "actual_exchange_amount": "27.946996996996996996",         兑换实际所得数量=兑换应得数量-手续费
       "state": "waiting_transfer_to_user",                       兑换状态
       "created_at": 1577949932988                                兑换时间
     }
