@@ -353,6 +353,20 @@
               </ul>
           </li>
           <li>
+            <a href="#small-assets-conversion" class="toc-h1 toc-link" data-title="small-assets-conversion">small assets conversion</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#user-convert-the-small-assets" class="toc-h2 toc-link" data-title="user-convert-the-small-assets">User convert the small assets</a>
+                  </li>
+                  <li>
+                    <a href="#check-convertible-currency" class="toc-h2 toc-link" data-title="check-convertible-currency">Check convertible currency</a>
+                  </li>
+                  <li>
+                    <a href="#check-conversion-record" class="toc-h2 toc-link" data-title="check-conversion-record">Check conversion record</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#order-error-code" class="toc-h1 toc-link" data-title="order-error-code">Order error code</a>
           </li>
       </div>
@@ -1915,6 +1929,130 @@ args: [topic, limit]</p>
         }
     ]
 }
+</code></pre><h1 id='small-assets-conversion'>small assets conversion</h1>
+<ul>
+<li>Conversion record state description </li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Property</th>
+<th style="text-align: center">Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">WAITING_TRANSFER_TO_SYSTEM</td>
+<td style="text-align: center">Waiting to be transferred into system account</td>
+</tr>
+<tr>
+<td style="text-align: left">WAITING_REFUND</td>
+<td style="text-align: center">Refund to users</td>
+</tr>
+<tr>
+<td style="text-align: left">FAIL</td>
+<td style="text-align: center">Conversion failed</td>
+</tr>
+<tr>
+<td style="text-align: left">WAITING_TRANSFER_TO_USER</td>
+<td style="text-align: center">Waiting to transfer to the user</td>
+</tr>
+<tr>
+<td style="text-align: left">SUCCESS</td>
+<td style="text-align: center">Conversion succeed</td>
+</tr>
+</tbody></table>
+<h2 id='user-convert-the-small-assets'>User convert the small assets</h2>
+<p><code>POST https://api.fcoin.com/v2/broker/auth/small_currency_exchange</code></p>
+<h3 id='required-parameter'>Required Parameter</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">Property</th>
+<th style="text-align: left">Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">exchange_currency</td>
+<td style="text-align: left">Convert into,ft</td>
+</tr>
+<tr>
+<td style="text-align: left">small_currency_amounts</td>
+<td style="text-align: left">json format: [{&quot;currency&quot;:&quot;usdt&quot;,&quot;amount&quot;:&quot;0.4&quot;},{&quot;currency&quot;:&quot;btc&quot;,&quot;amount&quot;:&quot;0.0002&quot;}]，among currency: currency to be converted，amount: convention amount (must be more than 0，18 digital precision are supported max. )</td>
+</tr>
+</tbody></table>
+<h3 id='responding-result'>Responding result</h3><pre class="highlight plaintext"><code>{
+  "status": "ok",
+  "data": null
+}
+</code></pre><h2 id='check-convertible-currency'>Check convertible currency</h2>
+<p><code>GET https://api.fcoin.com/v2/broker/auth/small_currency_exchange/exchangeable_small_currencies/{exchange_currency}</code></p>
+<h3 id='required-parameter-2'>Required Parameter</h3>
+<p>exchange_currency: Converted into currency</p>
+<h3 id='responding-result-2'>Responding result</h3><pre class="highlight plaintext"><code>　{
+  　"exchange_currency": "ft",                  Converted into currency　　
+    "total_exchange_amount": "0",               total amount have been coverted
+    "exchangeable_small_currencies": [
+      {
+          "currency": "dash",                   currency to be converted
+          "available_amount": "0.00063517",     currency balance 
+          "valuation": "0.06805309",            available balance estimated (usdt)
+          "exchange_amount": "1.71670037",      converted amount(commission has not been deducted)
+          "exchangeable": true                  Can be converted or no(false means can be neglected during conversion)  
+      },
+      {
+          "currency": "usdt",
+          "available_amount": "0.3",
+          "valuation": "0.3",
+          "exchange_amount": "15",
+          "exchangeable": true
+      }
+    ]
+  }
+
+</code></pre><h2 id='check-conversion-record'>Check conversion record</h2>
+<p><code>GET https://api.fcoin.com/v2/broker/auth/small_currency_exchange</code></p>
+<h3 id='required-parameter-3'>Required Parameter</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">Property</th>
+<th style="text-align: center">Type</th>
+<th style="text-align: left">Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">has_prev</td>
+<td style="text-align: center">Boolean</td>
+<td style="text-align: left">the Parameter is controlled by the front end weather to include the former page or not, return as it</td>
+</tr>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">String</td>
+<td style="text-align: left">The last paging ID not mandatory</td>
+</tr>
+<tr>
+<td style="text-align: left">page_size</td>
+<td style="text-align: center">Integer</td>
+<td style="text-align: left">Request amount(1-40),40 by default</td>
+</tr>
+</tbody></table>
+<h4 id='responding-result-3'>Responding result</h4><pre class="highlight plaintext"><code>
+ {
+  "content": [
+    {
+      "id": "jS6XfuzBhXXhDBtt_dNDqw",                            record id
+      "exchange_currency": "ft",                                 convert into currency
+      "fees": "0.056006006006006007",                            fee
+      "exchange_amount": "28.003003003003003003",                converted amount
+      "actual_exchange_amount": "27.946996996996996996",         actual arrival amount = converted amount - fee
+      "state": "waiting_transfer_to_user",                       conversion state
+      "created_at": 1577949932988                                conversion time
+    }
+  ],
+  "current_elements": 1,
+  "has_prev": false,
+  "has_next": false,
+  "next_page_id": "jS6XfuzBhXXhDBtt_dNDqw"
+ }
+
 </code></pre><h1 id='order-error-code'>Order error code</h1>
 <table><thead>
 <tr>

@@ -353,6 +353,20 @@
               </ul>
           </li>
           <li>
+            <a href="#49e0fd36cb" class="toc-h1 toc-link" data-title="">小額通貨の両替</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#83112736d7" class="toc-h2 toc-link" data-title="">ユーザーは小額通貨を両替する</a>
+                  </li>
+                  <li>
+                    <a href="#91c389a39d" class="toc-h2 toc-link" data-title="">両替可能な通貨の照会</a>
+                  </li>
+                  <li>
+                    <a href="#83215c92ad" class="toc-h2 toc-link" data-title="">両替履歴の照会</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#044106d39a" class="toc-h1 toc-link" data-title="">エラーコード</a>
           </li>
       </div>
@@ -2014,6 +2028,130 @@ tip: ping リクエストでサーバーから返した ts 和 gap を通して�
         }
     ]
 }
+</code></pre><h1 id='49e0fd36cb'>小額通貨の両替</h1>
+<ul>
+<li>両替履歴の状態に関する説明</li>
+</ul>
+
+<table><thead>
+<tr>
+<th style="text-align: left">属性</th>
+<th style="text-align: center">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">WAITING_TRANSFER_TO_SYSTEM</td>
+<td style="text-align: center">システムアカウントへ振り替え待ち</td>
+</tr>
+<tr>
+<td style="text-align: left">WAITING_REFUND</td>
+<td style="text-align: center">ユーザーに返却待ち</td>
+</tr>
+<tr>
+<td style="text-align: left">FAIL</td>
+<td style="text-align: center">両替失敗</td>
+</tr>
+<tr>
+<td style="text-align: left">WAITING_TRANSFER_TO_USER</td>
+<td style="text-align: center">ユーザーに振り替え待ち</td>
+</tr>
+<tr>
+<td style="text-align: left">SUCCESS</td>
+<td style="text-align: center">両替完了</td>
+</tr>
+</tbody></table>
+<h2 id='83112736d7'>ユーザーは小額通貨を両替する</h2>
+<p><code>POST https://api.fcoin.com/v2/broker/auth/small_currency_exchange</code></p>
+<h3 id='7fcd640e0e'>パラメータ・リクエスト</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">属性</th>
+<th style="text-align: left">説明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">exchange_currency</td>
+<td style="text-align: left">もらう通貨：FT</td>
+</tr>
+<tr>
+<td style="text-align: left">small_currency_amounts</td>
+<td style="text-align: left">jsonフォーマット：[{&quot;currency&quot;:&quot;usdt&quot;,&quot;amount&quot;:&quot;0.4&quot;},{&quot;currency&quot;:&quot;btc&quot;,&quot;amount&quot;:&quot;0.0002&quot;}]。その中で、currencyは送る通貨です。amountは両替の数量です（0より大きくなる必要があります。最大18位の精度をサポートします）。</td>
+</tr>
+</tbody></table>
+<h3 id='99cdae5b4b'>レスポンス</h3><pre class="highlight plaintext"><code>{
+  "status": "ok",
+  "data": null
+}
+</code></pre><h2 id='91c389a39d'>両替可能な通貨の照会</h2>
+<p><code>GET https://api.fcoin.com/v2/broker/auth/small_currency_exchange/exchangeable_small_currencies/{exchange_currency}</code></p>
+<h3 id='7fcd640e0e-2'>パラメータ・リクエスト</h3>
+<p>exchange_currency: もらう通貨</p>
+<h3 id='99cdae5b4b-2'>レスポンス</h3><pre class="highlight plaintext"><code>  {
+    "exchange_currency": "ft",                  もらう通貨
+    "total_exchange_amount": "0",               もらった通貨の総額
+    "exchangeable_small_currencies": [
+      {
+          "currency": "dash",                   両替待ちの通貨
+          "available_amount": "0.00063517",     利用可能な残高
+          "valuation": "0.06805309",            利用可能な残高の価値(usdt)
+          "exchange_amount": "1.71670037",      もらえる数量（手数料未支払い）　
+          "exchangeable": true                  両替可能ですか（Falseの場合、両替する時計算に入れず）
+      },
+      {
+          "currency": "usdt",
+          "available_amount": "0.3",
+          "valuation": "0.3",
+          "exchange_amount": "15",
+          "exchangeable": true
+      }
+    ]
+  }
+
+</code></pre><h2 id='83215c92ad'>両替履歴の照会</h2>
+<p><code>GET https://api.fcoin.com/v2/broker/auth/small_currency_exchange</code></p>
+<h3 id='7fcd640e0e-3'>パラメータ・リクエスト</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">属性　</th>
+<th style="text-align: center">タイプ　　</th>
+<th style="text-align: left">説明　</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">has_prev</td>
+<td style="text-align: center">Boolean</td>
+<td style="text-align: left">前のページが含まれますか？このパラメータはフロントエンドにより制御され、そのままで返します。</td>
+</tr>
+<tr>
+<td style="text-align: left">id</td>
+<td style="text-align: center">String</td>
+<td style="text-align: left">最後のページングのID</td>
+</tr>
+<tr>
+<td style="text-align: left">page_size</td>
+<td style="text-align: center">Integer</td>
+<td style="text-align: left">リクエスト可能な数量（1〜40）、デフォルトは40です。</td>
+</tr>
+</tbody></table>
+<h4 id='99cdae5b4b-3'>レスポンス</h4><pre class="highlight plaintext"><code>
+ {
+  "content": [
+    {
+      "id": "jS6XfuzBhXXhDBtt_dNDqw",                            記録ID
+      "exchange_currency": "ft",                                 もらう通貨
+      "fees": "0.056006006006006007",                            手数料
+      "exchange_amount": "28.003003003003003003",                もらえる数量
+      "actual_exchange_amount": "27.946996996996996996",         両替でもらった数量 ＝ もらえる数量 - 手数料　
+      "state": "waiting_transfer_to_user",                       両替状態
+      "created_at": 1577949932988                                両替時間
+    }
+  ],
+  "current_elements": 1,
+  "has_prev": false,
+  "has_next": false,
+  "next_page_id": "jS6XfuzBhXXhDBtt_dNDqw"
+ }
+
 </code></pre><h1 id='044106d39a'>エラーコード</h1>
 <table><thead>
 <tr>
