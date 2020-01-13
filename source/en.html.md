@@ -18,6 +18,7 @@ includes:
   - en/order_errors
   - en/otc
   - en/leveraged
+  - en/small_currency_exchange
   - en/errors
 
 search: true

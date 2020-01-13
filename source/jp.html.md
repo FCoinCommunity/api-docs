@@ -18,6 +18,7 @@ includes:
   - jp/order_errors
   - jp/otc
   - jp/leveraged
+  - jp/small_currency_exchange
   - jp/errors
 
 search: true
