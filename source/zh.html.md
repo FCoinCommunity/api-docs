@@ -14,13 +14,8 @@ includes:
   - zh/publics
   - zh/markets
   - zh/accounts
-  - zh/orders
-  - zh/order_errors
-  - zh/otc
   - zh/leveraged
-  - zh/small_currency_exchange
-  - zh/errors
-
-
+  - zh/orders
+  - zh/otc
 search: true
 ---
